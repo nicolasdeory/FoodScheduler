@@ -8,7 +8,6 @@ body{
     display: flex;
     color: #563514;
     font-size: 3vmin;
-    background-color: yellow;
     font-family: 'Karla', sans-serif;
     font-weight: bold; 
     align-items: center;
@@ -18,7 +17,6 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: red;
     width: 100%;
 }
 
@@ -27,6 +25,7 @@ body{
     height: 12vmin;
     padding-left: 5vmin;
     padding-right: 5vmin;
+    justify-content: space-evenly;
 }
 
 .partederechamenu{
@@ -34,6 +33,39 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 18%;
-    background-color: blue;
+    width: 40vmin;
+}
+
+.burger{
+    display:none;
+}
+
+@media (max-width: 768px){
+    .burger{
+        display: flex;
+        align-items: center;
+        align-items: center;
+    }
+
+    .partederechamenu{
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    .menu{
+        flex-direction: column;
+    }
+    .navegacion{
+        padding-top: 2vmin;
+        flex-direction: column;
+        padding-left: 2vmin;
+        padding-right: 2vmin;
+    }
+
+    .active{
+        display: flex;
+    }
+    .activenav{
+        margin-top: 20%;
+    }
 }
