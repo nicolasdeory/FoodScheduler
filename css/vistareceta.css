@@ -1,0 +1,39 @@
+body{
+    background-color: #F0E2D3;
+    font-family: 'Karla', sans-serif;
+    border-color: #563514;
+}
+
+.titulo {
+    display: flex;
+    color: #563514;
+    font-size: 3vmin;
+    background-color: yellow;
+    font-family: 'Karla', sans-serif;
+    font-weight: bold; 
+    align-items: center;
+}
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: red;
+    width: 100%;
+}
+
+.navegacion{
+    display: flex;
+    height: 12vmin;
+    padding-left: 5vmin;
+    padding-right: 5vmin;
+}
+
+.partederechamenu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 18%;
+    background-color: blue;
+}
