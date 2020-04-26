@@ -54,6 +54,10 @@
     width: 100%;
 }
 
+.schedule-table td {
+    padding: 20px;
+}
+
 .schedule-table tr > :nth-child(odd) {
     background-color: #E132321a;
 }
@@ -66,11 +70,13 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 400;
-    font-size: 12pt;
+    font-size: 11pt;
+    margin-top: 0;
 }
 
 .schedule-table ul {
     list-style-type: none;
+    padding: 0;
 }
 
 .schedule-table li {
@@ -98,7 +104,8 @@
 }
 
 .missing-ingredient-list {
-    list-style-type: none;    
+    list-style-type: none;
+    padding: 0;
 }
 
 .missing-ingredient-list li {
