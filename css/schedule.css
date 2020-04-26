@@ -1,0 +1,122 @@
+.schedule-section-container {
+    padding: 50px;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #E13232;
+    width: 100%;
+    padding: 50px;
+}
+
+.schedule-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-bottom: 15px;
+}
+
+.chevron {
+    font-size: 16pt;
+    color: #563514;
+}
+
+.chevron.right {
+    transform: scaleX(-1);
+}
+
+#day-container {
+    display: flex;
+    height: 40px;
+    width: 100%;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#day-container span {
+    font-size: 15pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    transition: 0.15s;
+}
+.schedule-table {
+    outline: solid 1px #E132321a;
+    outline-offset: 10px;
+}
+
+.schedule-table table {
+    width: 100%;
+}
+
+.schedule-table tr > :nth-child(odd) {
+    background-color: #E132321a;
+}
+
+.schedule-table tr > :nth-child(even) {
+    background-color: #E1323210;
+}
+
+.schedule-table h3 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 400;
+    font-size: 12pt;
+}
+
+.schedule-table ul {
+    list-style-type: none;
+}
+
+.schedule-table li {
+    font-weight: bold;
+}
+
+.alert-box {
+    width: 100%;
+    background-color: #FFF8F8;
+    border: solid 6px #FF3131;
+    padding: 50px;
+}
+
+.alert-box h1 {
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.alert-box p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 14pt;
+}
+
+.missing-ingredient-list {
+    list-style-type: none;    
+}
+
+.missing-ingredient-list li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.missing-ingredient-list .add-icon {
+    font-size: 12pt;
+}
+
+.missing-ingredient-list .ingredient {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.missing-ingredient-list .description {
+    font-size: 12pt;
+    font-weight: 400;
+}

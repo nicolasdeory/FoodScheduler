@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F0E2D3;
+    margin: 0;
+    color: #222;
+    font-family: 'Muli';
+}
+
+.section-header .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.section-header .header .title {
+    font-weight: 900;
+    font-size: 24pt;
+    margin-right: 50px;
+}
+
+.section-header .header .subtitle {
+    font-weight: 400;
+    font-size: 12pt;
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    background-color: #56351424;
+}
+
+.section-header .separator {
+    margin-top: 20px;
+    width: 90%;
+}
+
