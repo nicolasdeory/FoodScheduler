@@ -10,13 +10,13 @@
 <body>
 
 <div class="navegacion">
-    <div class="burger"> <span class="material-icons toggle">menu</span></div>
     <div class="menu">
-        <div class= "titulo"> 
-            <p>Planificador Alimenticio</p>
+        <div class="izquierda">
+          <div class="burger"> <span class="material-icons toggle">menu</span></div>
+          <div class= "titulo"> <p>Planificador Alimenticio</p> </div>
         </div>
         <div class="partederechamenu">
-            <span class="material-icons">notifications</span>
+            <span class="material-icons campanades">notifications</span>
             <p> Hola, Nicolas </p>
             <p> Mi cuenta </p>
             <p> Salir </p>
@@ -30,8 +30,7 @@
   menu.addEventListener('click', (e) => {
     document.querySelector('.partederechamenu').classList.toggle('active');
     document.querySelector('.navegacion').classList.toggle('activenav');
-
-  })
+  });
 </script>
     
 </script>
