@@ -22,10 +22,12 @@
 
 <body>
 <!--Párrafo-->
+    <div class="miCuentaTit">
         <h2>Mi cuenta</h2>
+    </div> 
 
 <!--Menú de navegación-->
-<div class="navegacion">
+ <div class="navegacion">
     <div class="menu">
         <div class="izquierda">
           <div class="burger"> <span class="material-icons toggle">menu</span></div>
@@ -34,12 +36,24 @@
         <div class="partederechamenu">
             <span class="material-icons campanades">notifications</span>
             <p> Hola, Nicolas </p>
-            <p> Mi cuenta </p>
+            <p><ins> Mi cuenta </ins></p>
             <p> Salir </p>
         </div>
     </div>
-</div>
+ </div>
+ <div class="linea"></div>
 
+ <div class="rectangulo">
+
+    <h3>Nombre de Usuario: NicoDeOry</h3>
+    <h3>Email: nicolasdeory@gmail.com</h3>
+    <h3>Nombre Completo: Nicolás De Ory Carmona</h3>
+    <h3>Teléfono: 673245312</h3>
+
+
+
+
+</div>
 
 <script>
   let menu = document.querySelector('.toggle')
