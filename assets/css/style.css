@@ -54,17 +54,14 @@ a:link, a:visited, a:active {
     text-align: center;
     position: absolute;
     top: 96%;
-    left: 50%;
-    height: 30%;
-    width: 50%;
+    left: 66%;
     margin: -15% 0 0 -25%; 
     font-size: 68%;
     text-decoration: none;
     font-weight: bold;
             
 }
-    
-    
+      
 /*Estilo de los inputs*/
 input[type="text"], input[type="password"], input[type="email"]{
     outline: none;
@@ -103,12 +100,6 @@ hr {
      border: 0;
 }
 
-.icon{
-
-    
-
-
-}
 /*Estilo del cuadrado que recubre el Login*/   
 .cuadradoLogin {
     background-color: #eddece;
