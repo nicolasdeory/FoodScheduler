@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+    
 
 <!--Nombre de la pestaña-->
     <title>Iniciar Sesión</title>
@@ -15,15 +18,15 @@
     <link href="https://www.fontspring.com/fonts/horizon-type/acherus-grotesque" rel="stylesheet">
 
 <!--Link al archivo css-->   
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/loginstyle.css" type="text/css">
+
 
 
 </head>
 
 
 <body>
-<i class="fas fa-user"></i>
-<div class="imagen">
+
     <div class="cuadradoLogin"> 
         <hr>
 
@@ -41,6 +44,7 @@
 <!--Formulario de Login-->
         
         <div class="formlogin">
+
             <form action="login.php" method="post" name="formLogin">
             <input type="text" name="Usuario" placeholder="Nombre de usuario" id="username">
             <input type="password" name="Contraseña" placeholder="Contraseña" id="passwd">
@@ -52,12 +56,12 @@
             <a class="btn" href="signup.php">No tengo cuenta</a>
   
             
-
+            
     </div>
 
 
 
-</div>
+
 
 
 

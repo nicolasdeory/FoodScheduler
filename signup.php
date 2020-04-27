@@ -14,7 +14,7 @@
     <link href="https://www.fontspring.com/fonts/horizon-type/acherus-grotesque" rel="stylesheet">
 
 <!--Link al archivo css-->   
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/registerstyle.css" type="text/css">
 
 </head>
 
