@@ -1,0 +1,107 @@
+
+html{
+background-color: #f0e2d3;
+}
+
+
+.title, .subtitle{
+    text-indent: 100px;
+}
+
+.subtitle{
+    margin-top: 40px;
+
+}
+
+
+.line{
+    padding-left: 100px;
+    color: black;
+}
+
+.contenedor{
+    width: 95%;
+    height: 500px;
+    margin: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search, .result{
+    margin: 30px;
+    width: 500px;
+    height: 300px;
+    text-align: center;
+}
+
+.search{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.comida, .ingrediente, .dificultad{
+    width: 95%;
+    height: 15%;
+    background-color: white;
+    color: #563514;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+}
+
+.boton{
+    height: 15%;
+    background-color: red;
+    border-radius: 15px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.icon{
+    height: 10px;
+    display: flex;
+      
+    padding-right: 10px;
+}
+
+.result{
+    background: #ff5050 9%;     
+    
+}
+
+.input-text{
+    border: none;
+    width: 100%;
+    text-align: center;
+}
+
+.input-text:focus{
+    outline: none;
+    border: none;
+
+}
+
+.niconosedacuenta{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 20px;
+}
