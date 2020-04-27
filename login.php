@@ -27,7 +27,7 @@
 
 <body>
 
-    <div class="cuadradoLogin"> 
+<div class="cuadradoLogin"> 
         <hr>
 
 
@@ -43,21 +43,25 @@
 
 <!--Formulario de Login-->
         
-        <div class="formlogin">
-
-            <form action="login.php" method="post" name="formLogin">
-            <input type="text" name="Usuario" placeholder="Nombre de usuario" id="username">
-            <input type="password" name="Contraseña" placeholder="Contraseña" id="passwd">
-            <button type="submit">Entrar</button>
-            </form>
+    <div class="formlogin">
         
-        </div>
+        
+        <form action="login.php" method="post" name="formLogin">
+        
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <input type="text" name="Usuario" placeholder="Nombre de usuario" id="username">
+        <input type="password" name="Contraseña" placeholder="Contraseña" id="passwd">
+        <button type="submit">Entrar</button>
+        
+        </form>
+        
+    </div>   
 
-            <a class="btn" href="signup.php">No tengo cuenta</a>
+        <a class="btn" href="signup.php">No tengo cuenta</a>
   
             
             
-    </div>
+</div>
 
 
 
@@ -68,7 +72,8 @@
 
 <!--Código javascript-->       
     <script type="text/javascript" src="validacion.js"></script>
-        
+
+       
 
 </body>
 

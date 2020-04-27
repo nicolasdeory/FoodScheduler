@@ -43,13 +43,16 @@
  </div>
  <div class="linea"></div>
 
+ <!--Datos de mi cuenta(Temporal)-->
  <div class="rectangulo">
-
-    <h3>Nombre de Usuario: NicoDeOry</h3>
-    <h3>Email: nicolasdeory@gmail.com</h3>
-    <h3>Nombre Completo: Nicolás De Ory Carmona</h3>
-    <h3>Teléfono: 673245312</h3>
-
+ <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+ <i class="fas fa-user"></i>
+    <div class="datosText">
+        <h3>Nombre de Usuario: NicoDeOry</h3>
+        <h3>Email: nicolasdeory@gmail.com</h3>
+        <h3>Nombre Completo: Nicolás De Ory Carmona</h3>
+        <h3>Teléfono: 673245312</h3>
+    </div>
 
 
 

@@ -74,7 +74,7 @@ input[type="text"], input[type="password"], input[type="email"]{
     text-align: center;
     font-family: 'Muli';
 }
- 
+
 /*Estilo del input de submit*/
 button{
     height: 40px;
