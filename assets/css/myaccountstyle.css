@@ -54,7 +54,91 @@ html{
 i{
     margin-top: 3%;
     margin-left: 5%;
+    font-size:170px;
 }
+
+@media (max-width: 768px){
+
+/*Estilo del rectángulo que recubre los datos*/
+.rectangulo {
+       
+    background: #f5ece2;
+    width: 325px;
+    height: 400px;
+    position: absolute;
+    left: 16.9%;
+    top: 25%;
+}
+
+/*Estilo del título "Mi cuenta"*/
+.miCuentaTit{
+padding: 0;
+font-family: 'Horizon Type - AcherusGrotesque-Regular';
+text-align: center;
+position: absolute;
+top: 10%;
+left: 40%;
+font-size: larger;
+
+
+}
+
+/*Estilo de los datos de mi cuenta*/
+.datosText{
+
+padding: 0;
+font-family: 'Muli';
+text-align: left;
+position: absolute;
+top: 45%;
+left: 35%;
+margin: -15% 0 0 -25%; 
+font-size: 70%;
+line-height: 250%;
+}
+
+
+/*Estilo de la linea entre el Mi cuenta y los datos*/    
+.linea {
+height: 1px;
+width: 66.5%;
+background-color: #c5b9ac;
+margin-left: 17%;
+margin-top: 12%;
+}
+
+i{
+margin-top: 5%;
+margin-left: 35%;
+font-size: 100px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Título "Planificador Alimenticio" de la barra de navegación*/
 .titulo {
         display: flex;

@@ -15,8 +15,9 @@
 <!--Link al archivo css-->   
     <link rel="stylesheet" href="assets/css/myaccountstyle.css" type="text/css">
 
-<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Link de la Fuente para las letras del menú de navegación-->
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -43,10 +44,10 @@
  </div>
  <div class="linea"></div>
 
- <!--Datos de mi cuenta(Temporal)-->
- <div class="rectangulo">
- <script src="https://kit.fontawesome.com/a076d05399.js"></script>
- <i class="fas fa-user" style="font-size:170px;color:#563514"></i>
+<!--Datos de mi cuenta(Temporal)-->
+    <div class="rectangulo">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <i class="fas fa-user" style="color:#563514"></i>
     <div class="datosText">
         <h3>Nombre de Usuario: NicoDeOry</h3>
         <h3>Email: nicolasdeory@gmail.com</h3>
