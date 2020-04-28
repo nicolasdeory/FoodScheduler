@@ -46,7 +46,7 @@
  <!--Datos de mi cuenta(Temporal)-->
  <div class="rectangulo">
  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
- <i class="fas fa-user"></i>
+ <i class="fas fa-user" style="font-size:170px;color:#563514"></i>
     <div class="datosText">
         <h3>Nombre de Usuario: NicoDeOry</h3>
         <h3>Email: nicolasdeory@gmail.com</h3>

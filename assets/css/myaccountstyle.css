@@ -51,7 +51,10 @@ html{
     margin-top: 3%;
 }
 
-
+i{
+    margin-top: 3%;
+    margin-left: 5%;
+}
 /*Título "Planificador Alimenticio" de la barra de navegación*/
 .titulo {
         display: flex;
