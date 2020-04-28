@@ -26,6 +26,7 @@
 
 
 <body>
+<div id="info"></div>
 
 <div class="cuadradoLogin"> 
         <hr>
@@ -45,13 +46,11 @@
         
     <div class="formlogin">
         
+        <form action="login.php" method="post" id="formLogin" onsubmit="return validaFormLogin()">
         
-        <form action="login.php" method="post" name="formLogin">
-        
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <input type="text" name="Usuario" placeholder="Nombre de usuario" id="username">
-        <input type="password" name="Contraseña" placeholder="Contraseña" id="passwd">
-        <button type="submit">Entrar</button>
+            <input type="text" name="Usuario" placeholder="Nombre de usuario" id="usernameLogin" >
+            <input type="password" name="Contraseña" placeholder="Contraseña" id="passwdLogin" >
+            <button type="submit" id="enviar">Entrar</button>
         
         </form>
         
