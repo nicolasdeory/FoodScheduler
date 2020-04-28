@@ -6,6 +6,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/85abaff11f.js" crossorigin="anonymous"></script>
     <!-- BARRA SUPERIOR-->
 
     <link rel="stylesheet" href="css/busqueda.css">
@@ -28,27 +29,53 @@
     <div class="contenedor">
         <div class="search">
             <div class="comida">
+                <div class="icon1">
+                    <i class="fas fa-utensils"></i>
+                </div>
                 <input type="text" placeholder="Elige una comida" class="input-text"></input>
             </div>
 
             <div class="ingrediente">
-                Elige un ingrediente
+                <div class="icon2">
+                    <i class="fas fa-cheese"></i>
+                </div>
+                <input type="text" placeholder="Elige un ingrediente" class="input-text"></input>
             </div>
 
 
             <div class="dificultad">
+                <div class="icon3">
+                    <i class="fas fa-user"></i>
+                </div>
                 
-                    <img class="img" src="icons/user-solid.svg">
-                    
-                    <div class="texto-dif">
-                        <p1>Nivel de dificultad</p1>
-                    </div>
-                
+
+                <div class="texto-dif">
+                    <div class="dif">
+                        <form>
+                            <div class="rating">
+                                <input id="star1" name="star" type="radio" value="5" class="radio-btn hide" />
+                                <label for="star1"><i class="fas fa-star"></i></label>
+                                <input id="star2" name="star" type="radio" value="4" class="radio-btn hide" />
+                                <label for="star2"><i class="fas fa-star"></i></label>
+                                <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                                <label for="star3"><i class="fas fa-star"></i></label>
+                                <input id="star4" name="star" type="radio" value="2" class="radio-btn hide" />
+                                <label for="star4"><i class="fas fa-star"></i></label>
+                                <input id="star5" name="star" type="radio" value="1" class="radio-btn hide" />
+                                <label for="star5"><i class="fas fa-star"></i></label>
+                                <div class="clear"></div>
+                            </div>
+                        </form>
+                    </div>                    
+                </div>
+
 
             </div>
 
             <div class="boton">
-                <h3>Buscar</h3>
+                <button class="button" type="button">
+                    Buscar
+                </button>
             </div>
         </div>
 
