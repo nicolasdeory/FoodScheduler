@@ -54,15 +54,16 @@
                         <form>
                             <div class="rating">
                                 <input id="star1" name="star" type="radio" value="5" class="radio-btn hide" />
-                                <label for="star1"><i class="fas fa-star"></i></label>
+                                <label for="star1"><div class="star"></div></label>
                                 <input id="star2" name="star" type="radio" value="4" class="radio-btn hide" />
-                                <label for="star2"><i class="fas fa-star"></i></label>
+                                <label for="star2"><div class="star"></div></label>
                                 <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
-                                <label for="star3"><i class="fas fa-star"></i></label>
+                                <label for="star3"><div class="star"></div></label>
                                 <input id="star4" name="star" type="radio" value="2" class="radio-btn hide" />
-                                <label for="star4"><i class="fas fa-star"></i></label>
+                                <label for="star4"><div class="star"></div></label>
                                 <input id="star5" name="star" type="radio" value="1" class="radio-btn hide" />
-                                <label for="star5"><i class="fas fa-star"></i></label>
+                                <label for="star5"><div class="star"></div></label>
+                                <div class="text" id="rating-label-text">Dificultad</div>
                                 <div class="clear"></div>
                             </div>
                         </form>
