@@ -16,19 +16,15 @@ body{
 .menu{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-}
-
-.navegacion{
-    display: flex;
-    height: 12vmin;
-    padding-left: 5vmin;
-    padding-right: 5vmin;
-    justify-content: space-evenly;
+    border-bottom: 1px solid #563514;
+    
 }
 
 .partederechamenu{
+    padding-left: 1vmin;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -38,6 +34,21 @@ body{
 
 .burger{
     display:none;
+}
+
+.izquierda{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.espacio{
+    width: 60vmin;
+}
+.derechatitulo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 
@@ -51,18 +62,11 @@ body{
     .partederechamenu{
         display: none;
         flex-direction: column;
-        width: 100%;
     }
     .menu{
         flex-direction: column;
+        width: 100%;
     }
-    .navegacion{
-        padding-top: 1vmin;
-        flex-direction: column;
-        padding-left: 2vmin;
-        padding-right: 2vmin;
-    }
-
     .active{
         display: flex;
     }
@@ -71,12 +75,29 @@ body{
     }
 
     .titulo{
-        padding-left: 2%;
-        width: 50%;
+        padding-left: 2vmin;
+        font-size: 4vmin;
+        width: 70vmin;
+        
     }
-
     .izquierda{
         display: flex;
         flex-direction: row;
+        width: 100%;
+        border-bottom: 1px solid #563514;
+
+    }
+    
+    .derechatitulo{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .campana{
+        padding-right: 2vmin;
+    }
+    .espacio{
+        width: 10vmin;
     }
 }
