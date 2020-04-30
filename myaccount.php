@@ -23,41 +23,59 @@
 
 <body>
 <!--Párrafo-->
-    <div class="miCuentaTit">
-        <h2>Mi cuenta</h2>
-    </div> 
+    
+        <div class="miCuentaTit">
+            <h2>Mi cuenta</h2>
+        </div> 
+        <div class="linea"></div>
+    
 
 <!--Menú de navegación-->
- <div class="navegacion">
     <div class="menu">
         <div class="izquierda">
           <div class="burger"> <span class="material-icons toggle">menu</span></div>
-          <div class= "titulo"> <p>Planificador Alimenticio</p> </div>
+          <div class="derechatitulo"> 
+            <div class= "titulo"> <p>Planificador Alimenticio</p> </div>
+            <div class="espacio"> </div>
+            <span class="material-icons campana">notifications</span>
+          </div>
         </div>
         <div class="partederechamenu">
-            <span class="material-icons campanades">notifications</span>
             <p> Hola, Nicolas </p>
-            <p><ins> Mi cuenta </ins></p>
+            <p> Mi cuenta </p>
             <p> Salir </p>
         </div>
     </div>
- </div>
- <div class="linea"></div>
+    
+    <div class="centro"> 
+        <!--Datos de mi cuenta(Temporal)-->
+            <div class="rectangulo">
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+            <i class="fas fa-user" style="color:#563514"></i>
+            <div class="datosText">
+                <h3>Nombre de Usuario: NicoDeOry</h3>
+                <h3>Email: nicolasdeory@gmail.com</h3>
+                <h3>Nombre Completo: Nicolás De Ory Carmona</h3>
+                <h3>Teléfono: 673245312</h3>
+            </div>
 
-<!--Datos de mi cuenta(Temporal)-->
-    <div class="rectangulo">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <i class="fas fa-user" style="color:#563514"></i>
-    <div class="datosText">
-        <h3>Nombre de Usuario: NicoDeOry</h3>
-        <h3>Email: nicolasdeory@gmail.com</h3>
-        <h3>Nombre Completo: Nicolás De Ory Carmona</h3>
-        <h3>Teléfono: 673245312</h3>
+
+
+    </div>
+    <div class="contenidodelaweb"> 
+        
+    
+    </div>
+<!--Barra lateral--> 
+    <div class="barralateral">
+        <div class="elemento elementoactivo"> <span class="material-icons iconocolumna"> date_range </span> </div>
+        <div class="elemento"> <span class="material-icons iconocolumna"> restaurant </span> </div>
+        <div class="elemento"> <span class="material-icons iconocolumna"> favorite </span> </div>
+        <div class="espaciodeabajo"> </div>
+    </div>
+        
     </div>
 
-
-
-</div>
 
 <script>
   let menu = document.querySelector('.toggle')
@@ -65,8 +83,12 @@
     document.querySelector('.partederechamenu').classList.toggle('active');
     document.querySelector('.navegacion').classList.toggle('activenav');
   });
+
 </script>
-          
+
+
+
+
 
 
 
