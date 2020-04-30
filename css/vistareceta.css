@@ -132,9 +132,9 @@ body{
 
 .columna-izquierda{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     width: 80vmin;
-    background-color: blue;
     padding: 2vmin;
 }
 
@@ -147,8 +147,27 @@ figure{
 
 figure img{
     display:block; /*remove inline-block spaces*/  
-    width:140%;
+    width:110%;
 }
+
+.contenido-columna-izquierda{
+    display: flex;
+    flex-direction: row;
+}
+
+.tiempo-dificultad{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.tiempo-receta{
+    padding-left: 1vmin;
+}
+
+/* ESTILOS DE LA COLUMNA DERECHA DE LAS RECETAS */
 
 .columna-derecha{
     width: 80vmin;
