@@ -67,7 +67,7 @@
     
     </div>
 <!--Barra lateral--> 
-    <div class="barralateral">
+<div class="barralateral">
         <div class="elemento elementoactivo"> <span class="material-icons iconocolumna"> date_range </span> </div>
         <div class="elemento"> <span class="material-icons iconocolumna"> restaurant </span> </div>
         <div class="elemento"> <span class="material-icons iconocolumna"> favorite </span> </div>
@@ -76,14 +76,12 @@
         
     </div>
 
-
 <script>
   let menu = document.querySelector('.toggle')
   menu.addEventListener('click', (e) => {
     document.querySelector('.partederechamenu').classList.toggle('active');
     document.querySelector('.navegacion').classList.toggle('activenav');
   });
-
 </script>
 
 

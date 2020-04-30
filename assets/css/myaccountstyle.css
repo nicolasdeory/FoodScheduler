@@ -4,7 +4,13 @@ body{
     color: #563514;
     font-family: 'Karla', sans-serif;
     border-color: #563514;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
+
 
 /*Estilo del rectángulo que recubre los datos*/
 .rectangulo {
@@ -168,6 +174,13 @@ font-size: 100px;
     
 }
 
+.elemento:hover{
+    padding: 3vmin;
+    background-color: #d7bea8;
+    transition: background 0.8s; 
+    
+}
+
 .elementoactivo{
     background-color: #E5D5C5;
 }
@@ -182,35 +195,35 @@ font-size: 100px;
 
 @media (max-width: 768px){
     
-/*ESTILOS DE LA BARRA DEL MENÚ */
-.burger{
+    /*ESTILOS DE LA BARRA DEL MENÚ */
+    .burger{
         display: flex;
         align-items: center;
         align-items: center;
     }
 
-.partederechamenu{
+    .partederechamenu{
         display: none;
         flex-direction: column;
     }
-.menu{
+    .menu{
         flex-direction: column;
         width: 100%;
     }
-.active{
+    .active{
         display: flex;
     }
-.activenav{
+    .activenav{
         margin-top: 18vmin;
     }
 
-.titulo{
+    .titulo{
         padding-left: 2vmin;
         font-size: 4vmin;
         width: 70vmin;
         
     }
-.izquierda{
+    .izquierda{
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -219,28 +232,29 @@ font-size: 100px;
         box-shadow: 0 4px 6px -6px #808080;
     }
     
-.derechatitulo{
+    .derechatitulo{
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
     }
-.campana{
+    .campana{
         padding-right: 2vmin;
     }
-.espacio{
+    .espacio{
         width: 10vmin;
     }
     
-/*ESTILOS DEL CUERPO */
+    /*ESTILOS DEL CUERPO */
     
-.centro{
+    .centro{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        
     }
 
-.barralateral{
+    .barralateral{
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -249,23 +263,26 @@ font-size: 100px;
         border-top: 2px solid #E0D0C0;
         border-bottom: 2px solid #E0D0C0;
         padding-right: 0.4vmin;
+        
+        position: fixed;
+        bottom: 0;
     }
 
-.elemento{
+    .elemento{
         padding: 3vmin;
 
     }
 
-.elementoactivo{
+    .elementoactivo{
         background-color: #E5D5C5;
     }
 
-.espaciodeabajo{
+    .espaciodeabajo{
         height: 0px;
         width: 0px;
     }
 
-.contenidodelaweb{
+    .contenidodelaweb{
         display: flex;
         padding: 4vmin;
     }

@@ -26,7 +26,7 @@
 
 
 <body>
-<div id="info"></div>
+
 
 <div class="cuadradoLogin"> 
         <hr>
@@ -46,10 +46,10 @@
         
     <div class="formlogin">
         
-        <form action="login.php" method="post" id="formLogin" onsubmit="return validaFormLogin()">
+        <form action="login.php" method="post" name="formLogin">
         
-            <input type="text" name="Usuario" placeholder="Nombre de usuario" id="usernameLogin" >
-            <input type="password" name="Contraseña" placeholder="Contraseña" id="passwdLogin" >
+            <input type="text" name="Usuario" placeholder="Nombre de usuario" name="usernameLogin" id="usernameLogin">
+            <input type="password" name="Contraseña" placeholder="Contraseña" name="passwdLogin" id="passwdLogin">
             <button type="submit" id="enviar">Entrar</button>
         
         </form>

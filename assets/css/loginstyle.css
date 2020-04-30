@@ -127,3 +127,11 @@ body{
     }
 
 
+.error {
+        color: red;
+        font-size: 90%;
+}
+
+.row {
+    padding-bottom: 10px;
+    }
