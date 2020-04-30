@@ -146,6 +146,7 @@ body{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        
     }
 
     .barralateral{
@@ -157,6 +158,9 @@ body{
         border-top: 2px solid #E0D0C0;
         border-bottom: 2px solid #E0D0C0;
         padding-right: 0.4vmin;
+        
+        position: fixed;
+        bottom: 0;
     }
 
     .elemento{
