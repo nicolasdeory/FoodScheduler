@@ -3,6 +3,11 @@ body{
     color: #563514;
     font-family: 'Karla', sans-serif;
     border-color: #563514;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 /*ESTILOS DE LA BARRA DEL MENÚ */
@@ -73,6 +78,13 @@ body{
 
 .elemento{
     padding: 3vmin;
+    
+}
+
+.elemento:hover{
+    padding: 3vmin;
+    background-color: #d7bea8;
+    transition: background 0.8s; 
     
 }
 
