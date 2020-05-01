@@ -4,33 +4,34 @@ html{
     
     
     .title, .subtitle{
-        text-indent: 100px;
+        text-indent: 50px;
     }
     
     .subtitle{
-        margin-top: 40px;
+        margin-top: 30px;
     
     }
     
     
     .line{
-        padding-left: 100px;
+        padding-left: 50px;
         color: black;
     }
     
     .contenedor{
         width: 95%;
-        height: 500px;
-        margin: 50px;
+        height: 100%;
+        margin: 0px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-evenly;
+
     }
     
     .search, .result{
-        margin: 30px;
-        width: 500px;
-        height: 300px;
+        margin: 2px;
+        width: 420px;
+        height: 280px;
         text-align: center;
     }
     
@@ -45,6 +46,7 @@ html{
     
     .comida, .ingrediente, .dificultad{
         width: 95%;
+        padding: 2px;
         height: 15%;
         background-color: white;
         color: #563514;
