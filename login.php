@@ -46,7 +46,7 @@
         
     <div class="formlogin">
             
-        <form action="login.php" method="post" name="formLogin">
+        <form action="login.php" method="post" name="formLogin" id="formLogin">
         
             
             <div class="usr">
