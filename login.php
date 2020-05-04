@@ -45,11 +45,20 @@
 <!--Formulario de Login-->
         
     <div class="formlogin">
-        
+            
         <form action="login.php" method="post" name="formLogin">
         
-            <input type="text" name="Usuario" placeholder="Nombre de usuario" name="usernameLogin" id="usernameLogin">
-            <input type="password" name="Contraseña" placeholder="Contraseña" name="passwdLogin" id="passwdLogin">
+            
+            <div class="usr">
+                <input type="text" placeholder="Nombre de usuario" name="usernameLogin" id="usernameLogin">
+                <i class="fas fa-user" style="color:#563514"></i>
+            </div>
+            
+            <div class="psw">
+                <input type="password" placeholder="Contraseña" name="passwdLogin" id="passwdLogin">
+                <i class="fas fa-key" style="color:#563514"></i>
+            </div>
+            
             <button type="submit" id="enviar">Entrar</button>
         
         </form>
@@ -72,6 +81,8 @@
 <!--Código javascript-->       
     <script type="text/javascript" src="validacion.js"></script>
 
+<!--Código javascript iconos usuario y contraseña-->     
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
        
 
 </body>

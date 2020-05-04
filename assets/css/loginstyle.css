@@ -62,19 +62,6 @@ a:link, a:visited, a:active {
             
 }
 
-/*Estilo de los inputs*/
-input[type="text"], input[type="password"], input[type="email"]{
-    outline: none;
-    height: 40px;
-    display: block;
-    width: 215px;
-    border-radius: 25px;
-    border: 1px solid #eee;
-    margin: 15px auto;
-    text-align: center;
-    font-family: 'Muli';
-}
-
 /*Estilo del input de submit*/
 button{
     height: 40px;
@@ -124,14 +111,52 @@ body{
     width: 100%;
     height: auto;
         
-    }
-
-
-.error {
-        color: red;
-        font-size: 90%;
 }
 
-.row {
-    padding-bottom: 10px;
-    }
+/*Estilo del input del usuario*/
+.usr input[type="text"]{
+    outline: none;
+    height: 40px;
+    display: block;
+    width: 215px;
+    border-radius: 25px;
+    border: 1px solid #eee;
+    margin: 15px auto;
+    text-align: center;
+    font-family: 'Muli';
+}
+
+/*Estilo del input de la contraseña*/
+.psw input[type="password"]{
+    outline: none;
+    height: 40px;
+    display: block;
+    width: 215px;
+    border-radius: 25px;
+    border: 1px solid #eee;
+    margin: 15px auto;
+    text-align: center;
+    font-family: 'Muli';
+}
+
+/*Estilo del icono del usuario*/
+.usr i{
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+    left: -165px;
+    top: 17px;
+    font-size: 22px;
+}
+
+/*Estilo del icono de la contraseña*/
+.psw i{
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+    left: -165px;
+    top: 75px;
+    font-size: 22px;
+}
