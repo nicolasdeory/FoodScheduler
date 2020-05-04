@@ -32,7 +32,7 @@ function checkInputs(){
         return false;
 
     //Comprueba que la contraseña es válida
-    } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(passwordValue)) {
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(passwordValue)) {
         
         //Salta una alerta en el navegador si no lo es
         alert("La contraseña debe tener minúsculas, mayúsculas, números y caracteres especiales");

@@ -79,7 +79,7 @@
 
 
 <!--Código javascript-->       
-    <script type="text/javascript" src="validacion.js"></script>
+    <script type="text/javascript" src="validacionLogin.js"></script>
 
 <!--Código javascript iconos usuario y contraseña-->     
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>

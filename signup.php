@@ -28,19 +28,19 @@
 
 <!--Formulario de Registro-->
     <div class="formReg">
-        <form action="signup.php" method="post">
-            <input type="text" name="Nombre" placeholder="Nombre" id="nombre" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}" required>
-            <input type="text" name="Apellidos" placeholder="Apellidos" id="apellidos" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,64}" required>
-            <input type="email" name="Email" placeholder="Correo Electrónico" id="email" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required>
-            <input type="text" name="Usuario" placeholder="Usuario" id="username" pattern="[A-Za-z0-9_]{5,15}" required>
-            <input type="password" name="Contraseña" placeholder="Contraseña" id="passwd" pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,}$" required>
+        <form action="signup.php" method="post" name="formReg" id="formReg">
+            <input type="text" name="nombre" placeholder="Nombre" id="nombre">
+            <input type="text" name="apellidos" placeholder="Apellidos" id="apellidos">
+            <input type="email" name="email" placeholder="Correo Electrónico" id="email">
+            <input type="text" name="usuarioReg" placeholder="Usuario" id="usuarioReg">
+            <input type="password" name="passReg" placeholder="Contraseña" id="passReg">
             <button type="submit">Crear Cuenta</button>
         </form>
+      </div>
     </div>
-</div>
 
 <!--Código javascript-->       
-    <script type="text/javascript" src="validacion.js"></script>
+    <script type="text/javascript" src="validacionReg.js"></script>
 
 
 </body>
