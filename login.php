@@ -1,3 +1,50 @@
+<?php
+	session_start();
+  	
+  	include_once("gestionBD.php");
+ 	include_once("gestionarUsuarios.php");
+	
+	if (isset($_POST['submit'])){
+        
+        $user= $_POST['user'];
+		$pass = $_POST['pass'];
+
+		$conexion = crearConexionBD();
+		$num_usuarios = consultarUsuario($conexion,$user,$pass);
+		cerrarConexionBD($conexion);	
+	
+		if ($num_usuarios == 0)
+			$login = "error";	
+        
+            else {
+			$_SESSION['login'] = $user;
+			
+		}	
+	}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -50,12 +97,12 @@
         
             
             <div class="usr">
-                <input type="text" placeholder="Nombre de usuario" name="usernameLogin" id="usernameLogin">
+                <input type="text" placeholder="Nombre de usuario" name="user" id="user">
                 <i class="fas fa-user" style="color:#563514"></i>
             </div>
             
             <div class="psw">
-                <input type="password" placeholder="Contraseña" name="passwdLogin" id="passwdLogin">
+                <input type="password" placeholder="Contraseña" name="pass" id="pass">
                 <i class="fas fa-key" style="color:#563514"></i>
             </div>
             

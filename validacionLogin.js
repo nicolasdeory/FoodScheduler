@@ -1,21 +1,21 @@
 //definimos las variables
 var formLogin = document.getElementById('formLogin');
-var usernameLogin = document.getElementById('usernameLogin');
-var passwdLogin = document.getElementById('passwdLogin');
+var usernameLogin = document.getElementById('user');
+var passwdLogin = document.getElementById('pass');
 
 //Capturamos el evento submit
 formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    checkInputs();
+    validarFormLogin();
 });
 
 //Funcion que comprueba los datos de los inputs
-function checkInputs(){
+function validarFormLogin(){
     
     //cogemos los valores de los inputs
-    var usernameValue = usernameLogin.value.trim();
-    var passwordValue = passwdLogin.value.trim();
+    var usernameValue = user.value.trim();
+    var passwordValue = pass.value.trim();
 
     //Comprueba que el nombre de usuario no esté vacío y que se corresponda con la cantidad y los caracteres válidos
     if (usernameValue == '' || usernameValue== null || usernameValue < 5 || usernameValue > 15 || !/^[a-zA-Z0-9_-]{5,15}$/.test(usernameValue)) {
@@ -25,18 +25,12 @@ function checkInputs(){
         return false;
     
     //Comprueba que la contraseña no está vacía y que la longitud es la indicada
-    } else if (passwordValue == '' || passwordValue== null ||passwordValue < 8 ) {
+    } else if (passwordValue == '' || passwordValue== null ||passwordValue < 8 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(passwordValue)) {
         
         //Si se cumple la condición salta una alerta en el navegador
-        alert("La contraseña debe tener más de 8 caracteres");
+        alert("La contraseña debe tener más de 8 caracteres, minúsculas, mayúsculas, números y caracteres especiales");
         return false;
 
-    //Comprueba que la contraseña es válida
-    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(passwordValue)) {
-        
-        //Salta una alerta en el navegador si no lo es
-        alert("La contraseña debe tener minúsculas, mayúsculas, números y caracteres especiales");
-        return false;
     }
 
     //Si no hay errores se envía el formulario
