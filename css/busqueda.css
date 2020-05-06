@@ -84,9 +84,81 @@ html{
     
     
     .result{
-        background: #ff5050 9%;
-    
+        background: #ff50503f 9%;
+        display: flex;
+        flex-direction: column;
     }
+
+    .photo{
+        width: 100%;
+        height: 75%;
+    }
+
+    .spaguetti{
+        /* In order to get the image correctly 
+        displayed inside the div "photo" */
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .description{
+        height: 25%;
+    }
+
+    .recipetitle{
+        color: #e13232;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: initial;
+        text-indent: 30px;
+        text-align: left;
+        font-weight: bold;
+        height: 40%;
+        width: 100%;
+    }
+
+    .info{  
+        display: flex;
+        flex-direction: row;
+        height: 60%;
+        width: 100%;
+    }
+
+    .like{
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 28%;
+        text-size-adjust: 30px;
+    }
+
+    .likeicon{
+        
+        margin: 7px;
+    }
+
+    .time{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 28%;
+    }
+
+    .timeicon{
+        margin: 7px;
+    }
+    
+    .difficulty{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 44%;
+    }
+
+
+  
     
     .input-text{
         border: none;
@@ -168,7 +240,11 @@ html{
           display: inline-block;
           background-size: cover;
       }
-    
+
+
+
+
+     
 
 
       @media (max-width: 768px){ 
