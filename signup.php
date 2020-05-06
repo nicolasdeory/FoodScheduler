@@ -53,11 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario['email'] = $_POST['email'];
     $usuario['user'] = $_POST['user'];
     $usuario['pass'] = $_POST['pass'];
-    if(user_registration($usuario))
+    $regResult = user_registration($usuario);
+    if($regResult == "success")
     {
       $_SESSION['successRegister'] = true;
-      //header("Location: .?success");
-    } else 
+      header("Location: .?success");
+    } 
+    else if ($regResult == "unique")
+    {
+      echo "Ya existe un usuario registrado con esos datos.";
+    } 
+    else 
     {
       echo "Ha ocurrido un error registrando el usuario";
     }
@@ -135,19 +141,6 @@ function test_input($data)
       </form>
     </div>
   </div>
-
-  <?php
-  echo "<h2>Datos introducidos:</h2>";
-  echo $nombre;
-  echo "<br>";
-  echo $apellidos;
-  echo "<br>";
-  echo $email;
-  echo "<br>";
-  echo $user;
-  echo "<br>";
-  echo $pass;
-  ?>
 
 
   <!--Validación del formulario en el cliente con javascript-->

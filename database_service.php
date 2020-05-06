@@ -13,9 +13,9 @@ function user_registration($usuario)
 	if (!$conexion)
 		echo "Ha ocurrido un error conectando con la base de datos";
 	try {
-		$consulta = "CALL REGISTRARUSUARIO_PARAM(:user, :pass, :email, :name, :phone)";
+		$consulta = "CALL REGISTRARUSUARIO_PARAM(:username, :pass, :email, :name, :phone)";
 		$stmt = $conexion->prepare($consulta);
-		$stmt->bindParam(':user', $usuario["user"]);
+		$stmt->bindParam(':username', $usuario["user"]);
 		$stmt->bindParam(':pass', password_hash($usuario["pass"], PASSWORD_DEFAULT)); // salt password here
 		$stmt->bindParam(':email', $usuario["email"]);
 		$stmt->bindParam(':name', $nameStr);
@@ -31,10 +31,15 @@ function user_registration($usuario)
 
 		$stmt->execute();
 
-		return true;
+		return "success";
 	} catch (PDOException $e) {
-		echo $e->getMessage();
-		return false;
+		$msg = $e->getMessage();
+		if (strpos($msg, "ORA-06512") !== false)
+		{
+			return "unique";
+		}
+		//$e->err
+		return "error";
 		
 	}
 }
@@ -49,15 +54,14 @@ function user_login($usuario)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT * FROM USUARIOS WHERE usuario = :user AND contraseña = :pass";
+		$consulta = "SELECT contraseña FROM USUARIOS WHERE nombredeusuario = :username";
 		$stmt = $conexion->prepare($consulta);
-		$stmt->bindParam(':user', $usuario["user"]);
-		$stmt->bindParam(':pass', password_hash($usuario["pass"], PASSWORD_DEFAULT)); // salt password here
-
+		$stmt->bindParam(':username', $usuario["user"]);
 		$stmt->execute();
-		return (boolean)($stmt->fetchColumn());
+		$dbHashedPass = $stmt->fetchColumn();
+		return password_verify($usuario['pass'],$dbHashedPass);
 	} catch (PDOException $e) {
+		echo $e->getMessage();
 		return false;
-		// $e->getMessage();
 	}
 }
