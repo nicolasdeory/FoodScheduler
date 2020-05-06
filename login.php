@@ -1,26 +1,23 @@
 <?php
-	session_start();
-  	
-  	include_once("gestionBD.php");
- 	include_once("gestionarUsuarios.php");
-	
-	if (isset($_POST['submit'])){
-        
-        $user= $_POST['user'];
-		$pass = $_POST['pass'];
+session_start();
+include_once("database_service.php");
 
-		$conexion = crearConexionBD();
-		$num_usuarios = consultarUsuario($conexion,$user,$pass);
-		cerrarConexionBD($conexion);	
-	
-		if ($num_usuarios == 0)
-			$login = "error";	
-        
-            else {
-			$_SESSION['login'] = $user;
-			
-		}	
-	}
+$user = $_POST['user'];
+$pass = $_POST['pass'];
+
+if (!preg_match("[a-zA-Z0-9_]+", $user)) {
+    http_response_code(400);
+}
+
+$usuario['user'] = $user;
+$usuario['pass'] = $pass;
+
+if (user_login($usuario)) {
+    $_SESSION['login'] = $user;
+    echo "success";
+} else {
+    http_response_code(401);
+}
 
 ?>
 
@@ -48,23 +45,24 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
-    
 
-<!--Nombre de la pestaña-->
+
+    <!--Nombre de la pestaña-->
     <title>Iniciar Sesión</title>
 
-<!--Link de la Fuente para las letras pequeñas-->    
+    <!--Link de la Fuente para las letras pequeñas-->
     <link href="https://fonts.googleapis.com/css2?family=Muli&display=swap" rel="stylesheet">
 
-<!--Link de la Fuente para el Título--> 
+    <!--Link de la Fuente para el Título-->
     <link href="https://www.fontspring.com/fonts/horizon-type/acherus-grotesque" rel="stylesheet">
 
-<!--Link al archivo css-->   
+    <!--Link al archivo css-->
     <link rel="stylesheet" href="assets/css/loginstyle.css" type="text/css">
 
 
@@ -75,48 +73,48 @@
 <body>
 
 
-<div class="cuadradoLogin"> 
+    <div class="cuadradoLogin">
         <hr>
 
 
-<!--Párrafos-->
-    <div class="titLogin">
-        <h1>Planificador Alimentario</h1>
-    </div>
-    
-    <div class="subTitLogin">
-        <h5>Encuentra recetas y planifica tu día a día</h5>
-    </div>
+        <!--Párrafos-->
+        <div class="titLogin">
+            <h1>Planificador Alimentario</h1>
+        </div>
+
+        <div class="subTitLogin">
+            <h5>Encuentra recetas y planifica tu día a día</h5>
+        </div>
 
 
-<!--Formulario de Login-->
-        
-    <div class="formlogin">
-            
-        <form action="login.php" method="post" name="formLogin" id="formLogin" onsubmit="return validarFormLogin()">
-        
-            
-            <div class="usr">
-                <input type="text" placeholder="Nombre de usuario" name="user" id="user">
-                <i class="fas fa-user" style="color:#563514"></i>
-            </div>
-            
-            <div class="psw">
-                <input type="password" placeholder="Contraseña" name="pass" id="pass">
-                <i class="fas fa-key" style="color:#563514"></i>
-            </div>
-            
-            <button type="submit" id="enviar">Entrar</button>
-        
-        </form>
-        
-    </div>   
+        <!--Formulario de Login-->
+
+        <div class="formlogin">
+
+            <form action="login.php" method="post" name="formLogin" id="formLogin" onsubmit="return validarFormLogin()">
+
+
+                <div class="usr">
+                    <input type="text" placeholder="Nombre de usuario" name="user" id="user">
+                    <i class="fas fa-user" style="color:#563514"></i>
+                </div>
+
+                <div class="psw">
+                    <input type="password" placeholder="Contraseña" name="pass" id="pass">
+                    <i class="fas fa-key" style="color:#563514"></i>
+                </div>
+
+                <button type="submit" id="enviar">Entrar</button>
+
+            </form>
+
+        </div>
 
         <a class="btn" href="signup.php">No tengo cuenta</a>
-  
-            
-            
-</div>
+
+
+
+    </div>
 
 
 
@@ -125,12 +123,12 @@
 
 
 
-<!--Código javascript-->       
+    <!--Código javascript-->
     <script type="text/javascript" src="validacionLogin.js"></script>
 
-<!--Código javascript iconos usuario y contraseña-->     
+    <!--Código javascript iconos usuario y contraseña-->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-       
+
 
 </body>
 
