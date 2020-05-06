@@ -2,7 +2,10 @@ html{
     background-color: #f0e2d3;
     }
     
-    
+    .text{
+        display: flex;
+        flex-direction: column;
+    }
     .title, .subtitle{
         text-indent: 50px;
     }
@@ -166,12 +169,38 @@ html{
           background-size: cover;
       }
     
-      /*.rating > label:hover:before,
-      .rating > label:hover ~ label:before,
-      .rating > input.radio-btn:checked ~ label:before,
-       .rating > input.radio-btn:checked ~ label:before {
-          content: "\2605";
-          position: absolute;
-          left: 0;
-          color: #FFD700;
-      } */
+
+
+      @media (max-width: 768px){ 
+
+        .contenidodelaweb{
+            display: flex;
+            flex-direction: column;
+        }
+        .contenedor{
+           display: flex;
+           flex-direction: column;
+           flex-wrap: nowrap;
+           justify-content: center;
+           align-items: center;
+        }
+
+        .title, .subtitle{
+            text-indent: 10%;
+        }
+
+        .line{
+            padding-left: 10%;
+        }
+        
+        .subtitle{
+            margin-top: 28px;
+            
+        }
+
+        .search, .result{
+            margin: 2.5%;
+        }
+
+
+      }
