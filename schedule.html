@@ -1,182 +1,167 @@
-<!DOCTYPE html>
-<head>
-    <script src="https://kit.fontawesome.com/2797f66cfb.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/schedule.css">
-    <script
-        src="https://code.jquery.com/jquery-3.5.0.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
-        crossorigin="anonymous"></script>
-    <script src="js/schedule.js"></script>
-</head>
-<body>
-    <div class="schedule-section-container">
-        <div class="section-header">
-            <div class="header">
-                <div class="title">Tu planificación semanal</div>
-                <div class="subtitle">Del 17/02 al 23/02</div>
-            </div>
-            <div class="separator">
-        </div>
-        <div class="schedule">
-            <div class="schedule-header">
-                <span class="material-icons chevron">arrow_back_ios</span>
-                <div id="day-container">
-                    <span>Lunes</span>
-                    <span>Martes</span>
-                    <span>Miércoles</span>
-                    <span>Jueves</span>
-                    <span>Viernes</span>
-                    <span>Sábado</span>
-                    <span>Domingo</span>
-                </div>
-                <span class="material-icons chevron right">arrow_back_ios</span>
-            </div>
-            <div id="schd-table-cont" class="schedule-table">
-                <table id="schd-table">
-                    <tr>
-                        <td>
-                            <h3>Almuerzo</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Almuerzo</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Almuerzo</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Almuerzo</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Almuerzo</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Almuerzo</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Almuerzo</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h3>Cena</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Cena</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Cena</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Cena</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Cena</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Cena</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                        <td>
-                            <h3>Cena</h3>
-                            <ul>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                                <li>Espaguetis</li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            </div> 
-        </div>
-        <div class="alert-box">
-            <h1>Quizás falten ingredientes</h1>
-            <p>Puede que falten los siguientes ingredientes en la nevera:</p>
-            <ul class="missing-ingredient-list">
-                <li>
-                    <i class="fas fa-plus add-icon"></i>
-                    <span class="ingredient">Filete de pollo</span>
-                    <span class="description">Para cocinar Filete con Patatas</span>
-                </li>
-                <li>
-                    <i class="fas fa-plus add-icon"></i>
-                    <span class="ingredient">Filete de pollo</span>
-                    <span class="description">Para cocinar Filete con Patatas</span>
-                </li>
-                <li>
-                    <i class="fas fa-plus add-icon"></i>
-                    <span class="ingredient">Filete de pollo</span>
-                    <span class="description">Para cocinar Filete con Patatas</span>
-                </li>
-            </ul>
-            <button>Apuntar todo</button>
-        </div>
+<div class="schedule-section-container">
+<div class="section-header">
+    <div class="header">
+        <div class="title">Tu planificación semanal</div>
+        <div class="subtitle">Del 17/02 al 23/02</div>
     </div>
-</body>
+    <div class="separator"></div>
+</div>
+<div class="schedule">
+    <div class="schedule-header">
+        <span class="material-icons chevron">arrow_back_ios</span>
+        <div id="day-container">
+            <span>Lunes</span>
+            <span>Martes</span>
+            <span>Miércoles</span>
+            <span>Jueves</span>
+            <span>Viernes</span>
+            <span>Sábado</span>
+            <span>Domingo</span>
+        </div>
+        <span class="material-icons chevron right">arrow_back_ios</span>
+    </div>
+    <div id="schd-table-cont" class="schedule-table">
+        <table id="schd-table">
+            <tr>
+                <td>
+                    <h3>Almuerzo</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Almuerzo</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Almuerzo</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Almuerzo</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Almuerzo</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Almuerzo</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Almuerzo</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Cena</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Cena</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Cena</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Cena</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Cena</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Cena</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3>Cena</h3>
+                    <ul>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                        <li>Espaguetis</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="alert-box">
+    <h1>Quizás falten ingredientes</h1>
+    <p>Puede que falten los siguientes ingredientes en la nevera:</p>
+    <ul class="missing-ingredient-list">
+        <li>
+            <i class="fas fa-plus add-icon"></i>
+            <span class="ingredient">Filete de pollo</span>
+            <span class="description">Para cocinar Filete con Patatas</span>
+        </li>
+        <li>
+            <i class="fas fa-plus add-icon"></i>
+            <span class="ingredient">Filete de pollo</span>
+            <span class="description">Para cocinar Filete con Patatas</span>
+        </li>
+        <li>
+            <i class="fas fa-plus add-icon"></i>
+            <span class="ingredient">Filete de pollo</span>
+            <span class="description">Para cocinar Filete con Patatas</span>
+        </li>
+    </ul>
+    <button>Apuntar todo</button>
+</div>
+</div>
+<script src="js/schedule.js"></script>

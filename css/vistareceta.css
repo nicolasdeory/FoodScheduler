@@ -24,6 +24,7 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 80px;
     width: 100%;
      -webkit-box-shadow: 0 4px 6px -6px #595959;
      -moz-box-shadow: 0 4px 6px -6px #595959;
@@ -70,7 +71,8 @@ body{
     padding-top: 0.3vmin;
     display: flex;
     flex-direction: column;
-    width: 4%;
+    width: 70px;
+    height: 100px;
     align-items: center;
     border-right: 2px solid #E0D0C0;
     padding-right: 0.4vmin;
@@ -171,7 +173,7 @@ body{
         border-top: 2px solid #E0D0C0;
         border-bottom: 2px solid #E0D0C0;
         padding-right: 0.4vmin;
-        
+        border-right: none;
         position: fixed;
         bottom: 0;
     }
@@ -193,6 +195,14 @@ body{
     .contenidodelaweb{
         display: flex;
         padding: 4vmin;
+    }
+
+    
+    #page-content {
+        /*width: calc(100% - 40px);*/
+        width: 100%;
+        max-height: calc(100vh - 180px);
+        overflow-y: scroll;
     }
 
 }

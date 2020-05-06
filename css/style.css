@@ -38,6 +38,13 @@ body {
     width: 90%;
 }
 
+#page-content {
+    /*width: calc(100% - 40px);*/
+    width: 100%;
+    max-height: calc(100vh - 80px);
+    overflow-y: scroll;
+}
+
 @media(max-width: 1150px) /* HARD CODED FOR "DOMINGO" */
 {
     #day-container :last-child {
