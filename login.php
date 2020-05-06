@@ -93,7 +93,7 @@
         
     <div class="formlogin">
             
-        <form action="login.php" method="post" name="formLogin" id="formLogin">
+        <form action="login.php" method="post" name="formLogin" id="formLogin" onsubmit="return validarFormLogin()">
         
             
             <div class="usr">

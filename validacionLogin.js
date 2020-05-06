@@ -1,16 +1,8 @@
 //definimos las variables
-var formLogin = document.getElementById('formLogin');
 var usernameLogin = document.getElementById('user');
 var passwdLogin = document.getElementById('pass');
 
-//Capturamos el evento submit
-formLogin.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    validarFormLogin();
-});
-
-//Funcion que comprueba los datos de los inputs
+//Funcion que comprueba los datos introducidos en el formulario(client-side)
 function validarFormLogin(){
     
     //cogemos los valores de los inputs

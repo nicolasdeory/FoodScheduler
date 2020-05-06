@@ -3,25 +3,18 @@ var formReg = document.getElementById('formReg');
 var nombre = document.getElementById('nombre');
 var apellidos = document.getElementById('apellidos');
 var email = document.getElementById('email');
-var usuarioReg = document.getElementById('usuarioReg');
-var passReg = document.getElementById('passReg');
+var user = document.getElementById('user');
+var pass = document.getElementById('pass');
 
-//Capturamos el evento submit
-formReg.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    checkInputs();
-});
-
-//Funcion que comprueba los datos de los inputs
-function checkInputs(){
+//Funcion que comprueba los datos introducidos en el formulario de registro(client-side)
+function validaFormRegistro(){
     
     //cogemos los valores de los inputs
     var nombreValue = nombre.value.trim();
     var apellidosValue = apellidos.value.trim();
     var emailValue = email.value.trim();
-    var usuarioValue = usuarioReg.value.trim();
-    var passValue = passReg.value.trim();
+    var usuarioValue = user.value.trim();
+    var passValue = pass.value.trim();
     
 
     //Comprueba que el campo nombre no esté vacío
