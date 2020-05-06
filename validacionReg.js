@@ -68,7 +68,7 @@ function validaFormRegistro(){
         return false;
     
     //Comprueba que la contraseña no está vacía, que la longitud y la forma sea la indicada
-    } else if (passValue == '' || passValue== null ||passValue < 8 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(passValue)){
+    } else if (passValue == '' || passValue== null ||passValue < 8 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_-])[A-Za-z\d@$!%*?&_-]{8,}$/.test(passValue)){
         
         //Si se cumple la condición salta una alerta en el navegador
         alert("La contraseña debe tener más de 8 caracteres, disponer de una letra minúscula, mayúscula, un número y un carácter especial");

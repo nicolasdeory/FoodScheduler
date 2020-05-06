@@ -5,10 +5,6 @@ include_once("database_service.php");
 $user = $_POST['user'];
 $pass = $_POST['pass'];
 
-if (!preg_match("[a-zA-Z0-9_]+", $user)) {
-    http_response_code(400);
-}
-
 $usuario['user'] = $user;
 $usuario['pass'] = $pass;
 

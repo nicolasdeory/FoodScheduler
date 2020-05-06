@@ -8,8 +8,8 @@ class Database
 		if (self::$instance == null)
 		{
 			$host="oci:dbname=localhost/XE;charset=UTF8";
-			$usuario="system";
-			$password="root";
+			$usuario="RECETA";
+			$password="iissi";
 		
 			try{
 				
@@ -21,6 +21,7 @@ class Database
 			
 			}catch(PDOException $e){
 				self::$instance = null;
+				echo $e->getMessage();
 				return false;
 			}
 		}

@@ -1,10 +1,4 @@
 <?php
-/*
-     * #===========================================================#
-     * #	Este fichero contiene las funciones de gestión
-     * #	de usuarios de la capa de acceso a datos
-     * #==========================================================#
-     */
 
 include_once("gestionBD.php");
 
@@ -13,6 +7,8 @@ include_once("gestionBD.php");
  */
 function user_registration($usuario)
 {
+
+	$nameStr = $usuario["name"]." ".$usuario["surname"];
 	$conexion = Database::instance();
 	if (!$conexion)
 		echo "Ha ocurrido un error conectando con la base de datos";
@@ -22,15 +18,24 @@ function user_registration($usuario)
 		$stmt->bindParam(':user', $usuario["user"]);
 		$stmt->bindParam(':pass', password_hash($usuario["pass"], PASSWORD_DEFAULT)); // salt password here
 		$stmt->bindParam(':email', $usuario["email"]);
-		$stmt->bindParam(':name', $usuario["name"]);
-		$stmt->bindParam(':phone', $usuario["phone"]);
+		$stmt->bindParam(':name', $nameStr);
+		if (isset($usuario['phone']))
+		{
+			$stmt->bindParam(':phone', $usuario['phone']);
+		}
+		else 
+		{
+			$stmt->bindValue(':phone', "1111");
+		}
+		
 
 		$stmt->execute();
 
 		return true;
 	} catch (PDOException $e) {
+		echo $e->getMessage();
 		return false;
-		// $e->getMessage();
+		
 	}
 }
 
