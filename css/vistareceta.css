@@ -103,12 +103,90 @@ body{
     padding: 4vmin;
 }
 
+/*ESTILOS DE LA RECETA GENERAL */
+
+/*ESTILOS TITULO */
+
+.barra-superior{
+    display: flex;
+    padding: 2vmin;
+
+}
+
+.titulo-receta{
+    padding-left: 2vmin;
+    color: black;
+    font-size: 3vmin;
+}
+
+
+/* ESTILOS DE LA COLUMNA IZQUIERDA DE LAS RECETAS */
+
+.columnas{
+    display: flex;
+    width: 180vmin;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5ECE2;
+}
+
+.columna-izquierda{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vmin;
+    padding: 2vmin;
+}
+
+figure{
+    width:50vmin; /*container-width*/
+    height:40vmin; /*container-height*/
+    overflow: hidden; /*hide bounds of image */
+    border-radius: 2vmin;
+}
+
+figure img{
+    display:block; /*remove inline-block spaces*/  
+    width:110%;
+}
+
+.contenido-columna-izquierda{
+    display: flex;
+    flex-direction: row;
+}
+
+.tiempo-dificultad{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.tiempo-receta{
+    padding-left: 1vmin;
+}
+
+/* ESTILOS DE LA COLUMNA DERECHA DE LAS RECETAS */
+
+.columna-derecha{
+    width: 80vmin;
+    background-color: blue;
+    padding: 2vmin;
+}
+
+.espacio-central{
+    width: 2vmin;
+}
+
+
 @media (max-width: 768px){
     
     /*ESTILOS DE LA BARRA DEL MENÚ */
     .burger{
         display: flex;
-        align-items: center;
         align-items: center;
     }
 
@@ -204,5 +282,28 @@ body{
         max-height: calc(100vh - 180px);
         overflow-y: scroll;
     }
+    
+    /*ESTILOS DE LA RECETA GENERAL */
+
+    /*ESTILOS TITULO */
+    
+    /* ESTILOS DE LA COLUMNA IZQUIERDA DE LAS RECETAS */
+    
+    .contenidodelaweb{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .columnas{
+        width: 80vmin;
+    }
+    
+    .columnas{
+        display: flex;
+        flex-direction: column;
+    }
+    
 
 }
