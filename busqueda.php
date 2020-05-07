@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<!-- HOLA -->
 <head>
     <link rel="stylesheet" type="text/css" href="css/vistareceta.css">
     <link rel="stylesheet" href="css/busqueda.css">
