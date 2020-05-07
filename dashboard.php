@@ -6,8 +6,8 @@
 		// Not logged, redirect to login
 		header('Location: .');
 		die;
-	}*/
-
+  }*/
+  
 ?>
 
 <!DOCTYPE html>

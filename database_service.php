@@ -65,3 +65,22 @@ function user_login($usuario)
 		return false;
 	}
 }
+
+function view_recipe($recetaId)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT * FROM recetas WHERE id = :idrecipe";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':idrecipe', $recetaId);
+		$stmt->execute();
+		$recipe = $stmt->fetchColumn();
+		return $recipe;
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
