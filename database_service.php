@@ -84,3 +84,47 @@ function view_recipe($recetaId)
 		return false;
 	}
 }
+
+function retrieve_schedule($username, $from, $to) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT * FROM planificaciones
+					WHERE nombredeusuario = :username AND fecha BETWEEN :fromRange AND :toRange 
+					NATURAL JOIN recetasenplanificaciones 
+					NATURAL JOIN recetas";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':fromRange', $from);
+		$stmt->bindParam(':toRange', $to);
+		$stmt->execute();
+		$planificaciones = $stmt->fetchAll();
+		return $planificaciones;
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
+
+function create_schedule($username, $date, $mealtype)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "INSERT INTO planificaciones VALUES (S_PLANIFICACIONES.nextval, :fecha, :comida, :username)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':fecha', $date);
+		$stmt->bindParam(':comida', $mealtype);
+		$stmt->bindParam(':username', $username);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
