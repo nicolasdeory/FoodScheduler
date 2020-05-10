@@ -4,7 +4,7 @@ include_once("database_service.php");
 
 session_start();
 
-if (!isset($_SESSION['user'])) 
+if (!isset($_SESSION['login'])) 
 {
     // Not logged, redirect to login
     header('Location: .');
@@ -12,30 +12,48 @@ if (!isset($_SESSION['user']))
     die;
 }
 
-$from = $_GET['from'];
-$to = $_GET['to'];
-if (!isset($from) || !isset($to))
+if (!isset($_GET['from']) || !isset($_GET['to']))
 {
     http_response_code(400);
     echo "must specify date range";
     die;
 }
 
-$from = strtotime($from);
-$to = strtotime($to);
+$from = $_GET['from'];
+$to = $_GET['to'];
 
-$planificaciones = retrieve_schedule($_SESSION['user'], $from, $to);
+$fromD = date_create($from);
+$toD = date_create($to);
+//$from = strtotime($from);
+//$to = strtotime($to);
+
+$fromFormatted = str_replace("-","/",$from);
+$toFormatted = str_replace("-","/",$to);
+
+$planificaciones = retrieve_schedule($_SESSION['login'], $fromFormatted, $toFormatted);
 
 if (count($planificaciones) < 14)
 {
     $oneDay = new DateInterval("P1D");
-    $dateI = $from;
+    $dateI = $fromD;
     for ($i=0; $i < 14; $i++) { 
-        date_add($oneDay, $dateI);
-        create_schedule($_SESSION['user'], $dateI, "Almuerzo");
-        create_schedule($_SESSION['user'], $dateI, "Cena");
+        date_add($dateI, $oneDay);
+        $dateIFormatted = date_format($dateI, "d/m/Y");
+        //echo $dateIFormatted;
+        create_schedule($_SESSION['login'], $dateIFormatted, "Almuerzo");
+        create_schedule($_SESSION['login'], $dateIFormatted, "Cena");
     }
+    $planificaciones = retrieve_schedule($_SESSION['login'], $from, $to);
 }
+
+if ($planificaciones == false)
+{
+    echo "[]";
+} else 
+{
+    echo json_encode($planificaciones);
+}
+
 
 // TODO: If week is empty, create!
 

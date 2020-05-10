@@ -80,7 +80,7 @@ function view_recipe($recetaId)
 		$recipe = $stmt->fetchColumn();
 		return $recipe;
 	} catch (PDOException $e) {
-		//echo $e->getMessage();
+		echo $e->getMessage();
 		return false;
 	}
 }
@@ -93,9 +93,9 @@ function retrieve_schedule($username, $from, $to)
 
 	try {
 		$consulta = "SELECT * FROM planificaciones
-					WHERE nombredeusuario = :username AND fecha BETWEEN :fromRange AND :toRange 
 					NATURAL JOIN recetasenplanificaciones 
-					NATURAL JOIN recetas";
+					NATURAL JOIN recetas
+					WHERE nombredeusuario = :username AND fecha BETWEEN :fromRange AND :toRange";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':fromRange', $from);
@@ -104,7 +104,7 @@ function retrieve_schedule($username, $from, $to)
 		$planificaciones = $stmt->fetchAll();
 		return $planificaciones;
 	} catch (PDOException $e) {
-		//echo $e->getMessage();
+		echo $e->getMessage();
 		return false;
 	}
 }
