@@ -11,7 +11,6 @@ body{
     user-select: none; 
 }
 
-
 /*Estilo del rectángulo que recubre los datos*/
 .rectangulo {
        
@@ -145,6 +144,7 @@ font-size: 100px;
 .espacio{
     width: 50vmin;
 }
+
 .derechatitulo{
     display: flex;
     flex-direction: row;

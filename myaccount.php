@@ -48,15 +48,18 @@
     </div>
     
     <div class="centro"> 
-        <!--Datos de mi cuenta(Temporal)-->
+<!--Datos de mi cuenta(Temporal)-->
             <div class="rectangulo">
             <script src="https://kit.fontawesome.com/a076d05399.js"></script>
             <i class="fas fa-user" style="color:#563514"></i>
             <div class="datosText">
-                <h3>Nombre de Usuario: NicoDeOry</h3>
-                <h3>Email: nicolasdeory@gmail.com</h3>
-                <h3>Nombre Completo: Nicolás De Ory Carmona</h3>
-                <h3>Teléfono: 673245312</h3>
+                
+                <h3>Nombre de Usuario: <?php echo $usuario['username']?></h3>
+                <h3>Email: <?php echo $usuario['email']?></h3>
+                <h3>Nombre Completo: <?php echo $usuario['name']?></h3>
+                
+                
+           
             </div>
 
 
@@ -67,7 +70,7 @@
     
     </div>
 <!--Barra lateral--> 
-<div class="barralateral">
+ <div class="barralateral">
         <div class="elemento elementoactivo"> <span class="material-icons iconocolumna"> date_range </span> </div>
         <div class="elemento"> <span class="material-icons iconocolumna"> restaurant </span> </div>
         <div class="elemento"> <span class="material-icons iconocolumna"> favorite </span> </div>
