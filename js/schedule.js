@@ -3,13 +3,20 @@ const RECIPE_TEMPLATE = `
 `;
 // TODO: Show some brief info on hover
 
+Date.prototype.addDays = function (days)
+{
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
 
 $(function ()
 {
 
     function retrieveSchedule(mondayDate)
     {
-        var sundayDate = mondayDate + 6;
+        var sundayDate = mondayDate.addDays(6);
+        console.log(sundayDate);
         var mondayDateFormatted = mondayDate.getDate() + "-" + (mondayDate.getMonth() + 1) + "-" + mondayDate.getFullYear();
         var sundayDateFormatted = sundayDate.getDate() + "-" + (sundayDate.getMonth() + 1) + "-" + sundayDate.getFullYear();
         $.get(`./schedule.php?from=${mondayDateFormatted}&to=${sundayDateFormatted}`, (schedules) =>
@@ -20,10 +27,10 @@ $(function ()
             {
                 const date = new Date(schd.FECHA);
                 const timeDiff = date.getTime() - mondayDate.getTime();
-                const differenceInDays = Math.floor(timeDiff / (1000*60*60*24))
+                console.log(timeDiff);
+                const differenceInDays = Math.floor(timeDiff / (1000*60*60*24)) + 1;
                 if (differenceInDays < 0 || differenceInDays > 7) return;
                 const mealId = schd.COMIDA == "Almuerzo" ? 0 : 1;
-                console.log(`#schd-${differenceInDays}${mealId}`);
                 $(`#schd-${differenceInDays}${mealId}`).append(RECIPE_TEMPLATE.format(schd.ID_RECETA,schd.NOMBRE));
             });
         });
@@ -48,10 +55,6 @@ $(function ()
     {
         setDayHeaderPositions();
     });
-
-
-
-
 
     var isSyncingTopScroll = false;
     var isSyncingDownScroll = false;
@@ -84,8 +87,11 @@ $(function ()
         isSyncingTopScroll = false;
     });
 
-    
-    retrieveSchedule(new Date("05-11-2020"));
+
+    var prevMonday = new Date();
+    prevMonday.setDate(prevMonday.getDate() - (prevMonday.getDay() + 6) % 7);
+    console.log(prevMonday);
+    retrieveSchedule(prevMonday);
 
     setDayHeaderPositions();
     setTimeout(setDayHeaderPositions, 150);
