@@ -25,6 +25,7 @@
 .chevron {
   font-size: 16pt;
   color: #563514;
+  cursor: pointer;
 }
 
 .chevron.right {

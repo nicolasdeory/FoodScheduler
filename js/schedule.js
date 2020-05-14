@@ -48,6 +48,7 @@ $(function ()
         }
     }
 
+    /* RESIZING AND SCROLLING BEHAVIOR */
     $(window).on('resize', function (e)
     {
         setDayHeaderPositions();
@@ -79,10 +80,33 @@ $(function ()
     });
 
 
-    var prevMonday = new Date();
-    prevMonday.setDate(prevMonday.getDate() - (prevMonday.getDay() + 6) % 7);
-    console.log(prevMonday);
-    retrieveSchedule(prevMonday);
+    /* CLICK EVENTS */
+
+    $("#next-schedule-btn").click(() =>
+    {
+        $("#schd-table").html(placeholderHtml);
+        currentMonday = currentMonday.addDays(7);
+        retrieveSchedule(currentMonday);
+    });
+
+    $("#back-schedule-btn").click(() =>
+    {
+        $("#schd-table").html(placeholderHtml);
+        currentMonday = currentMonday.addDays(-7);
+        retrieveSchedule(currentMonday);
+    });
+
+
+    /* INICIALIZATIONS */
+
+    const placeholderHtml = $("#schd-table").html();
+
+    var currentMonday = new Date();
+    currentMonday.setDate(currentMonday.getDate() - (currentMonday.getDay() + 6) % 7);
+    console.log(currentMonday);
+    retrieveSchedule(currentMonday);
+
+
 
     setDayHeaderPositions();
     setTimeout(setDayHeaderPositions, 150);
