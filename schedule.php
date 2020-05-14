@@ -46,6 +46,7 @@ if (count($planificaciones) < 14)
     $planificaciones = retrieve_schedule($_SESSION['login'], $from, $to);
 }
 
+header("Content-Type: application/json");
 if ($planificaciones == false)
 {
     echo "[]";

@@ -92,7 +92,7 @@ function retrieve_schedule($username, $from, $to)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT * FROM planificaciones
+		$consulta = "SELECT id_receta, nombre, to_char(fecha,'MM-DD-YYYY') fecha, comida FROM planificaciones
 					NATURAL JOIN recetasenplanificaciones 
 					NATURAL JOIN recetas
 					WHERE nombredeusuario = :username AND fecha BETWEEN :fromRange AND :toRange";

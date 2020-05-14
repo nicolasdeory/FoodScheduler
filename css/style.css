@@ -45,6 +45,30 @@ body {
     overflow-y: scroll;
 }
 
+/* PLACEHOLDERS */
+.placeholder-bar {
+    height: 20px;
+    width: 80px;
+    background-color: #c9282814;
+    margin: 2px;
+}
+
+.placeholder-bar.small 
+{
+    width: 80px;
+}
+
+.placeholder-bar.med
+{
+    width: 100px;
+}
+
+.placeholder-bar.long
+{
+    width: 115px;
+}
+
+
 @media(max-width: 1150px) /* HARD CODED FOR "DOMINGO" */
 {
     #day-container :last-child {

@@ -61,6 +61,10 @@
 
 .schedule-table td {
   padding: 20px;
+  vertical-align: top;
+  height: 150px;
+  word-wrap: break-word;
+  max-width: 100px;
 }
 
 .schedule-table tr > :nth-child(odd) {
@@ -86,6 +90,16 @@
 
 .schedule-table li {
   font-weight: bold;
+}
+
+.schedule-table li:not(:first-child)
+{
+  margin-top: 5px;
+}
+
+li a, li a:hover, li a:focus {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* SCHEDULE SCROLLBAR */
