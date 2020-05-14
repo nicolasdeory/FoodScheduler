@@ -38,7 +38,7 @@
             <div class="text">
 
                 <div class="title">
-                    <h1>Encontrar Recetas</h1>
+                    <h1>Recetas favoritas</h1>
                 </div>
 
                 <div class="line">
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="subtitle">
-                    <p1>Con estos parámetros, tienes estas recetas disponibles</p1>
+                    <p1>Tienes estas recetas guardadas</p1>
                 </div>
             </div>
             <div class="contenedor">
