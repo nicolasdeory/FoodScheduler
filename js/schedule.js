@@ -46,9 +46,6 @@ $(function ()
             let computedLeft = leftTableCell + ((widthTableCell - widthSpan) / 2);
             $(`#day-container :nth-child(${i + 1})`).css("left", computedLeft + "px");
         }
-        
-       // $("td").css("max-width", "100px");
-
     }
 
     $(window).on('resize', function (e)
@@ -65,10 +62,7 @@ $(function ()
         {
             isSyncingTopScroll = true;
             if (!e.originalEvent) return;
-            //let scrollPct = $("#day-container").scrollLeft() / $("#day-container").width();
-            //$("#schd-table-cont").scrollLeft(scrollPct * ($("#schd-table-cont").width()))
             $("#schd-table-cont").scrollLeft($("#day-container").scrollLeft());
-            //console.log("day" + scrollPct);
         }
         isSyncingDownScroll = false
     });
@@ -79,9 +73,6 @@ $(function ()
         {
             isSyncingDownScroll = true;
             if (!e.originalEvent) return;
-            //let scrollPct = $("#schd-table-cont").scrollLeft() / ($("#schd-table-cont").width()-70);
-            //console.log(scrollPct);
-            //$("#day-container").scrollLeft(scrollPct * ($("#day-container").width()-80))
             $("#day-container").scrollLeft($("#schd-table-cont").scrollLeft());
         }
         isSyncingTopScroll = false;
