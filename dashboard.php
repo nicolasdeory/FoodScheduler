@@ -50,9 +50,10 @@
   </div>
 
   <div class="centro">
-    <div id="page-content" class="contenidodelaweb">
+    <div id="page-content" class="contenidodelaweb hidden">
 
     </div>
+    <div id="page-loader"><span class="material-icons big loading-anim"> restaurant </span></div>
 
     <div class="barralateral">
       <div class="elemento elementoactivo"> <span class="material-icons iconocolumna"> date_range </span> </div>

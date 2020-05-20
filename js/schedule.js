@@ -13,16 +13,25 @@ $(function() {
 
     function retrieveSchedule(mondayDate) {
         var sundayDate = mondayDate.addDays(6);
-        console.log(sundayDate);
+        var mondayDateDay = mondayDate.getDate().toString();
+        var sundayDateDay = sundayDate.getDate().toString();
+        var mondayDateMonth = (mondayDate.getMonth() + 1).toString();
+        var sundayDateMonth = (sundayDate.getMonth() + 1).toString();
+        var mondayDateString = (mondayDateDay.length < 2 ? "0" : "") + mondayDateDay + "/" +
+            (mondayDateMonth.length < 2 ? "0" : "") + mondayDateMonth;
+        var sundayDateString = (sundayDateDay.length < 2 ? "0" : "") + sundayDateDay + "/" +
+            (sundayDateMonth.length < 2 ? "0" : "") + sundayDateMonth;
+        $("#date-string").text(`Semana del ${mondayDateString} al ${sundayDateString}`);
+
         var mondayDateFormatted = mondayDate.getDate() + "-" + (mondayDate.getMonth() + 1) + "-" + mondayDate.getFullYear();
         var sundayDateFormatted = sundayDate.getDate() + "-" + (sundayDate.getMonth() + 1) + "-" + sundayDate.getFullYear();
+
         $.get(`./schedule.php?from=${mondayDateFormatted}&to=${sundayDateFormatted}`, (schedules) => {
             $("td ul").empty();
             console.log(schedules);
             schedules.forEach(schd => {
                 const date = new Date(schd.FECHA);
                 const timeDiff = date.getTime() - mondayDate.getTime();
-                console.log(timeDiff);
                 const differenceInDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
                 if (differenceInDays < 0 || differenceInDays > 7) return;
                 const mealId = schd.COMIDA == "Almuerzo" ? 0 : 1;
@@ -91,7 +100,6 @@ $(function() {
 
     var currentMonday = new Date();
     currentMonday.setDate(currentMonday.getDate() - (currentMonday.getDay() + 6) % 7);
-    console.log(currentMonday);
     retrieveSchedule(currentMonday);
 
 

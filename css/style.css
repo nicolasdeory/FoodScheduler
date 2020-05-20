@@ -43,6 +43,22 @@ body {
     width: 100%;
     max-height: calc(100vh - 80px);
     overflow-y: scroll;
+    transition: 0.2s;
+}
+
+#page-content.hidden {
+    opacity: 0;
+}
+
+#page-loader {
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    transform: translateX(-50%);
+}
+
+.material-icons.big {
+    font-size: 60px;
 }
 
 
