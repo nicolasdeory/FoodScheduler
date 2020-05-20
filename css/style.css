@@ -3,10 +3,10 @@
 }
 
 body {
-    background-color: #F0E2D3;
+    background-color: #f0e2d3;
     margin: 0;
     color: #222;
-    font-family: 'Muli';
+    font-family: "Muli";
 }
 
 .section-header .header {
@@ -45,7 +45,9 @@ body {
     overflow-y: scroll;
 }
 
+
 /* PLACEHOLDERS */
+
 .placeholder-bar {
     height: 20px;
     width: 80px;
@@ -53,23 +55,55 @@ body {
     margin: 2px;
 }
 
-.placeholder-bar.small 
-{
+.placeholder-bar.small {
     width: 80px;
 }
 
-.placeholder-bar.med
-{
+.placeholder-bar.med {
     width: 100px;
 }
 
-.placeholder-bar.long
-{
+.placeholder-bar.long {
     width: 115px;
 }
 
+.loading-anim {
+    -moz-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* Firefox */
+    -webkit-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* Webkit */
+    -ms-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* IE */
+    animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+}
 
-@media(max-width: 1150px) /* HARD CODED FOR "DOMINGO" */
+@keyframes loading-blink-anim {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes loading-blink-anim {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1150px)
+/* HARD CODED FOR "DOMINGO" */
+
 {
     #day-container :last-child {
         width: 120px;

@@ -1,6 +1,6 @@
 /*Estilo del h1 del Login*/
-.titLogin{   
-        
+
+.titLogin {
     padding: 0;
     font-family: 'Horizon Type - AcherusGrotesque-Regular';
     text-align: center;
@@ -11,14 +11,12 @@
     height: 30%;
     width: 50%;
     margin: -15% 0 0 -25%;
-        
-         
-            
 }
 
+
 /*Estilo del h5 del Login*/
-.subTitLogin{   
-       
+
+.subTitLogin {
     padding: 0;
     font-family: 'Muli';
     text-align: center;
@@ -28,12 +26,13 @@
     left: 45%;
     height: 30%;
     width: 60%;
-    margin: -15% 0 0 -25%; 
-            
+    margin: -15% 0 0 -25%;
 }
 
+
 /*Estilo del formulario de login*/
-.formlogin{   
+
+.formlogin {
     padding: 0;
     font-family: 'Muli';
     text-align: center;
@@ -42,28 +41,31 @@
     left: 50%;
     height: 30%;
     width: 50%;
-    margin: -15% 0 0 -25%; 
-    
-            
+    margin: -15% 0 0 -25%;
 }
 
+
 /*Estilo del html "a" tag*/
-a:link, a:visited, a:active {   
+
+a:link,
+a:visited,
+a:active {
     padding: 0;
     font-family: 'Muli';
     text-align: center;
     position: absolute;
     top: 96%;
     left: 66%;
-    margin: -15% 0 0 -25%; 
+    margin: -15% 0 0 -25%;
     font-size: 68%;
     text-decoration: none;
     font-weight: bold;
-            
 }
 
+
 /*Estilo del input de submit*/
-button{
+
+button {
     height: 40px;
     color: #fff;
     background: red;
@@ -76,18 +78,22 @@ button{
     text-align: center;
     font-family: 'Muli';
     font-weight: bold;
-    }
-
-/*Estilo de la linea entre el subtítulo y el formulario(Pestaña de Login)*/    
-hr {
-     background-color: #dbcaba;
-     height: 0.3%;
-     width: 20%;
-    margin-top: 32%;
-     border: 0;
 }
 
-/*Estilo del cuadrado que recubre el Login*/   
+
+/*Estilo de la linea entre el subtítulo y el formulario(Pestaña de Login)*/
+
+hr {
+    background-color: #dbcaba;
+    height: 0.3%;
+    width: 20%;
+    margin-top: 32%;
+    border: 0;
+}
+
+
+/*Estilo del cuadrado que recubre el Login*/
+
 .cuadradoLogin {
     background-color: #eddece;
     width: 450px;
@@ -100,21 +106,21 @@ hr {
     -moz-border-radius: 26px 26px 26px 26px;
     -webkit-border-radius: 26px 26px 26px 26px;
     opacity: 0.96;
-        
-    
-    }
-    
-/*Imagen de fondo*/   
-body{
-    
+}
+
+
+/*Imagen de fondo*/
+
+body {
     background-image: url('background image account.png');
     width: 100%;
     height: auto;
-        
 }
+
 
 /*Estilo del input del usuario*/
-.usr input[type="text"]{
+
+.usr input[type="text"] {
     outline: none;
     height: 40px;
     display: block;
@@ -125,9 +131,11 @@ body{
     text-align: center;
     font-family: 'Muli';
 }
+
 
 /*Estilo del input de la contraseña*/
-.psw input[type="password"]{
+
+.psw input[type="password"] {
     outline: none;
     height: 40px;
     display: block;
@@ -139,8 +147,10 @@ body{
     font-family: 'Muli';
 }
 
+
 /*Estilo del icono del usuario*/
-.usr i{
+
+.usr i {
     position: absolute;
     right: 0px;
     padding: 10px 12px;
@@ -150,8 +160,10 @@ body{
     font-size: 22px;
 }
 
+
 /*Estilo del icono de la contraseña*/
-.psw i{
+
+.psw i {
     position: absolute;
     right: 0px;
     padding: 10px 12px;
@@ -159,4 +171,41 @@ body{
     left: -165px;
     top: 75px;
     font-size: 22px;
+}
+
+
+/* Loading */
+
+.loading-anim {
+    -moz-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* Firefox */
+    -webkit-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* Webkit */
+    -ms-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* IE */
+    animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+}
+
+@keyframes loading-blink-anim {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes loading-blink-anim {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
