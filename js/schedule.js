@@ -57,7 +57,9 @@ $(function() {
             {
                 $("#missing-ingredients-box").show();
                 ingredients.forEach(ing => {
-                    var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,ing.PARA_RECETAS);
+                    var recipes = ing.PARA_RECETAS.split(",");
+                    let uniqueRecipes = [...new Set(recipes)]; 
+                    var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,uniqueRecipes);
                     $("#missing-ingredients-ul").append(ingredientHTML)
                 });
             }
