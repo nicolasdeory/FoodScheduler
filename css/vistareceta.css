@@ -10,6 +10,20 @@ body{
     user-select: none; 
 }
 
+a, a:hover, a:focus
+{
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+    padding: 5px;
+}
+
+a:hover 
+{
+    background-color: #5635141f;
+}
+
 /*ESTILOS DE LA BARRA DEL MENÚ */
 
 .titulo {

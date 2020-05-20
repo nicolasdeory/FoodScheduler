@@ -45,7 +45,7 @@
     <div class="partederechamenu">
       <p> Hola, Nicolas </p>
       <p> Mi cuenta </p>
-      <p> Salir </p>
+      <p><a href="logout.php">Salir</a></p>
     </div>
   </div>
 
