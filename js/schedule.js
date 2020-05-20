@@ -1,6 +1,15 @@
 const RECIPE_TEMPLATE = `
 <li><a href="recipe/{0}">{1}</a></li>
 `;
+
+const MISSING_INGREDIENT_TEMPLATE = `
+<li ingred-id="{0}" ingred-qty="{1}" ingred-msr="{2}">
+    <i class="fas fa-plus add-icon"></i>
+    <span class="ingredient">{3}</span>
+    <span class="description">Para cocinar {4}</span>
+</li>
+`;
+
 // TODO: Show some brief info on hover
 
 Date.prototype.addDays = function(days) {
@@ -37,6 +46,25 @@ $(function() {
                 const mealId = schd.COMIDA == "Almuerzo" ? 0 : 1;
                 $(`#schd-${differenceInDays}${mealId}`).append(RECIPE_TEMPLATE.format(schd.ID_RECETA, schd.NOMBRE));
             });
+        });
+    }
+
+    function retrieveMissingIngredients(mondayDate) {
+
+        $.get(`./missing_ingredients.php`, (ingredients) => {
+            console.log(ingredients);
+            if (ingredients.length > 0)
+            {
+                $("#missing-ingredients-box").show();
+                ingredients.forEach(ing => {
+                    var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,ing.PARA_RECETAS);
+                    $("#missing-ingredients-ul").append(ingredientHTML)
+                });
+            }
+            else
+            {
+                $("#missing-ingredients-box").hide();
+            }
         });
     }
 
@@ -102,7 +130,7 @@ $(function() {
     currentMonday.setDate(currentMonday.getDate() - (currentMonday.getDay() + 6) % 7);
     retrieveSchedule(currentMonday);
 
-
+    retrieveMissingIngredients(currentMonday);
 
     setDayHeaderPositions();
     setTimeout(setDayHeaderPositions, 150);
