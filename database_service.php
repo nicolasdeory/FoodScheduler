@@ -128,3 +128,55 @@ function create_schedule($username, $date, $mealtype)
 		return false;
 	}
 }
+
+function get_needed_ingredients($username) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT * FROM (
+			SELECT 
+				id_ingrediente,
+				sum(cantidad) AS cantidad, 
+				listagg(nombre , ',') within group (order by nombre) AS para_recetas,
+				unidadDeMedida
+			FROM cantidadesIngredientes c
+			NATURAL JOIN recetasenplanificaciones
+			NATURAL JOIN (SELECT id_planificacion FROM planificaciones WHERE nombreDeUsuario = :username
+							AND fecha BETWEEN TRUNC(SYSDATE) + 1/86400 AND TRUNC(SYSDATE+7))
+			NATURAL JOIN recetas
+			GROUP BY id_ingrediente,unidadDeMedida)
+		NATURAL JOIN ingredientes";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->execute();
+		$missingIngreds = $stmt->fetchAll();
+		return $missingIngreds;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function get_quantity_in_fridge($username, $id_ingrediente) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT cantidad INTO cantidadEnNevera FROM itemsEnNevera
+		WHERE nombreDeUsuario = :username AND id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingrediente);
+		$stmt->execute();
+		$qtyInFridge = $stmt->fetchColumn();
+		return $qtyInFridge;
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
