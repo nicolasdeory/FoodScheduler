@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-  /*if (!isset($_SESSION['user']))
+  /*if (!isset($_SESSION['login']))
 	{
 		// Not logged, redirect to login
 		header('Location: .');
@@ -45,14 +45,15 @@
     <div class="partederechamenu">
       <p> Hola, Nicolas </p>
       <p> Mi cuenta </p>
-      <p> Salir </p>
+      <p><a href="logout.php">Salir</a></p>
     </div>
   </div>
 
   <div class="centro">
-    <div id="page-content" class="contenidodelaweb">
+    <div id="page-content" class="contenidodelaweb hidden">
 
     </div>
+    <div id="page-loader"><span class="material-icons big loading-anim"> restaurant </span></div>
 
     <div class="barralateral">
       <div class="elemento elementoactivo"> <span class="material-icons iconocolumna"> date_range </span> </div>

@@ -52,7 +52,20 @@ if (isset($_SESSION['login']))
     <!--Link al archivo css-->
     <link rel="stylesheet" href="assets/css/loginstyle.css" type="text/css">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script
+        src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+        crossorigin="anonymous"></script>
+        
+    <!--Código javascript-->
+    <script type="text/javascript" src="validacionLogin.js"></script>
 
+    <!--Código javascript iconos usuario y contraseña-->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script src="js/login.js"></script>
 
 </head>
     
@@ -76,7 +89,7 @@ if (isset($_SESSION['login']))
 
         <div class="formlogin">
 
-            <form action="" method="post" name="formLogin" id="formLogin" onsubmit="return validarFormLogin()">
+            <form action="" method="post" name="formLogin" id="form-login" onsubmit="return validarFormLogin()">
 
 
                 <div class="usr">
@@ -100,20 +113,6 @@ if (isset($_SESSION['login']))
 
 
     </div>
-
-
-
-
-
-
-
-
-    <!--Código javascript-->
-    <script type="text/javascript" src="validacionLogin.js"></script>
-
-    <!--Código javascript iconos usuario y contraseña-->
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
 
 </body>
 

@@ -1,14 +1,28 @@
-body{
+body {
     background-color: #F0E2D3;
     color: #563514;
     font-family: 'Karla', sans-serif;
     border-color: #563514;
-    
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none; 
+    user-select: none;
 }
+
+.menu a,
+.menu a:hover,
+.menu a:focus {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+    padding: 5px;
+}
+
+.menu a:hover {
+    background-color: #5635141f;
+}
+
 
 /*ESTILOS DE LA BARRA DEL MENÚ */
 
@@ -19,19 +33,19 @@ body{
     font-family: 'Karla', sans-serif;
 }
 
-.menu{
+.menu {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 80px;
     width: 100%;
-     -webkit-box-shadow: 0 4px 6px -6px #595959;
-     -moz-box-shadow: 0 4px 6px -6px #595959;
-     box-shadow: 0 4px 6px -6px #595959;
+    -webkit-box-shadow: 0 4px 6px -6px #595959;
+    -moz-box-shadow: 0 4px 6px -6px #595959;
+    box-shadow: 0 4px 6px -6px #595959;
 }
 
-.partederechamenu{
+.partederechamenu {
     padding-left: 2vmin;
     display: flex;
     flex-direction: row;
@@ -40,34 +54,36 @@ body{
     width: 40vmin;
 }
 
-.burger{
-    display:none;
+.burger {
+    display: none;
 }
 
-.izquierda{
-    display:flex;
+.izquierda {
+    display: flex;
     align-items: center;
     flex-direction: row;
 }
 
-.espacio{
+.espacio {
     width: 50vmin;
 }
-.derechatitulo{
+
+.derechatitulo {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
+
 /*ESTILOS DEL CUERPO */
-    
-.centro{
+
+.centro {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;   
+    justify-content: flex-end;
 }
 
-.barralateral{
+.barralateral {
     padding-top: 0.3vmin;
     display: flex;
     flex-direction: column;
@@ -79,85 +95,127 @@ body{
     background-color: #F0E2D3;
 }
 
-.elemento{
+.elemento {
     padding: 3vmin;
-    
 }
 
-.elemento:hover{
+.elemento:hover {
     padding: 3vmin;
     background-color: #d7bea8;
-    transition: background 0.8s; 
-    
+    transition: background 0.8s;
 }
 
-.elementoactivo{
+.elementoactivo {
     background-color: #E5D5C5;
 }
 
-.espaciodeabajo{
+.espaciodeabajo {
     height: 50vmin;
 }
 
-.contenidodelaweb{
+.contenidodelaweb {
     padding: 4vmin;
 }
 
+
 /*ESTILOS DE LA RECETA GENERAL */
+
 
 /*ESTILOS TITULO */
 
-.barra-superior{
+.barra-superior {
     display: flex;
     padding: 2vmin;
-
 }
 
-.titulo-receta{
+.titulo-receta {
     padding-left: 2vmin;
     color: black;
     font-size: 3vmin;
+    font-weight: 700;
+}
+
+
+/* ESTILOS DE LA BARRA DE LIKE */
+
+.barra-like {
+    display: flex;
+    width: 100%;
+    height: 5vmin;
+    background-color: #F5ECE2;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    font-size: 3vmin;
+}
+
+.texto-like {
+    margin-left: 1vmin;
+    margin-right: 6vmin;
+    margin-top: 10vmin;
+}
+
+.corazon {
+    margin-top: 7vmin;
 }
 
 
 /* ESTILOS DE LA COLUMNA IZQUIERDA DE LAS RECETAS */
 
-.columnas{
+.columnas {
     display: flex;
     width: 180vmin;
     flex-direction: row;
     align-content: center;
-    align-items: center;
-    justify-content: center;
     background-color: #F5ECE2;
 }
 
-.columna-izquierda{
+.columna-izquierda {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 80vmin;
+    width: 60vmin;
     padding: 2vmin;
 }
 
-figure{
-    width:50vmin; /*container-width*/
-    height:40vmin; /*container-height*/
-    overflow: hidden; /*hide bounds of image */
+.foto {
+    width: 100%;
+}
+
+figure {
+    width: 50vmin;
+    /*container-width*/
+    height: 35vmin;
+    /*container-height*/
+    overflow: hidden;
+    /*hide bounds of image */
     border-radius: 2vmin;
 }
 
-figure img{
-    display:block; /*remove inline-block spaces*/  
-    width:110%;
+figure img {
+    display: block;
+    /*remove inline-block spaces*/
+    width: 110%;
 }
 
-.contenido-columna-izquierda{
+.contenido-columna-izquierda {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 4vmin;
+}
+
+.tiempo-dificultad {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.tiempo-dificultad{
+.tiempo-dificultad-elem {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -165,53 +223,56 @@ figure img{
     align-items: center;
 }
 
-.tiempo-receta{
+.tiempo-receta {
     padding-left: 1vmin;
 }
 
-/* ESTILOS DE LA COLUMNA DERECHA DE LAS RECETAS */
-
-.columna-derecha{
-    width: 80vmin;
-    background-color: blue;
-    padding: 2vmin;
+.titulo-seccion {
+    font-size: 3vmin;
 }
 
-.espacio-central{
+
+/* ESTILOS DE LA COLUMNA DERECHA DE LAS RECETAS */
+
+.columna-derecha {
+    width: 80vmin;
+    /*background-color: blue;*/
+    padding: 2vmin;
+    align-items: flex-start;
+    margin-top: 4vmin;
+    margin-left: 10vmin;
+}
+
+.espacio-central {
     width: 2vmin;
 }
 
-
-@media (max-width: 768px){
-    
+@media (max-width: 768px) {
     /*ESTILOS DE LA BARRA DEL MENÚ */
-    .burger{
+    .burger {
         display: flex;
         align-items: center;
     }
-
-    .partederechamenu{
+    .partederechamenu {
         display: none;
         flex-direction: column;
     }
-    .menu{
+    .menu {
         flex-direction: column;
         width: 100%;
     }
-    .active{
+    .active {
         display: flex;
     }
-    .activenav{
+    .activenav {
         margin-top: 18vmin;
     }
-
-    .titulo{
+    .titulo {
         padding-left: 2vmin;
         font-size: 4vmin;
         width: 70vmin;
-        
     }
-    .izquierda{
+    .izquierda {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -219,30 +280,25 @@ figure img{
         -moz-box-shadow: 0 4px 6px -6px #808080;
         box-shadow: 0 4px 6px -6px #808080;
     }
-    
-    .derechatitulo{
+    .derechatitulo {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
     }
-    .campana{
+    .campana {
         padding-right: 2vmin;
     }
-    .espacio{
+    .espacio {
         width: 10vmin;
     }
-    
     /*ESTILOS DEL CUERPO */
-    
-    .centro{
+    .centro {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        
     }
-
-    .barralateral{
+    .barralateral {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -255,55 +311,63 @@ figure img{
         position: fixed;
         bottom: 0;
     }
-
-    .elemento{
+    .elemento {
         padding: 3vmin;
-
     }
-
-    .elementoactivo{
+    .elementoactivo {
         background-color: #E5D5C5;
     }
-
-    .espaciodeabajo{
+    .espaciodeabajo {
         height: 0px;
         width: 0px;
     }
-
-    .contenidodelaweb{
+    .contenidodelaweb {
         display: flex;
         padding: 4vmin;
     }
-
-    
     #page-content {
         /*width: calc(100% - 40px);*/
         width: 100%;
         max-height: calc(100vh - 180px);
         overflow-y: scroll;
     }
-    
     /*ESTILOS DE LA RECETA GENERAL */
-
     /*ESTILOS TITULO */
-    
+    /* ESTILOS DE LA BARRA DE LIKE */
+    .barra-like {
+        display: flex;
+        width: 80vmin;
+        height: 8vmin;
+        font-size: 5vmin;
+    }
+    .texto-like {
+        margin-left: 1vmin;
+        margin-right: 6vmin;
+        margin-top: 8vmin;
+    }
+    .corazon {
+        margin-top: 3vmin;
+    }
     /* ESTILOS DE LA COLUMNA IZQUIERDA DE LAS RECETAS */
-    
-    .contenidodelaweb{
+    .contenidodelaweb {
+        /*display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;*/
+    }
+    .columnas {
+        width: 80vmin;
+    }
+    .columnas {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    
-    .columnas{
-        width: 80vmin;
+    .contenido-columna-izquierda {
+        margin-left: 0vmin;
     }
-    
-    .columnas{
-        display: flex;
-        flex-direction: column;
+    .columna-derecha {
+        margin-left: 0vmin;
     }
-    
-
 }

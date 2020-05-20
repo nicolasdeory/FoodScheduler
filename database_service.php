@@ -80,6 +80,102 @@ function view_recipe($recetaId)
 		$recipe = $stmt->fetchColumn();
 		return $recipe;
 	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function retrieve_schedule($username, $from, $to) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT id_receta, nombre, to_char(fecha,'MM-DD-YYYY') fecha, comida FROM planificaciones
+					NATURAL JOIN recetasenplanificaciones 
+					NATURAL JOIN recetas
+					WHERE nombredeusuario = :username AND fecha BETWEEN :fromRange AND :toRange";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':fromRange', $from);
+		$stmt->bindParam(':toRange', $to);
+		$stmt->execute();
+		$planificaciones = $stmt->fetchAll();
+		return $planificaciones;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function create_schedule($username, $date, $mealtype)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "INSERT INTO planificaciones VALUES (S_PLANIFICACIONES.nextval, :fecha, :comida, :username)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':fecha', $date);
+		$stmt->bindParam(':comida', $mealtype);
+		$stmt->bindParam(':username', $username);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
+
+function get_needed_ingredients($username) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT * FROM (
+			SELECT 
+				id_ingrediente,
+				sum(cantidad) AS cantidad, 
+				listagg(nombre , ',') within group (order by nombre) AS para_recetas,
+				unidadDeMedida
+			FROM cantidadesIngredientes c
+			NATURAL JOIN recetasenplanificaciones
+			NATURAL JOIN (SELECT id_planificacion FROM planificaciones WHERE nombreDeUsuario = :username
+							AND fecha BETWEEN TRUNC(SYSDATE) + 1/86400 AND TRUNC(SYSDATE+7))
+			NATURAL JOIN recetas
+			GROUP BY id_ingrediente,unidadDeMedida)
+		NATURAL JOIN ingredientes";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->execute();
+		$missingIngreds = $stmt->fetchAll();
+		return $missingIngreds;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function get_quantity_in_fridge($username, $id_ingrediente) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT cantidad INTO cantidadEnNevera FROM itemsEnNevera
+		WHERE nombreDeUsuario = :username AND id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingrediente);
+		$stmt->execute();
+		$qtyInFridge = $stmt->fetchColumn();
+		return $qtyInFridge;
+	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
 	}

@@ -1,175 +1,207 @@
 .schedule-section-container {
-  padding: 20px;
-  max-width: 100%;
-  height: 100%;
+    padding: 20px;
+    max-width: 100%;
+    height: 100%;
 }
 
 .schedule {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #e13232;
-  width: 100%;
-  padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #e13232;
+    width: 100%;
+    padding: 50px;
 }
 
 .schedule-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-left: -40px;
-  margin-right: -40px;
-  margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-bottom: 15px;
 }
 
 .chevron {
-  font-size: 16pt;
-  color: #563514;
+    font-size: 16pt;
+    color: #563514;
+    cursor: pointer;
 }
 
 .chevron.right {
-  transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 #day-container {
-  display: flex;
-  height: 40px;
-  width: 100%;
-  position: relative;
-  margin-left: 20px;
-  margin-right: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
+    display: flex;
+    height: 40px;
+    width: 100%;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 #day-container span {
-  font-size: 15pt;
-  text-transform: uppercase;
-  font-weight: bold;
-  position: absolute;
-  transition: 0.15s;
+    font-size: 15pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    transition: 0.15s;
 }
+
 .schedule-table {
-  outline: solid 1px #e132321a;
-  outline-offset: 10px;
-  overflow-x: auto;
+    outline: solid 1px #e132321a;
+    outline-offset: 10px;
+    overflow-x: auto;
 }
 
 .schedule-table table {
-  width: 100%;
+    width: 100%;
 }
 
 .schedule-table td {
-  padding: 20px;
+    padding: 20px;
+    vertical-align: top;
+    height: 150px;
+    word-wrap: break-word;
+    max-width: 100px;
 }
 
-.schedule-table tr > :nth-child(odd) {
-  background-color: #e132321a;
+.schedule-table tr> :nth-child(odd) {
+    background-color: #e132321a;
 }
 
-.schedule-table tr > :nth-child(even) {
-  background-color: #e1323210;
+.schedule-table tr> :nth-child(even) {
+    background-color: #e1323210;
 }
 
 .schedule-table h3 {
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 400;
-  font-size: 11pt;
-  margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 400;
+    font-size: 11pt;
+    margin-top: 0;
 }
 
 .schedule-table ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
+    max-width: 100%;
 }
 
 .schedule-table li {
-  font-weight: bold;
+    font-weight: bold;
 }
+
+.schedule-table li:not(:first-child) {
+    margin-top: 5px;
+}
+
+li a,
+li a:hover,
+li a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
 
 /* SCHEDULE SCROLLBAR */
+
 ::-webkit-scrollbar {
-  height: 10px;
+    height: 10px;
 }
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
-  background: #f1e7dd;
+    background: #f1e7dd;
 }
+
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
-  background: #5635143b;
+    background: #5635143b;
 }
 
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #563514;
+    background: #563514;
 }
 
 .alert-box {
-  background-color: #fff8f8;
-  border: solid 6px #ff3131;
-  padding: 40px;
-  margin: 0 50px;
+    background-color: #fff8f8;
+    border: solid 6px #ff3131;
+    padding: 40px;
+    margin: 0 50px;
 }
 
 .alert-box h1 {
-  font-weight: 800;
-  margin-top: 0;
-  margin-bottom: 20px;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .alert-box p {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-weight: 600;
-  font-size: 14pt;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 14pt;
 }
 
 .missing-ingredient-list {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 .missing-ingredient-list li {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 10px 0;
-  cursor: pointer;
-  width: fit-content;
-  flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+    cursor: pointer;
+    width: fit-content;
+    flex-wrap: wrap;
 }
 
 .missing-ingredient-list .add-icon {
-  font-size: 10pt;
-  width: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 25px;
-  padding: 3px;
-  border-radius: 20px;
-  border: solid #222 1.5px;
-  transition: background-color, color 0.1s;
-  user-select: none;
+    font-size: 10pt;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    padding: 3px;
+    border-radius: 20px;
+    border: solid #222 1.5px;
+    transition: background-color, color 0.1s;
+    user-select: none;
 }
 
 .missing-ingredient-list li:hover .add-icon {
-  background-color: #222;
-  color: white;
+    background-color: #222;
+    color: white;
 }
 
 .missing-ingredient-list .ingredient {
-  font-size: 14pt;
-  font-weight: bold;
-  margin-left: 10px;
+    font-size: 14pt;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 .missing-ingredient-list .description {
-  font-size: 12pt;
-  font-weight: 400;
-  margin-left: 10px;
+    font-size: 12pt;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+@media(max-width: 1200px) {
+    #schd-table td {
+        max-width: none;
+    }
 }

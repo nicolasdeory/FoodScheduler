@@ -3,10 +3,10 @@
 }
 
 body {
-    background-color: #F0E2D3;
+    background-color: #f0e2d3;
     margin: 0;
     color: #222;
-    font-family: 'Muli';
+    font-family: "Muli";
 }
 
 .section-header .header {
@@ -43,9 +43,83 @@ body {
     width: 100%;
     max-height: calc(100vh - 80px);
     overflow-y: scroll;
+    transition: 0.2s;
 }
 
-@media(max-width: 1150px) /* HARD CODED FOR "DOMINGO" */
+#page-content.hidden {
+    opacity: 0;
+}
+
+#page-loader {
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    transform: translateX(-50%);
+}
+
+.material-icons.big {
+    font-size: 60px;
+}
+
+
+/* PLACEHOLDERS */
+
+.placeholder-bar {
+    height: 20px;
+    width: 80px;
+    background-color: #c9282814;
+    margin: 2px;
+}
+
+.placeholder-bar.small {
+    width: 80px;
+}
+
+.placeholder-bar.med {
+    width: 100px;
+}
+
+.placeholder-bar.long {
+    width: 115px;
+}
+
+.loading-anim {
+    -moz-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* Firefox */
+    -webkit-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* Webkit */
+    -ms-animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+    /* IE */
+    animation: loading-blink-anim normal 1.5s infinite ease-in-out;
+}
+
+@keyframes loading-blink-anim {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes loading-blink-anim {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1150px)
+/* HARD CODED FOR "DOMINGO" */
+
 {
     #day-container :last-child {
         width: 120px;
