@@ -12,7 +12,7 @@ if (!isset($_SESSION['login']))
     die;
 }
 
-if (!isset($_GET['id']))
+if (!isset($_GET['recipeID']))
 {
     http_response_code(400);
     echo "must specify recipe Id";
@@ -30,6 +30,11 @@ $receta =  view_recipe($recetaId);
 <div class="barra-like">
     <span class="material-icons corazon"> favorite </span>
     <p class="texto-like"> <?php echo $receta['POPULARIDAD']?> </p>
+    <div class="titulo-receta"> Espaguetis a la boloñesa </div>
+</div>
+<div class="barra-like">
+    <span class="material-icons corazon"> favorite </span>
+    <p class="texto-like"> 273 </p>
 </div>
 <div class="columnas">
 
