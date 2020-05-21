@@ -73,12 +73,12 @@ function view_recipe($recetaId)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT * FROM recetas WHERE id = :idrecipe";
+		$consulta = "SELECT id_receta, nombre, tiempoelaboracion, dificultad, popularidad, publica, nombredeusuario FROM recetas WHERE id_receta = :idrecipe";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':idrecipe', $recetaId);
 		$stmt->execute();
-		$recipe = $stmt->fetchColumn();
-		return $recipe;
+		$recipe = $stmt->fetchAll();
+		return $recipe[0];
 	} catch (PDOException $e) {
 		echo $e->getMessage();
 		return false;
