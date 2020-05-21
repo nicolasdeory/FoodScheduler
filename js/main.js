@@ -11,7 +11,7 @@ if (!String.prototype.format) {
 
 $(function() {
 
-    $("#recipe-button").click(() => 
+    $("#favorite-button").click(() => 
     {
         $("#page-content").addClass("hidden");
         $.get("vistareceta.php?id=1", function(data) {
