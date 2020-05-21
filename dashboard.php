@@ -56,9 +56,9 @@
     <div id="page-loader"><span class="material-icons big loading-anim"> restaurant </span></div>
 
     <div class="barralateral">
-      <div class="elemento elementoactivo"> <span class="material-icons iconocolumna"> date_range </span> </div>
-      <div class="elemento"> <span class="material-icons iconocolumna"> restaurant </span> </div>
-      <div class="elemento"> <span class="material-icons iconocolumna"> favorite </span> </div>
+      <div class="elemento elementoactivo" id="schedule-button"> <span class="material-icons iconocolumna"> date_range </span> </div>
+      <div class="elemento" id="restaurant-button"> <span class="material-icons iconocolumna"> restaurant </span> </div>
+      <div class="elemento" id="favorite-button"> <span class="material-icons iconocolumna"> favorite </span> </div>
       <div class="espaciodeabajo"> </div>
     </div>
 

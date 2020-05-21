@@ -11,6 +11,16 @@ if (!String.prototype.format) {
 
 $(function() {
 
+    $("#recipe-button").click(() => 
+    {
+        $("#page-content").addClass("hidden");
+        $.get("vistareceta.php?id=1", function(data) {
+            $("#page-content").html(data);
+            $("#page-loader").hide();
+            $("#page-content").removeClass("hidden");
+        });
+    });
+
     $.get("schedule.html", function(data) {
         $("#page-content").html(data);
         $("#page-loader").hide();
