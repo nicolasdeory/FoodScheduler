@@ -12,7 +12,7 @@ if (!isset($_SESSION['login']))
     die;
 }
 
-if (!isset($_GET['recipeID']))
+if (!isset($_GET['id']))
 {
     http_response_code(400);
     echo "must specify recipe Id";
