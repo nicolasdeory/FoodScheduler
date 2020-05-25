@@ -7,6 +7,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    overflow: hidden;
 }
 
 .menu a,
@@ -38,7 +39,6 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 80px;
     width: 100%;
     -webkit-box-shadow: 0 4px 6px -6px #595959;
     -moz-box-shadow: 0 4px 6px -6px #595959;
@@ -164,7 +164,7 @@ body {
 
 .columnas {
     display: flex;
-    width: 180vmin;
+    width: 100%;
     flex-direction: row;
     align-content: center;
     background-color: #F5ECE2;
@@ -174,7 +174,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 60vmin;
     padding: 2vmin;
 }
 
@@ -183,7 +182,7 @@ body {
 }
 
 figure {
-    width: 50vmin;
+    width: 60vmin;
     /*container-width*/
     height: 35vmin;
     /*container-height*/
@@ -235,12 +234,11 @@ figure img {
 /* ESTILOS DE LA COLUMNA DERECHA DE LAS RECETAS */
 
 .columna-derecha {
-    width: 80vmin;
+    width: 75vmin;
     /*background-color: blue;*/
-    padding: 2vmin;
     align-items: flex-start;
-    margin-top: 4vmin;
-    margin-left: 10vmin;
+    justify-content: center;
+    margin-left: 8vmin;
 }
 
 .espacio-central {
@@ -324,6 +322,7 @@ figure img {
     .contenidodelaweb {
         display: flex;
         padding: 4vmin;
+        flex-direction: column;
     }
     #page-content {
         /*width: calc(100% - 40px);*/
@@ -336,7 +335,6 @@ figure img {
     /* ESTILOS DE LA BARRA DE LIKE */
     .barra-like {
         display: flex;
-        width: 80vmin;
         height: 8vmin;
         font-size: 5vmin;
     }
@@ -349,6 +347,9 @@ figure img {
         margin-top: 3vmin;
     }
     /* ESTILOS DE LA COLUMNA IZQUIERDA DE LAS RECETAS */
+    .tiempo-dificultad{
+        width: 75vmin;
+    }
     .contenidodelaweb {
         /*display: flex;
         flex-direction: column;
@@ -356,7 +357,6 @@ figure img {
         align-items: center;*/
     }
     .columnas {
-        width: 80vmin;
     }
     .columnas {
         display: flex;

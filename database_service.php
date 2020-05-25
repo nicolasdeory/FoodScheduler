@@ -73,12 +73,50 @@ function view_recipe($recetaId)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT id_receta, nombre, tiempoelaboracion, dificultad, popularidad, publica, nombredeusuario FROM recetas WHERE id_receta = :idrecipe";
+		$consulta = "SELECT * FROM recetas WHERE id_receta = :idrecipe";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':idrecipe', $recetaId);
 		$stmt->execute();
 		$recipe = $stmt->fetchAll();
 		return $recipe[0];
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function view_ingredients($recetaId)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT cantidad, unidaddemedida, nombre FROM cantidadesingredientes natural join ingredientes WHERE cantidadesingredientes.id_receta = :idrecipe";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':idrecipe', $recetaId);
+		$stmt->execute();
+		$recipe = $stmt->fetchAll();
+		return $recipe;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function view_pasos($recetaId)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT descripcion FROM pasos WHERE id_receta = :idrecipe";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':idrecipe', $recetaId);
+		$stmt->execute();
+		$recipe = $stmt->fetchAll();
+		return $recipe;
 	} catch (PDOException $e) {
 		echo $e->getMessage();
 		return false;
