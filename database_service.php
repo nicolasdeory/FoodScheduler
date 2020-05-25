@@ -85,6 +85,29 @@ function view_recipe($recetaId)
 	}
 }
 
+//view recipes 
+function view_recipes($ingrediente, $comida, $dificultad)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente AND UPPER(nombre) LIKE UPPER(:comida||'%') AND dificultad = :dificultad " ;
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':ingrediente', $ingrediente);
+		$stmt->bindParam(':comida', $comida);
+		$stmt->bindParam(':dificultad', $dificultad);
+		$stmt->execute();
+		$recipe = $stmt->fetchAll();
+		return $recipe;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+
 function retrieve_schedule($username, $from, $to) 
 {
 	$conexion = Database::instance();
