@@ -42,7 +42,7 @@ body{
     font-family: 'Muli';
     text-align: left;
     position: absolute;
-    top: 85%;
+    top: 95%;
     left: 50%;
     height: 30%;
     width: 50%;
@@ -55,6 +55,7 @@ i{
     font-size:170px;
 }
 
+/*Estilo de la página en una pantalla pequeña*/
 @media (max-width: 768px){
 
 /*Estilo del rectángulo que recubre los datos*/
@@ -65,7 +66,7 @@ i{
     height: 400px;
     position: absolute;
     left: 16.9%;
-    top: 25%;
+    top: 30%;
 }
 
 /*Estilo del título "Mi cuenta"*/
@@ -74,7 +75,7 @@ padding: 0;
 font-family: 'Horizon Type - AcherusGrotesque-Regular';
 text-align: center;
 position: absolute;
-top: 10%;
+top: 20%;
 left: 40%;
 font-size: larger;
 
@@ -100,6 +101,36 @@ margin-top: 5%;
 margin-left: 35%;
 font-size: 100px;
 }
+}
+
+/*Estilo de la página en un portátil*/
+@media (min-width: 768px) and (max-width: 1366px){
+
+/*Estilo del rectángulo que recubre los datos*/
+.rectangulo {
+       
+    background: #f5ece2;
+    width: 950px;
+    height: 250px;
+    position: absolute;
+    left: 16.9%;
+    top: 25%;
+}
+
+/*Estilo de los datos de mi cuenta*/
+.datosText{
+    
+    padding: 0;
+    font-family: 'Muli';
+    text-align: left;
+    position: absolute;
+    top: 75%;
+    left: 53%;
+    height: 30%;
+    width: 50%;
+    margin: -15% 0 0 -25%; 
+}
+
 }
 
 /*ESTILOS DE LA BARRA DEL MENÚ */

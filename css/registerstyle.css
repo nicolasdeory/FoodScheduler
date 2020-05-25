@@ -77,8 +77,30 @@ button{
 /*Imagen de fondo*/   
 body{
     
-    background-image: url('background image account.png');
+    background-image: url('../images/background image account.png');
     width: 100%;
     height: auto;
         
-    }
+}
+
+/*Estilo en portatil*/
+@media (min-width: 768px) and (max-width: 1366px){
+
+/*Estilo del cuadrado que recubre el Registro*/
+.cuadradoReg {
+    background-color: #eddece;
+    width: 450px;
+    height: 510px;
+    position: absolute;
+    left: 50%;
+    top: 49.5%;
+    transform: translate(-50%, -50%);
+    border-radius: 26px 26px 26px 26px;
+    -moz-border-radius: 26px 26px 26px 26px;
+    -webkit-border-radius: 26px 26px 26px 26px;
+    opacity: 0.96;
+        
+    
+}
+
+}

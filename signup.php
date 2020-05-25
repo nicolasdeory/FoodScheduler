@@ -95,29 +95,29 @@ function test_input($data)
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!--Nombre de la pestaña-->
+<!--Nombre de la pestaña-->
   <title>Registrarse</title>
 
-  <!--Link de la Fuente para las letras pequeñas-->
+<!--Link de la Fuente para las letras pequeñas-->
   <link href="https://fonts.googleapis.com/css2?family=Muli&display=swap" rel="stylesheet">
 
-  <!--Link de la Fuente para el Título-->
+<!--Link de la Fuente para el Título-->
   <link href="https://www.fontspring.com/fonts/horizon-type/acherus-grotesque" rel="stylesheet">
 
-  <!--Link al archivo css-->
-  <link rel="stylesheet" href="assets/css/registerstyle.css" type="text/css">
+<!--Link al archivo css-->
+  <link rel="stylesheet" href="css/registerstyle.css" type="text/css">
 
 </head>
 
 <body>
   <div class="cuadradoReg">
 
-    <!--Párrafos-->
+  <!--Párrafos-->
     <div class="titReg">
       <h1>Registro</h1>
     </div>
 
-    <!--Formulario de Registro-->
+  <!--Formulario de Registro-->
     <div class="formReg">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="formReg" id="formReg" onsubmit="return validaFormRegistro()">
 
@@ -144,7 +144,7 @@ function test_input($data)
 
 
   <!--Validación del formulario en el cliente con javascript-->
-  <script src="validacionReg.js"></script>
+  <script src="js/validacionReg.js"></script>
 
 
 

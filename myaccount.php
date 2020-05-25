@@ -13,8 +13,8 @@
     <link href="https://www.fontspring.com/fonts/horizon-type/acherus-grotesque" rel="stylesheet">
 
 <!--Link al archivo css-->   
-    <link rel="stylesheet" href="assets/css/myaccountstyle.css" type="text/css">
-
+    <link rel="stylesheet" href="css/myaccountstyle.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/vistareceta.css">
 <!--Link de la Fuente para las letras del menú de navegación-->
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -54,9 +54,9 @@
             <i class="fas fa-user" style="color:#563514"></i>
             <div class="datosText">
                 
-                <h3>Nombre de Usuario: <?php echo $usuario['username']?></h3>
-                <h3>Email: <?php echo $usuario['email']?></h3>
-                <h3>Nombre Completo: <?php echo $usuario['name']?></h3>
+                <h3>Nombre de Usuario: username</h3>
+                <h3>Email: email@gmail.com</h3>
+                <h3>Nombre Completo: Name Surname</h3>
                 
                 
            

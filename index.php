@@ -40,17 +40,17 @@ if (isset($_SESSION['login']))
 
 
 
-    <!--Nombre de la pestaña-->
+<!--Nombre de la pestaña-->
     <title>Iniciar Sesión</title>
 
-    <!--Link de la Fuente para las letras pequeñas-->
+<!--Link de la Fuente para las letras pequeñas-->
     <link href="https://fonts.googleapis.com/css2?family=Muli&display=swap" rel="stylesheet">
 
-    <!--Link de la Fuente para el Título-->
+<!--Link de la Fuente para el Título-->
     <link href="https://www.fontspring.com/fonts/horizon-type/acherus-grotesque" rel="stylesheet">
 
-    <!--Link al archivo css-->
-    <link rel="stylesheet" href="assets/css/loginstyle.css" type="text/css">
+<!--Link al archivo css-->
+    <link rel="stylesheet" href="css/loginstyle.css" type="text/css">
 
 
 
@@ -102,14 +102,8 @@ if (isset($_SESSION['login']))
     </div>
 
 
-
-
-
-
-
-
     <!--Código javascript-->
-    <script type="text/javascript" src="validacionLogin.js"></script>
+    <script type="text/javascript" src="js/validacionLogin.js"></script>
 
     <!--Código javascript iconos usuario y contraseña-->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
