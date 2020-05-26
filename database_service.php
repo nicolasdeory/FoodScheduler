@@ -85,8 +85,8 @@ function view_recipe($recetaId)
 	}
 }
 
-//view recipes 
-function view_recipes($ingrediente, $comida, $dificultad)
+//view recipes  with all parameters
+function search_recipes($ingrediente, $comida, $dificultad)
 {
 	$conexion = Database::instance();
 	if (!$conexion)
@@ -100,6 +100,164 @@ function view_recipes($ingrediente, $comida, $dificultad)
 		$stmt->bindParam(':dificultad', $dificultad);
 		$stmt->execute();
 		$recipe = $stmt->fetchAll();
+		return $recipe;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+// Search ALL RECIPES
+function search_all_recipes()
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+	try {
+		$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas" ;
+		$stmt = $conexion->prepare($consulta);
+		$stmt->execute();
+		$recipe = $stmt->fetchAll();
+		return $recipe;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+//comida y dificultad:
+function search_recipes_cd($comida, $dificultad)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+	try {
+		$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE UPPER(nombre) LIKE UPPER(:comida||'%') AND dificultad = :dificultad " ;
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':comida', $comida);
+		$stmt->bindParam(':dificultad', $dificultad);
+		$stmt->execute();
+		$recipe = $stmt->fetchAll();
+		return $recipe;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+//ingrediente y dificultad:
+	function search_recipes_id($ingrediente, $dificultad)
+	{
+		$conexion = Database::instance();
+		if (!$conexion)
+			echo "Ha ocurrido un error conectando con la base de datos";
+		try {
+			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente AND dificultad = :dificultad " ;
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':ingrediente', $ingrediente);
+			$stmt->bindParam(':dificultad', $dificultad);
+			$stmt->execute();
+			$recipe = $stmt->fetchAll();
+			return $recipe;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+
+//comida y ingrediente:
+	function search_recipes_ci($comida, $ingrediente)
+	{
+		$conexion = Database::instance();
+		if (!$conexion)
+			echo "Ha ocurrido un error conectando con la base de datos";
+		try {
+			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE UPPER(nombre) LIKE UPPER(:comida||'%') AND id_ingrediente = :ingrediente " ;
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':comida', $comida);
+			$stmt->bindParam(':ingrediente', $ingrediente);
+			$stmt->execute();
+			$recipe = $stmt->fetchAll();
+			return $recipe;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+
+//comida
+	function search_recipes_c($comida)
+	{
+		$conexion = Database::instance();
+		if (!$conexion)
+			echo "Ha ocurrido un error conectando con la base de datos";
+		try {
+			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE UPPER(nombre) LIKE UPPER(:comida||'%') " ;
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':comida', $comida);
+			$stmt->execute();
+			$recipe = $stmt->fetchAll();
+			return $recipe;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+
+//ingrediente
+function search_recipes_i($ingrediente)
+	{
+		$conexion = Database::instance();
+		if (!$conexion)
+			echo "Ha ocurrido un error conectando con la base de datos";
+		try {
+			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente " ;
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':ingrediente', $ingrediente);
+			$stmt->execute();
+			$recipe = $stmt->fetchAll();
+			return $recipe;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+
+
+//dificultad
+function search_recipes_d($dificultad)
+	{
+		$conexion = Database::instance();
+		if (!$conexion)
+			echo "Ha ocurrido un error conectando con la base de datos";
+		try {
+			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE dificultad = :dificultad " ;
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':dificultad', $dificultad);
+			$stmt->execute();
+			$recipe = $stmt->fetchAll();
+			return $recipe;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+
+
+
+
+//function get ingredient id from a name
+function get_ingredientid($ingrediente)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT ID_INGREDIENTE FROM INGREDIENTES WHERE UPPER(nombre) = UPPER(:ingrediente) " ;
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':ingrediente', $ingrediente);
+		$stmt->execute();
+		$recipe = $stmt->fetchColumn();
 		return $recipe;
 	} catch (PDOException $e) {
 		echo $e->getMessage();

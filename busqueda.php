@@ -22,7 +22,7 @@ if (!isset($_SESSION['login']))
 $ingredienteEj = '2';
 $comidaEj = 'Macarrones';
 $dificultadEj = 'Sencillo';
-$receta = view_recipes($ingredienteEj, $comidaEj, $dificultadEj);
+$receta = search_recipes($ingredienteEj, $comidaEj, $dificultadEj);
 
 ?>
 
@@ -107,24 +107,24 @@ $receta = view_recipes($ingredienteEj, $comidaEj, $dificultadEj);
                             <div class="dif">
                                 <form>
                                     <div class="rating">
-                                        <input id="star1" name="star" type="radio" value="5" class="radio-btn hide" />
-                                        <label for="star1">
+                                        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                                        <label for="star5">
                                             <div class="star"></div>
                                         </label>
-                                        <input id="star2" name="star" type="radio" value="4" class="radio-btn hide" />
-                                        <label for="star2">
+                                        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                                        <label for="star4">
                                             <div class="star"></div>
                                         </label>
                                         <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
                                         <label for="star3">
                                             <div class="star"></div>
                                         </label>
-                                        <input id="star4" name="star" type="radio" value="2" class="radio-btn hide" />
-                                        <label for="star4">
+                                        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                                        <label for="star2">
                                             <div class="star"></div>
                                         </label>
-                                        <input id="star5" name="star" type="radio" value="1" class="radio-btn hide" />
-                                        <label for="star5">
+                                        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                                        <label for="star1">
                                             <div class="star"></div>
                                         </label>
                                         <div class="text" id="rating-label-text">Dificultad</div>
@@ -143,75 +143,6 @@ $receta = view_recipes($ingredienteEj, $comidaEj, $dificultadEj);
                         </button>
                     </div>
                 </div>
-
-                <!-- <div class="result">
-                    <div class="photo">
-                        <img class="spaguetti" src="images/photo1.jpg">
-                    </div>
-                    <div class="description">
-                        <div class="recipetitle">
-                            <?php 
-                                echo $receta[0]['DIFICULTAD'];
-                            ?>
-                        </div>
-                        <div class="info">
-                            <div class="like">
-                                <div class="likeicon"> <span class="material-icons iconocolumna"> favorite </span> </div>
-                                <div class="numberlikes"> 276</div>
-                            </div>
-                            <div class="time">
-                                <div class="timeicon"><i class="far fa-clock"></i></div>
-                                <div class="amounttime"> 20 min</div>
-                            </div>
-                            <div class="difficulty">
-                            <div class="texto-dif">
-                            <div class="dif">
-                                    <div class="rating">
-                                        
-                                            <div class="star"></div>                                  
-                                            <div class="star"></div>
-                                            <div class="star"></div>
-                                            <div class="star"></div>
-                                            <div class="star"></div>
-                                       
-                                        <div class="text" id="rating-label-text">Facil</div>
-                                        <div class="clear"></div>
-                                    </div>
-                            </div>
-                        </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="result">
-                    <div class="photo">
-                    </div>
-                    <div class="description">
-                        <div class="recipetitle">
-                        </div>
-                        <div class="info">
-                            <div class="like"></div>
-                            <div class="time"></div>
-                            <div class="difficulty"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="result">
-
-                </div>
-
-                <div class="result">
-
-                </div>
-
-                <div class="result">
-
-                </div> -->
-
-
             </div>
 
         </div>

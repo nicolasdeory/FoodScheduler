@@ -9,11 +9,11 @@ const RECIPE_HTML = `<div class="result">
     <div class="info">
         <div class="like">
             <div class="likeicon"> <span class="material-icons iconocolumna"> favorite </span> </div>
-            <div class="numberlikes"> {1}</div>
+            <div class="numberlikes"> {1} </div>
         </div>
         <div class="time">
             <div class="timeicon"><i class="far fa-clock"></i></div>
-            <div class="amounttime"> {2}</div>
+            <div class="amounttime"> {2} min</div>
         </div>
         <div class="difficulty">
         <div class="texto-dif">
@@ -26,7 +26,7 @@ const RECIPE_HTML = `<div class="result">
                         <div class="star"></div>
                         <div class="star"></div>
                    
-                    <div class="text" id="rating-label-text">Facil</div>
+                    <div class="text" id="rating-label-text"> {3} </div>
                     <div class="clear"></div>
                 </div>
         </div>
@@ -50,17 +50,47 @@ if (!String.prototype.format) {
 }
 
 $(document).ready(() => {
+    var dif = "";
+    $("#star1").click(() => {
+        dif = "Sencillo";
+    });
+    $("#star2").click(() => {
+        dif = "Fácil";
+    });
+    $("#star3").click(() => {
+        dif = "Medio";
+    });
+    $("#star4").click(() => {
+        dif = "Difícil";
+    });
+    $("#star5").click(() => {
+        dif = "Muy difícil";
+    });
+
+
     $("#buscar").click(() => {
+        
         var nombre = $("#input-nombre").val();
         var ingred = $("#input-ingrediente").val();
-        var dif = "Sencillo";
-        $.get("searchrecipe.php?ingrediente=" + ingred + "&nombre=" + nombre + "&dificultad=" + dif, (data) => {
+        var url= "searchrecipe.php?"
+        if(nombre.length>0) url+=`nombre=${nombre}`;
+                                    //if nombre.length>0 return & else ''
+        if(ingred.length>0) url+=`${nombre.length>0 ? '&' : ''}ingrediente=${ingred}`;
+        if(dif.length>0) url+=`${(nombre.length>0 || ingred.length>0) ? '&' : ''}dificultad=${dif}`;
+        $.get(url, (data) => {
+            $("#contenedor").children().slice(1).remove();
             data.forEach(x => {
-                $("#contenedor").append(RECIPE_HTML.format(x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION));
+                $("#contenedor").append(RECIPE_HTML.format(x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
             });
         }
         );
     });
 
-
+    $.get('searchrecipe.php', (data) => {
+        $("#contenedor").children().slice(1).remove();
+        data.forEach(x => {
+            $("#contenedor").append(RECIPE_HTML.format(x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
+        });
+    }
+    );
 });
