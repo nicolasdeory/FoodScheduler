@@ -21,61 +21,65 @@ if (!isset($_GET['id']))
 
 $recetaId = $_GET['id'];
 $receta =  view_recipe($recetaId);
-?>
+$ingredientes =  view_ingredients($recetaId);
+$pasos = view_pasos($recetaId);
 
-<div class="barra-superior">
-    <span class="material-icons"> keyboard_backspace </span>
-    <div class="titulo-receta"> <?php echo $receta['NOMBRE'] ?> </div>
-</div>
-<div class="barra-like">
-    <span class="material-icons corazon"> favorite </span>
-    <p class="texto-like"> <?php echo $receta['POPULARIDAD']?> </p>
-    <div class="titulo-receta"> Espaguetis a la boloñesa </div>
-</div>
-<div class="barra-like">
-    <span class="material-icons corazon"> favorite </span>
-    <p class="texto-like"> 273 </p>
-</div>
-<div class="columnas">
+?> 
+    <div class="barra-superior">
+        <span class="material-icons"> keyboard_backspace </span>
+        <div class="titulo-receta"> <?php echo $receta['NOMBRE'] ?> </div>
+    </div>
+    <div class="barra-like">
+        <span class="material-icons corazon"> favorite </span>
+        <p class="texto-like"> <?php echo $receta['POPULARIDAD']?> </p>
+        </div>
+    <div class="columnas">
 
-    <div class="columna-izquierda">
-        <div class="contenido-columna-izquierda">
-            <div class="foto">
-                <figure>
-                    <img src="prueba/espaguetis.jpg" class="foto">
-                </figure>
-            </div>
-            <div class="tiempo-dificultad">
-                <div class="tiempo-dificultad-elem">
-                    <span class="material-icons"> query_builder </span>
-                    <p class="tiempo-receta"> <?php echo $receta['TIEMPOELABORACION'] ?> </p>
+        <div class="columna-izquierda">
+            <div class="contenido-columna-izquierda">
+                <div class="foto">
+                    <figure>
+                        <img src="prueba/espaguetis.jpg" class="foto">
+                    </figure>
                 </div>
-                <div class="tiempo-dificultad-elem">
-                    <p class="tiempo-receta"> Fácil </p>
-                    <span class="material-icons"> grade </span>
-                    <span class="material-icons"> grade </span>
-                    <span class="material-icons"> star_border </span>
-                    <span class="material-icons"> star_border </span>
-                    <span class="material-icons"> star_border </span>
+                <div class="tiempo-dificultad">
+                    <div class="tiempo-dificultad-elem">
+                        <span class="material-icons"> query_builder </span>
+                        <p class="tiempo-receta"> <?php echo $receta['TIEMPOELABORACION'] ?> minutos </p>
+                    </div>
+                    <div class="tiempo-dificultad-elem">
+                        <p class="tiempo-receta"> <?php echo $receta['DIFICULTAD']?> &nbsp;</p>
+                        <span class="material-icons"> grade </span>
+                        <span class="material-icons"> grade </span>
+                        <span class="material-icons"> star_border </span>
+                        <span class="material-icons"> star_border </span>
+                        <span class="material-icons"> star_border </span>
+                    </div>
                 </div>
-            </div>
-            <div class="ingredientes">
-                <p class="titulo-seccion"> Ingredientes </p>
-                <p class="elemento-seccion"> 500gr. de espaguetis </p>
-                <p class="elemento-seccion"> 175 gr. de carne picada de ternera </p>
-                <p class="elemento-seccion"> 175 gr. de carne picada de cerdo </p>
-                <p class="elemento-seccion"> 1 cebolla y 1 diente de ajo </p>
-                <p class="elemento-seccion"> 2 zanahorias </p>
-                <p class="elemento-seccion"> 700 gr. de tomates </p>
-                <p class="elemento-seccion"> Aceite de oliva </p>
-                <p class="elemento-seccion"> Orégano </p>
+                <div class="ingredientes">
+                    <p class="titulo-seccion"> Ingredientes </p>
+                    <p class="elemento-seccion"> 
+                        <?php 
+                        foreach ($ingredientes as $ingrediente) { ?>
+                            <p> <?php echo $ingrediente['NOMBRE']; ?>,&nbsp;
+                                <?php echo $ingrediente['CANTIDAD']; ?>
+                                <?php echo $ingrediente['UNIDADDEMEDIDA']; ?> 
+                            </p>
+                        <?php } ?>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="columna-derecha">
-        <p class="titulo-seccion"> Procedimiento </p>
-        <p> texto del cuerpo de la receta </p>
-    </div>
+        <div class="columna-derecha">
+            <p class="titulo-seccion"> Procedimiento </p>
+            <p>
+                <?php 
+                    foreach ($pasos as $paso) { ?>
+                        <p> <?php echo $paso['DESCRIPCION']; ?>.&nbsp;
+                        </p>
+                <?php } ?> 
+            </p>
+        </div>
 
-</div>
+    </div>
