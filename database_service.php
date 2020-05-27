@@ -93,7 +93,7 @@ function search_recipes($ingrediente, $comida, $dificultad)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente AND UPPER(nombre) LIKE UPPER(:comida||'%') AND dificultad = :dificultad " ;
+		$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente AND UPPER(nombre) LIKE UPPER(:comida||'%') AND dificultad = :dificultad " ;
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':ingrediente', $ingrediente);
 		$stmt->bindParam(':comida', $comida);
@@ -113,7 +113,7 @@ function search_all_recipes()
 	if (!$conexion)
 		echo "Ha ocurrido un error conectando con la base de datos";
 	try {
-		$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas" ;
+		$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas" ;
 		$stmt = $conexion->prepare($consulta);
 		$stmt->execute();
 		$recipe = $stmt->fetchAll();
@@ -131,7 +131,7 @@ function search_recipes_cd($comida, $dificultad)
 	if (!$conexion)
 		echo "Ha ocurrido un error conectando con la base de datos";
 	try {
-		$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE UPPER(nombre) LIKE UPPER(:comida||'%') AND dificultad = :dificultad " ;
+		$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE UPPER(nombre) LIKE UPPER(:comida||'%') AND dificultad = :dificultad " ;
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':comida', $comida);
 		$stmt->bindParam(':dificultad', $dificultad);
@@ -151,7 +151,7 @@ function search_recipes_cd($comida, $dificultad)
 		if (!$conexion)
 			echo "Ha ocurrido un error conectando con la base de datos";
 		try {
-			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente AND dificultad = :dificultad " ;
+			$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente AND dificultad = :dificultad " ;
 			$stmt = $conexion->prepare($consulta);
 			$stmt->bindParam(':ingrediente', $ingrediente);
 			$stmt->bindParam(':dificultad', $dificultad);
@@ -171,7 +171,7 @@ function search_recipes_cd($comida, $dificultad)
 		if (!$conexion)
 			echo "Ha ocurrido un error conectando con la base de datos";
 		try {
-			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE UPPER(nombre) LIKE UPPER(:comida||'%') AND id_ingrediente = :ingrediente " ;
+			$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE UPPER(nombre) LIKE UPPER(:comida||'%') AND id_ingrediente = :ingrediente " ;
 			$stmt = $conexion->prepare($consulta);
 			$stmt->bindParam(':comida', $comida);
 			$stmt->bindParam(':ingrediente', $ingrediente);
@@ -191,7 +191,7 @@ function search_recipes_cd($comida, $dificultad)
 		if (!$conexion)
 			echo "Ha ocurrido un error conectando con la base de datos";
 		try {
-			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE UPPER(nombre) LIKE UPPER(:comida||'%') " ;
+			$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE UPPER(nombre) LIKE UPPER(:comida||'%') " ;
 			$stmt = $conexion->prepare($consulta);
 			$stmt->bindParam(':comida', $comida);
 			$stmt->execute();
@@ -210,7 +210,7 @@ function search_recipes_i($ingrediente)
 		if (!$conexion)
 			echo "Ha ocurrido un error conectando con la base de datos";
 		try {
-			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente " ;
+			$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas NATURAL JOIN cantidadesingredientes WHERE id_ingrediente = :ingrediente " ;
 			$stmt = $conexion->prepare($consulta);
 			$stmt->bindParam(':ingrediente', $ingrediente);
 			$stmt->execute();
@@ -230,7 +230,7 @@ function search_recipes_d($dificultad)
 		if (!$conexion)
 			echo "Ha ocurrido un error conectando con la base de datos";
 		try {
-			$consulta = "SELECT nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE dificultad = :dificultad " ;
+			$consulta = "SELECT id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE dificultad = :dificultad " ;
 			$stmt = $conexion->prepare($consulta);
 			$stmt->bindParam(':dificultad', $dificultad);
 			$stmt->execute();

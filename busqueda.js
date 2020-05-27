@@ -1,19 +1,22 @@
 const RECIPE_HTML = `<div class="result">
 <div class="photo">
-    <img class="spaguetti" src="images/photo1.jpg">
+    <img class="spaguetti" src="images/photo{0}.jpg">
+    <div class= "id">
+        
+    </div>  
 </div>
 <div class="description">
     <div class="recipetitle">
-        {0}
+        {1}
     </div>
     <div class="info">
         <div class="like">
             <div class="likeicon"> <span class="material-icons iconocolumna"> favorite </span> </div>
-            <div class="numberlikes"> {1} </div>
+            <div class="numberlikes"> {2} </div>
         </div>
         <div class="time">
             <div class="timeicon"><i class="far fa-clock"></i></div>
-            <div class="amounttime"> {2} min</div>
+            <div class="amounttime"> {3} min</div>
         </div>
         <div class="difficulty">
         <div class="texto-dif">
@@ -26,7 +29,7 @@ const RECIPE_HTML = `<div class="result">
                         <div class="star"></div>
                         <div class="star"></div>
                    
-                    <div class="text" id="rating-label-text"> {3} </div>
+                    <div class="text" id="rating-label-text"> {4} </div>
                     <div class="clear"></div>
                 </div>
         </div>
@@ -80,7 +83,7 @@ $(document).ready(() => {
         $.get(url, (data) => {
             $("#contenedor").children().slice(1).remove();
             data.forEach(x => {
-                $("#contenedor").append(RECIPE_HTML.format(x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
+                $("#contenedor").append(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
             });
         }
         );
@@ -89,7 +92,7 @@ $(document).ready(() => {
     $.get('searchrecipe.php', (data) => {
         $("#contenedor").children().slice(1).remove();
         data.forEach(x => {
-            $("#contenedor").append(RECIPE_HTML.format(x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
+            $("#contenedor").append(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
         });
     }
     );
