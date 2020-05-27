@@ -21,6 +21,16 @@ $(function() {
         });
     });
 
+    $("#restaurant-button").click(() => 
+    {
+        $("#restaurant-button").addClass("hidden");
+        $.get("busqueda.php", function(data) {
+            $("#page-content").html(data);
+            $("#page-loader").hide();
+            $("#page-content").removeClass("hidden");
+        });
+    });
+
     $.get("schedule.html", function(data) {
         $("#page-content").html(data);
         $("#page-loader").hide();

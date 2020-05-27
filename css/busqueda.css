@@ -245,7 +245,10 @@ html{
           background-size: cover;
       }
 
-
+      .centro{
+        overflow: auto;
+        overflow-x: hidden;
+    }
 
 
      
