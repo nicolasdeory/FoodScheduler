@@ -14,7 +14,7 @@ $(function() {
     $("#favorite-button").click(() => 
     {
         $("#page-content").addClass("hidden");
-        $.get("vistareceta.php?id=1", function(data) {
+        $.get("favoritas.php", function(data) {
             $("#page-content").html(data);
             $("#page-loader").hide();
             $("#page-content").removeClass("hidden");
