@@ -180,3 +180,43 @@ function get_quantity_in_fridge($username, $id_ingrediente)
 		return false;
 	}
 }
+
+function get_fridge($username) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT * FROM itemsEnNevera NATURAL JOIN ingredientes
+		WHERE nombreDeUsuario = :username";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->execute();
+		$fridge = $stmt->fetchAll();
+		return $fridge;
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
+
+function get_shopping_list($username) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT * FROM itemsEnListaCompra NATURAL JOIN ingredientes
+		WHERE nombreDeUsuario = :username";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->execute();
+		$qtyInFridge = $stmt->fetchAll();
+		return $qtyInFridge;
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}

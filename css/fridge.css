@@ -37,11 +37,18 @@
     border-radius: 2px;
     background-color: #ff5f5f;
     color: #ffffff;
-    margin: 0;
+    margin-right: 5px;
+    transition: background-color 0.1s;
+    cursor: pointer;
+}
+
+.btn-container .btn:hover {
+    background-color: #ca5454;
 }
 
 .btn-container .btn span {
     margin-top: 1px;
+    margin-left: 0.5px;
 }
 
 .subtitle-container {
@@ -50,6 +57,13 @@
     align-items: center;
 }
 
-.subtitle-container .subtitle {
+.add-subtitle-btn {
     margin-left: 20px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    padding: 5px;
+}
+
+.add-subtitle-btn:hover {
+    background-color: #5635141f;
 }
