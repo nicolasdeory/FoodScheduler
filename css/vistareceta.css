@@ -99,6 +99,11 @@ body {
     padding: 3vmin;
 }
 
+.elemento img
+{
+    height: 25px;
+}
+
 .elemento:hover {
     padding: 3vmin;
     background-color: #d7bea8;
