@@ -41,7 +41,6 @@ if (!loaded)
     
             $.get(`./schedule.php?from=${mondayDateFormatted}&to=${sundayDateFormatted}`, (schedules) => {
                 $("td ul").empty();
-                console.log(schedules);
                 schedules.forEach(schd => {
                     const date = new Date(schd.FECHA);
                     const timeDiff = date.getTime() - mondayDate.getTime();
@@ -62,7 +61,6 @@ if (!loaded)
         function retrieveMissingIngredients(mondayDate) {
     
             $.get(`./missing_ingredients.php`, (ingredients) => {
-                console.log(ingredients);
                 if (ingredients.length > 0)
                 {
                     $("#missing-ingredients-box").show();
