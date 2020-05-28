@@ -25,9 +25,19 @@ function navigate(url)
 
 $(function() {
 
+    $("#schedule-button").click(() => 
+    {
+        navigate("schedule.html");
+    });
+
     $("#favorite-button").click(() => 
     {
         navigate("saved.php");
+    });
+
+    $("#fridge-button").click(() => 
+    {
+        navigate("fridge.html");
     });
 
     $.get("schedule.html", function(data) {
