@@ -237,22 +237,60 @@ function add_to_shopping_list($username, $id_ingred, $qty, $qtyType)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT * from itemsEnListaCompra WHERE nombredeusuario = :username, id_ingrediente = :id_ingred";
+		$consulta = "SELECT * from itemsEnListaCompra WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
 		$stmt->execute();
 		$fridge = $stmt->fetchColumn();
-		if (!$fridge) {
-			$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		if ($fridge) {
+			// if it exists, delete it
+			delete_shopping($username, $id_ingred);
+		}
+		$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
 			$stmt = $conexion->prepare($consulta);
 			$stmt->bindParam(':username', $username);
 			$stmt->bindParam(':id_ingred', $id_ingred);
 			$stmt->bindParam(':qty', $qty);
 			$stmt->bindParam(':qty_type', $qtyType);
 			$stmt->execute();
-		}
 		// doesn't get executed if already exists
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
+
+function delete_shopping($username, $id_ingred)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "DELETE FROM itemsEnListaCompra WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->execute();
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
+
+function delete_fridge($username, $id_ingred)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "DELETE FROM itemsEnNevera WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->execute();
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
