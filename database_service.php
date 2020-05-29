@@ -189,7 +189,7 @@ function get_fridge($username)
 
 	try {
 		$consulta = "SELECT * FROM itemsEnNevera NATURAL JOIN ingredientes
-		WHERE nombreDeUsuario = :username";
+		WHERE nombreDeUsuario = :username ORDER BY nombre";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->execute();
@@ -238,15 +238,17 @@ function add_to_fridge($username, $ingred_name, $qty, $qtyType, $additive)
 			$id_ingred = add_ingredient($ingred_name);
 		}
 
-		$consulta = "SELECT cantidad from itemsEnNevera WHERE nombredeusuario = :username, id_ingrediente = :id_ingred";
+		$consulta = "SELECT cantidad from itemsEnNevera WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
 		$stmt->execute();
 		$dbQty = $stmt->fetchColumn();
 		if ($dbQty) {
-			// if it exists, delete it
-			delete_fridge($username, $id_ingred);
+			// if it exists, update it
+			//delete_fridge($username, $id_ingred);
+			$consulta = "UPDATE itemsEnNevera SET cantidad = :qty, unidaddemedida = :qty_type 
+							WHERE id_ingrediente = :id_ingred AND nombredeusuario = :username";
 			if ($additive)
 			{
 				$finalQty = $qty + $dbQty;
@@ -259,8 +261,9 @@ function add_to_fridge($username, $ingred_name, $qty, $qtyType, $additive)
 		else
 		{
 			$finalQty = $qty;
+			$consulta = "INSERT INTO itemsEnNevera VALUES (S_ITEMSENNEVERA.nextval, :username, :id_ingred, :qty, :qty_type)";
 		}
-		$consulta = "INSERT INTO itemsEnNevera VALUES (S_ITEMSENNEVERA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		//$consulta = "INSERT INTO itemsEnNevera VALUES (S_ITEMSENNEVERA.nextval, :username, :id_ingred, :qty, :qty_type)";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
@@ -298,8 +301,10 @@ function add_to_shopping_list($username, $ingred_name, $qty, $qtyType, $additive
 		$stmt->execute();
 		$dbQty = $stmt->fetchColumn();
 		if ($dbQty) {
-			// if it exists, delete it
-			delete_shopping($username, $id_ingred);
+			// if it exists, update it
+			//delete_fridge($username, $id_ingred);
+			$consulta = "UPDATE itemsEnListaCompra SET cantidad = :qty, unidaddemedida = :qty_type 
+							WHERE id_ingrediente = :id_ingred AND nombredeusuario = :username";
 			if ($additive)
 			{
 				$finalQty = $qty + $dbQty;
@@ -312,8 +317,9 @@ function add_to_shopping_list($username, $ingred_name, $qty, $qtyType, $additive
 		else
 		{
 			$finalQty = $qty;
+			$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
 		}
-		$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		//$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
@@ -373,7 +379,7 @@ function get_shopping_list($username)
 
 	try {
 		$consulta = "SELECT * FROM itemsEnListaCompra NATURAL JOIN ingredientes
-		WHERE nombreDeUsuario = :username";
+		WHERE nombreDeUsuario = :username ORDER BY nombre";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->execute();
