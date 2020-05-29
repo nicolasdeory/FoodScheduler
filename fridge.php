@@ -15,11 +15,6 @@ if (!isset($_SESSION['login']))
 $nevera = get_fridge($_SESSION['login']);
 $listaCompra = get_shopping_list($_SESSION['login']);
 
-if ($nevera == false || $listaCompra == false)
-{
-    echo "error retrieving fridge and shopping list";
-}
-
 $all = new stdClass();
 $all->nevera = $nevera;
 $all->listaCompra = $listaCompra;

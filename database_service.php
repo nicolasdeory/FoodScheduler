@@ -201,13 +201,43 @@ function get_fridge($username)
 	}
 }
 
-function add_to_fridge($username, $id_ingred, $qty, $qtyType) 
+function add_ingredient($name)
 {
 	$conexion = Database::instance();
 	if (!$conexion)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
+		$consulta = "INSERT INTO ingredientes VALUES (S_INGREDIENTES.nextval, :nombre) RETURNING id_ingrediente INTO :inserted_id";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':nombre', $name);
+		$ingredId = -1;
+		$stmt->bindParam('inserted_id', $ingredId, PDO::PARAM_INT, 8);
+		$stmt->execute();
+		return $ingredId;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function add_to_fridge($username, $ingred_name, $qty, $qtyType) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT id_ingrediente from ingredientes WHERE nombre = :ingred_name";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':ingred_name', $ingred_name);
+		$stmt->execute();
+		$id_ingred = $stmt->fetchColumn();
+		if (!$id_ingred) {
+			// if it doesn't exist, add it
+			$id_ingred = add_ingredient($ingred_name);
+		}
+
 		$consulta = "SELECT * from itemsEnNevera WHERE nombredeusuario = :username, id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
@@ -218,20 +248,37 @@ function add_to_fridge($username, $id_ingred, $qty, $qtyType)
 			// if it exists, delete it
 			delete_fridge($username, $id_ingred);
 		}
-		// doesn't get executed if already exists
+		$consulta = "INSERT INTO itemsEnNevera VALUES (S_ITEMSENNEVERA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->bindParam(':qty', $qty);
+		$stmt->bindParam(':qty_type', $qtyType);
+		$stmt->execute();
+		return true;
 	} catch (PDOException $e) {
-		//echo $e->getMessage();
+		echo $e->getMessage();
 		return false;
 	}
 }
 
-function add_to_shopping_list($username, $id_ingred, $qty, $qtyType) 
+function add_to_shopping_list($username, $ingred_name, $qty, $qtyType) 
 {
 	$conexion = Database::instance();
 	if (!$conexion)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
+		$consulta = "SELECT id_ingrediente from ingredientes WHERE UPPER(nombre) = UPPER(:ingred_name)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':ingred_name', $ingred_name);
+		$stmt->execute();
+		$id_ingred = $stmt->fetchColumn();
+		if (!$id_ingred) {
+			// if it doesn't exist, add it
+			$id_ingred = add_ingredient($ingred_name);
+		}
+
 		$consulta = "SELECT * from itemsEnListaCompra WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
@@ -249,9 +296,9 @@ function add_to_shopping_list($username, $id_ingred, $qty, $qtyType)
 		$stmt->bindParam(':qty', $qty);
 		$stmt->bindParam(':qty_type', $qtyType);
 		$stmt->execute();
-		// doesn't get executed if already exists
+		return true;
 	} catch (PDOException $e) {
-		//echo $e->getMessage();
+		echo $e->getMessage();
 		return false;
 	}
 }

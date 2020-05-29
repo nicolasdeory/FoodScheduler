@@ -14,14 +14,14 @@ if (!loaded)
     `;
 
     const INPUT_INGREDIENT_HTML = `
-        <div class="fridge-item" id="input-item">
-            <input type="text" name="ingredient" placeholder="Ingrediente"></input>
+        <div class="fridge-item" id="input-item" ingred-input="{0}">
+            <input type="text" name="ingredient" id="input-name" placeholder="Ingrediente"></input>
             <div class="btn-container spaced">
                 <input type="text" class="small" id="input-qty" placeholder="Cantidad"></input>
                 <select id="input-qty-type">
                     <option value="Gramo">gr.</option>
-                    <option value="Gramo">ml.</option>
-                    <option value="Gramo">ud.</option>
+                    <option value="Mililitro">ml.</option>
+                    <option value="Unidad">ud.</option>
                 </select>
             </div>
             <div class="btn-container">
@@ -49,7 +49,7 @@ if (!loaded)
         $("#lista-compra .fridge-item .removebtn").click(function()
         {
             const ingredID = $(this).parent().parent().attr("ingred-id");
-            $.get("delete_shopping.php?id=" + ingredID, () =>
+            $.get("delete_ingredient_qty.php?type=shoppinglist&id=" + ingredID, () =>
             {
                 getFridgeAndShoppingList();
             });
@@ -60,7 +60,7 @@ if (!loaded)
         $("#nevera .fridge-item .removebtn").click(function()
         {
             const ingredID = $(this).parent().parent().attr("ingred-id");
-            $.get("delete_fridge.php?id=" + ingredID, () =>
+            $.get("delete_ingredient_qty.php?type=fridge&id=" + ingredID, () =>
             {
                 getFridgeAndShoppingList();
             });
@@ -119,10 +119,24 @@ if (!loaded)
     function createInputForm(where)
     {
         $("#input-item").remove();
-        $(where).prepend(INPUT_INGREDIENT_HTML);
+        $(where).prepend(INPUT_INGREDIENT_HTML.format(where == "#nevera" ? "fridge" : "shoppinglist"));
         $("#input-item .removebtn").click(() =>
         {
             $("#input-item").remove();
+        });
+
+        $("#input-item .addbtn").click(() =>
+        {
+            var type = $("#input-item").attr("ingred-input");
+            var name = $("#input-name").val();
+            var qty = $("#input-qty").val();
+            var qtyType = $("#input-qty-type").val();
+
+
+            $.get(`add_ingredient_qty.php?type=${type}&name=${name}&qty=${qty}&qty-type=${qtyType}`, () =>
+            {
+                getFridgeAndShoppingList();
+            });
         });
     }
 
