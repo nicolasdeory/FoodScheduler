@@ -18,6 +18,7 @@
   <link rel="stylesheet" type="text/css" href="css/vistareceta.css">
   <link rel="stylesheet" type="text/css" href="css/schedule.css">
   <link rel="stylesheet" type="text/css" href="css/fridge.css">
+  <link rel="stylesheet" type="text/css" href="css/busqueda.css">
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli:400,700,800,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,7 +28,6 @@
         integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
         crossorigin="anonymous"></script>
   <script src="js/main.js"></script>
-
 </head>
 
 <body>
