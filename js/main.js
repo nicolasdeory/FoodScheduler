@@ -14,13 +14,18 @@ function navigate(url)
         $("#page-content").addClass("hidden");
         $("#page-loader").show();
         $.get(url, function(data) {
-            $("#page-content").html(data);
-            $("#page-loader").hide();
-            $("#page-content").removeClass("hidden");
+            
+            setTimeout(() =>
+            {
+                $("#page-content").html(data);
+                $("#page-loader").hide();
+                $("#page-content").removeClass("hidden");
+            },100);
         }).fail((err) => {
             alert("Ha ocurrido un error navegando al elemento que has especificado.");
             navigate("schedule.html");
         });
+        
     }
 
 $(function() {
