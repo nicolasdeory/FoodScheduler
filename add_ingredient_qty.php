@@ -32,7 +32,7 @@ $qty_type = $_GET['qty-type'];
 if ($_GET['type'] == "fridge") 
 {
 
-    if (add_to_fridge($_SESSION['login'], $name_ingred, $ingred_qty, $qty_type)) {
+    if (add_to_fridge($_SESSION['login'], $name_ingred, $ingred_qty, $qty_type, true)) {
         echo "ok";
     }
     else
@@ -43,7 +43,7 @@ if ($_GET['type'] == "fridge")
 }
 else 
 {
-    if (add_to_shopping_list($_SESSION['login'], $name_ingred, $ingred_qty, $qty_type)) {
+    if (add_to_shopping_list($_SESSION['login'], $name_ingred, $ingred_qty, $qty_type, true)) {
         echo "ok";
     }
     else

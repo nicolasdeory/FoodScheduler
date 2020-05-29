@@ -221,7 +221,7 @@ function add_ingredient($name)
 	}
 }
 
-function add_to_fridge($username, $ingred_name, $qty, $qtyType) 
+function add_to_fridge($username, $ingred_name, $qty, $qtyType, $additive) 
 {
 	$conexion = Database::instance();
 	if (!$conexion)
@@ -238,21 +238,33 @@ function add_to_fridge($username, $ingred_name, $qty, $qtyType)
 			$id_ingred = add_ingredient($ingred_name);
 		}
 
-		$consulta = "SELECT * from itemsEnNevera WHERE nombredeusuario = :username, id_ingrediente = :id_ingred";
+		$consulta = "SELECT cantidad from itemsEnNevera WHERE nombredeusuario = :username, id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
 		$stmt->execute();
-		$fridge = $stmt->fetchColumn();
-		if ($fridge) {
+		$dbQty = $stmt->fetchColumn();
+		if ($dbQty) {
 			// if it exists, delete it
 			delete_fridge($username, $id_ingred);
+			if ($additive)
+			{
+				$finalQty = $qty + $dbQty;
+			}
+			else 
+			{
+				$finalQty = $qty;
+			}
+		}
+		else
+		{
+			$finalQty = $qty;
 		}
 		$consulta = "INSERT INTO itemsEnNevera VALUES (S_ITEMSENNEVERA.nextval, :username, :id_ingred, :qty, :qty_type)";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
-		$stmt->bindParam(':qty', $qty);
+		$stmt->bindParam(':qty', $finalQty);
 		$stmt->bindParam(':qty_type', $qtyType);
 		$stmt->execute();
 		return true;
@@ -262,7 +274,7 @@ function add_to_fridge($username, $ingred_name, $qty, $qtyType)
 	}
 }
 
-function add_to_shopping_list($username, $ingred_name, $qty, $qtyType) 
+function add_to_shopping_list($username, $ingred_name, $qty, $qtyType, $additive) 
 {
 	$conexion = Database::instance();
 	if (!$conexion)
@@ -279,21 +291,33 @@ function add_to_shopping_list($username, $ingred_name, $qty, $qtyType)
 			$id_ingred = add_ingredient($ingred_name);
 		}
 
-		$consulta = "SELECT * from itemsEnListaCompra WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
+		$consulta = "SELECT cantidad from itemsEnListaCompra WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
 		$stmt->execute();
-		$fridge = $stmt->fetchColumn();
-		if ($fridge) {
+		$dbQty = $stmt->fetchColumn();
+		if ($dbQty) {
 			// if it exists, delete it
 			delete_shopping($username, $id_ingred);
+			if ($additive)
+			{
+				$finalQty = $qty + $dbQty;
+			}
+			else 
+			{
+				$finalQty = $qty;
+			}
+		}
+		else
+		{
+			$finalQty = $qty;
 		}
 		$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
-		$stmt->bindParam(':qty', $qty);
+		$stmt->bindParam(':qty', $finalQty);
 		$stmt->bindParam(':qty_type', $qtyType);
 		$stmt->execute();
 		return true;
