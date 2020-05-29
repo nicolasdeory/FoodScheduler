@@ -35,6 +35,11 @@ $(function() {
         navigate("schedule.html");
     });
 
+    $("#search-button").click(() => 
+    {
+        navigate("busqueda.php");
+    });
+
     $("#favorite-button").click(() => 
     {
         navigate("favoritas.php");
