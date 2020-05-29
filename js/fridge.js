@@ -13,6 +13,24 @@ if (!loaded)
         </div>
     `;
 
+    const INPUT_INGREDIENT_HTML = `
+        <div class="fridge-item" id="input-item">
+            <input type="text" name="ingredient" placeholder="Ingrediente"></input>
+            <div class="btn-container spaced">
+                <input type="text" class="small" id="input-qty" placeholder="Cantidad"></input>
+                <select id="input-qty-type">
+                    <option value="Gramo">gr.</option>
+                    <option value="Gramo">ml.</option>
+                    <option value="Gramo">ud.</option>
+                </select>
+            </div>
+            <div class="btn-container">
+                <div class="btn addbtn"><span class="material-icons btn-icon btn-add">check</span></div>
+                <div class="btn removebtn"><span class="material-icons btn-icon btn-remove">clear</span></div>
+            </div>
+        </div>
+    `;
+
     const SHOPPING_ITEM_HTML = `
         <div class="fridge-item" ingred-id={2}>
             <h3>{0}</h3>
@@ -98,10 +116,30 @@ if (!loaded)
         });
     }
 
+    function createInputForm(where)
+    {
+        $("#input-item").remove();
+        $(where).prepend(INPUT_INGREDIENT_HTML);
+        $("#input-item .removebtn").click(() =>
+        {
+            $("#input-item").remove();
+        });
+    }
+
     $(document).ready(() =>
     {
 
         getFridgeAndShoppingList();
+
+        $("#add-shopping-btn").click(() =>
+        {
+            createInputForm("#lista-compra");
+        });
+
+        $("#add-fridge-btn").click(() =>
+        {
+            createInputForm("#nevera");
+        });
 
     });
 }

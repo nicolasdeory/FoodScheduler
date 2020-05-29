@@ -51,6 +51,28 @@
     margin-left: 0.5px;
 }
 
+.btn-container input.small 
+{
+    width: 70%;
+}
+
+.fridge-item input 
+{
+    background-color: #efd0c2;
+    border: solid 1px #0002;
+    padding: 5px;
+}
+
+.btn-container select
+{
+    width: 30%;
+}
+
+.btn-container.spaced 
+{
+    margin-bottom: 10px;
+}
+
 .subtitle-container {
     display: flex;
     flex-direction: row;
