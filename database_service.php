@@ -230,6 +230,35 @@ function add_to_fridge($username, $id_ingred, $qty, $qtyType)
 	}
 }
 
+function add_to_shopping_list($username, $id_ingred, $qty, $qtyType) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT * from itemsEnListaCompra WHERE nombredeusuario = :username, id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->execute();
+		$fridge = $stmt->fetchColumn();
+		if (!$fridge) {
+			$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':username', $username);
+			$stmt->bindParam(':id_ingred', $id_ingred);
+			$stmt->bindParam(':qty', $qty);
+			$stmt->bindParam(':qty_type', $qtyType);
+			$stmt->execute();
+		}
+		// doesn't get executed if already exists
+	} catch (PDOException $e) {
+		//echo $e->getMessage();
+		return false;
+	}
+}
+
 function get_shopping_list($username) 
 {
 	$conexion = Database::instance();
