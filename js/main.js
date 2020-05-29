@@ -37,7 +37,7 @@ $(function() {
 
     $("#favorite-button").click(() => 
     {
-        navigate("saved.php");
+        navigate("favoritas.php");
     });
 
     $("#fridge-button").click(() => 
