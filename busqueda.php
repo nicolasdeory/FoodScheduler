@@ -96,4 +96,4 @@ if (!isset($_SESSION['login']))
 
         </div>
 
-        <script src="busqueda.js"></script>
+        <script src="js/busqueda.js"></script>
