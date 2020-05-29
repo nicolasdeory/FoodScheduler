@@ -53,8 +53,59 @@ if (!loaded)
             {
                 getFridgeAndShoppingList();
             });
-           
         });
+
+        $("#lista-compra .fridge-item .addbtn").click(function()
+        {
+            const parentNode = $(this).parent().parent();
+            const name = $(parentNode).children().eq(0).text();
+            const qtyStr = $(parentNode).children().eq(1).text();
+            $(parentNode).remove();
+            var qtySpl = qtyStr.split(" ");
+            var qty = qtySpl[0];
+            var qtyTypeStr = qtySpl[1];
+            var qtyType = "";
+            if (qtyTypeStr == "ml.")
+                qtyType = "Mililitro";
+            else if (qtyTypeStr == "gr.")
+                qtyType = "Gramo";
+            else if (qtyTypeStr == "ud.")
+                qtyType = "Unidad";
+
+            const ingredId = $(parentNode).attr("ingred-id");
+
+            var oneDone = false;
+            $.get(`add_ingredient_qty.php?type=fridge&name=${name}&qty=${qty}&qty-type=${qtyType}`, () =>
+            {
+                if (oneDone)
+                {
+                    getFridgeAndShoppingList();
+                }
+                else 
+                {
+                    oneDone = true;
+                }
+            }).fail(() => {
+                alert("Ha ocurrido un error añadiendo el ingrediente.");
+            });
+
+            $.get(`delete_ingredient_qty.php?type=shoppinglist&id=${ingredId}`, () =>
+            {
+                if (oneDone)
+                {
+                    getFridgeAndShoppingList();
+                }
+                else 
+                {
+                    oneDone = true;
+                }
+            }).fail(() => {
+                alert("Ha ocurrido un error añadiendo el ingrediente.");
+            });
+        });
+
+       
+
         $("#lista-compra .fridge-item .editbtn").click(function()
         {
             const parentNode = $(this).parent().parent();
@@ -178,7 +229,7 @@ if (!loaded)
                 getFridgeAndShoppingList();
             }).fail(() => {
                 alert("Ha ocurrido un error añadiendo el ingrediente.");
-            });;
+            });
         });
         $("#input-name").focus();
     }
