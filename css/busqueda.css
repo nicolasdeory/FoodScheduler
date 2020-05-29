@@ -6,13 +6,9 @@ html{
         display: flex;
         flex-direction: column;
     }
-    .title, .subtitle{
-        text-indent: 50px;
-    }
     
-    .subtitle{
+    .busqueda .subtitle.margin {
         margin-top: 30px;
-    
     }
     
     
@@ -266,7 +262,7 @@ html{
            align-items: center;
         }
 
-        .title, .subtitle{
+        .busqueda .title, .busqueda .subtitle{
             text-indent: 10%;
         }
 
@@ -274,7 +270,7 @@ html{
             padding-left: 10%;
         }
         
-        .subtitle{
+        .busqueda .subtitle{
             margin-top: 28px;
             
         }

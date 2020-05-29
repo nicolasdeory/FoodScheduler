@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //Comprueba que se cumpla la expresión regular o si el nombre no está vacío
   $nombre = test_input($_POST["nombre"]);
-  if (empty($nombre) || !preg_match("/^[a-zA-Z ]*$/", $nombre)) {
+  if (empty($nombre) || !preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]*$/", $nombre)) {
     $err['name'] = "Introduzca un nombre válido";
   }
 
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $err['pass'] = "La contraseña debe tener más de 8 caracteres, disponer de una letra minúscula, mayúscula, un número y un carácter especial.";
   }
 
+  header("Content-Type: application/json");
   if (isset($err))
   {
     http_response_code(400);
