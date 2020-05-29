@@ -19,7 +19,7 @@ if (!isset($_GET['id']))
     die;
 }
 
-if (!isset($_GET['type']) || $_GET['type'] != "fridge" || $_GET['type'] != "shoppinglist")
+if (!isset($_GET['type']) || ($_GET['type'] != "fridge" && $_GET['type'] != "shoppinglist"))
 {
     echo "type must be fridge or shoppinglist";
     die;
