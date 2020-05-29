@@ -126,10 +126,17 @@ if (!isset($_SESSION['login'])) {
                             <p>¿Es pública la receta?</p>
                         </div>
                         <div class="publica">
-                            <input class="input-pub" id="public" type="radio" value="1" placeholder="Pública" checked>
-                            <label class="input-pub" for="public">Pública</label><br>
-                            <input class="input-pub" id="private" type="radio" value="2" placeholder="Privada">
+                        <form action="">
+                            <input class="input-pub" name="type" id="public" type="radio" value="1" placeholder="Pública" checked>
+                            <label class="input-pub" for="public">Pública</label>
+                            <input class="input-pub" name="type" id="private" type="radio" value="2" placeholder="Privada">                       
                             <label class="input-pub" for="public">Privada</label><br>
+
+                        </form>    
+                        
+                            
+                            
+
                         </div>
                     </div>
                     <div class="contenedoringredientes">
