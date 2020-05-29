@@ -128,3 +128,61 @@ function create_schedule($username, $date, $mealtype)
 		return false;
 	}
 }
+
+function name_myaccount($nameId)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT nombre FROM USUARIOS WHERE nombre = :nombre";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':nombre', $nameId);
+		$stmt->execute();
+		$name = $stmt->fetchColumn();
+		return $name;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function email_myaccount($emailId)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT correo FROM USUARIOS WHERE correoElectronico = :correo";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':correoElectronico', $emailId);
+		$stmt->execute();
+		$email = $stmt->fetchColumn();
+		return $email;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+
+function view_user($userId)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT NOMBRE, CORREOELECTRONICO FROM USUARIOS WHERE nombredeusuario = :idusuario";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':idusuario', $userId);
+		$stmt->execute();
+		$usuario = $stmt->fetchAll();
+		return $usuario[0];
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}

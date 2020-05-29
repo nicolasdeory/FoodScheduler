@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+include_once("database_service.php");
+
+$userId = $_SESSION['login'];
+$usuario = view_user($userId);
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,9 +66,9 @@
             <i class="fas fa-user" style="color:#563514"></i>
             <div class="datosText">
                 
-                <h3>Nombre de Usuario: username</h3>
-                <h3>Email: email@gmail.com</h3>
-                <h3>Nombre Completo: Name Surname</h3>
+                <h3>Nombre de Usuario: <?php echo $userId?></h3>
+                <h3>Email: <?php echo $usuario['CORREOELECTRONICO'];?></h3>
+                <h3>Nombre Completo: <?php echo $usuario['NOMBRE'];?></h3>
                 
                 
            
