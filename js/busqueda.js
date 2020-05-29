@@ -2,7 +2,7 @@ var loaded = false;
 if (!loaded)
 {
     loaded = true;
-    const RECIPE_HTML = `<div class="result">
+    const RECIPE_HTML = `<div class="result" recipe-id="{0}">
         <div class="photo">
             <img class="spaguetti" src="images/photo{0}.jpg">
             <div class= "id">
@@ -59,6 +59,24 @@ if (!loaded)
         };
     }
 
+    function search(url)
+    {
+        $.get(url, (data) =>
+        {
+            $("#contenedor").children().slice(1).remove();
+            data.forEach(x =>
+            {
+                $("#contenedor").append(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
+            });
+
+            $(".recipetitle").click(function()
+            {
+                const recipeId = $(this).parent().parent().attr("recipe-id");
+                navigate("vistareceta.php?id=" + recipeId);
+            });
+        });
+    }
+
     $(document).ready(() =>
     {
         var dif = "";
@@ -94,25 +112,11 @@ if (!loaded)
             //if nombre.length>0 return & else ''
             if (ingred.length > 0) url += `${nombre.length > 0 ? '&' : ''}ingrediente=${ingred}`;
             if (dif.length > 0) url += `${(nombre.length > 0 || ingred.length > 0) ? '&' : ''}dificultad=${dif}`;
-            $.get(url, (data) =>
-            {
-                $("#contenedor").children().slice(1).remove();
-                data.forEach(x =>
-                {
-                    $("#contenedor").append(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
-                });
-            }
-            );
+            
+            search(url);
         });
 
-        $.get('searchrecipe.php', (data) =>
-        {
-            $("#contenedor").children().slice(1).remove();
-            data.forEach(x =>
-            {
-                $("#contenedor").append(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
-            });
-        }
-        );
+        search('searchrecipe.php');
+
     });
 }

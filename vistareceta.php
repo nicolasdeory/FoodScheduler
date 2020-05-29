@@ -12,10 +12,10 @@ if (!isset($_SESSION['login']))
     die;
 }
 
-if (!isset($_GET['id']))
+if (!isset($_GET['id']) || !is_numeric($_GET['id']))
 {
     http_response_code(400);
-    echo "must specify recipe Id";
+    echo "must specify valid recipe id";
     die;
 }
 
@@ -26,7 +26,7 @@ $pasos = view_pasos($recetaId);
 
 ?> 
     <div class="barra-superior">
-        <span class="material-icons"> keyboard_backspace </span>
+        <span class="material-icons" id="back-button"> keyboard_backspace </span>
         <div class="titulo-receta"> <?php echo $receta['NOMBRE'] ?> </div>
     </div>
     <div class="barra-like">
@@ -83,3 +83,4 @@ $pasos = view_pasos($recetaId);
         </div>
 
     </div>
+    <script src="js/recipe.js"></script>

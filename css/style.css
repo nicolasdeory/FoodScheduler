@@ -9,6 +9,10 @@ body {
     font-family: "Muli";
 }
 
+#back-button {
+    cursor: pointer;
+}
+
 .section-header .header {
     display: flex;
     flex-direction: row;
