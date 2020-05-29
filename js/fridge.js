@@ -55,14 +55,54 @@ if (!loaded)
             });
            
         });
+        $("#lista-compra .fridge-item .editbtn").click(function()
+        {
+            const parentNode = $(this).parent().parent();
+            const name = $(parentNode).children().eq(0).text();
+            const qtyStr = $(parentNode).children().eq(1).text();
+            $(parentNode).remove();
+            var qtySpl = qtyStr.split(" ");
+            var qty = qtySpl[0];
+            var qtyTypeStr = qtySpl[1];
+            var qtyType = "";
+            if (qtyTypeStr == "ml.")
+                qtyType = "Mililitro";
+            else if (qtyTypeStr == "gr.")
+                qtyType = "Gramo";
+            else if (qtyTypeStr == "ud.")
+                qtyType = "Unidad";
+
+            createEditForm("#lista-compra", name, qty, qtyType);
+        });
 
         // FRIDGE
+        $("#nevera .fridge-item .editbtn").click(function()
+        {
+            const parentNode = $(this).parent().parent();
+            const name = $(parentNode).children().eq(0).text();
+            const qtyStr = $(parentNode).children().eq(1).text();
+            $(parentNode).remove();
+            var qtySpl = qtyStr.split(" ");
+            var qty = qtySpl[0];
+            var qtyTypeStr = qtySpl[1];
+            var qtyType = "";
+            if (qtyTypeStr == "ml.")
+                qtyType = "Mililitro";
+            else if (qtyTypeStr == "gr.")
+                qtyType = "Gramo";
+            else if (qtyTypeStr == "ud.")
+                qtyType = "Unidad";
+
+            createEditForm("#nevera",name, qty, qtyType);
+        });
         $("#nevera .fridge-item .removebtn").click(function()
         {
             const ingredID = $(this).parent().parent().attr("ingred-id");
             $.get("delete_ingredient_qty.php?type=fridge&id=" + ingredID, () =>
             {
                 getFridgeAndShoppingList();
+            }).fail(() => {
+                alert("Ha ocurrido un error eliminando el ingrediente.");
             });
         });
     }
@@ -136,8 +176,47 @@ if (!loaded)
             $.get(`add_ingredient_qty.php?type=${type}&name=${name}&qty=${qty}&qty-type=${qtyType}`, () =>
             {
                 getFridgeAndShoppingList();
-            });
+            }).fail(() => {
+                alert("Ha ocurrido un error añadiendo el ingrediente.");
+            });;
         });
+        $("#input-name").focus();
+    }
+
+    function createEditForm(where, name, qty, qtyType)
+    {
+        $("#input-item").remove();
+        $(where).prepend(INPUT_INGREDIENT_HTML.format(where == "#nevera" ? "fridge" : "shoppinglist"));
+
+        $("#input-name").val(name);
+        $("#input-name").prop("disabled", true);
+        $("#input-qty").val(qty);
+        $("#input-qty-type").val(qtyType);
+        $("#input-qty-type").prop("disabled", true);
+
+        $("#input-item .removebtn").click(() =>
+        {
+            $("#input-item").remove();
+            getFridgeAndShoppingList();
+        });
+
+        $("#input-item .addbtn").click(() =>
+        {
+            var type = $("#input-item").attr("ingred-input");
+            var name = $("#input-name").val();
+            var qty = $("#input-qty").val();
+            var qtyType = $("#input-qty-type").val();
+
+
+            $.get(`add_ingredient_qty.php?edit&type=${type}&name=${name}&qty=${qty}&qty-type=${qtyType}`, () =>
+            {
+                getFridgeAndShoppingList();
+            }).fail(() => {
+                alert("Ha ocurrido un error editando el ingrediente.");
+            });;
+        });
+
+        $("#input-qty").focus();
     }
 
     $(document).ready(() =>
