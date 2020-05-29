@@ -268,6 +268,7 @@ function delete_shopping($username, $id_ingred)
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
 		$stmt->execute();
+		return true;
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
@@ -286,6 +287,7 @@ function delete_fridge($username, $id_ingred)
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingred);
 		$stmt->execute();
+		return true;
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
