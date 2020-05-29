@@ -63,7 +63,8 @@ html{
         display: flex;
         flex-direction: row;
         height: 200px;
-        width: 1000px;
+        min-width: 300px;
+        max-width: 1000px;
         overflow-y: hidden;
         overflow-x: scroll;
         border-style: solid;
@@ -348,37 +349,20 @@ html{
 
      
 
-/* 
+
       @media (max-width: 768px){ 
 
-        .contenidodelaweb{
-            display: flex;
+        .centro{
+            overflow-y: scroll;
+        }
+
+        .arriba{
+            height: 1500px;
+            width: 100%;
             flex-direction: column;
         }
-        .contenedor{
-           display: flex;
-           flex-direction: column;
-           flex-wrap: nowrap;
-           justify-content: center;
-           align-items: center;
-        }
 
-        .title, .subtitle{
-            text-indent: 10%;
-        }
-
-        .line{
-            padding-left: 10%;
-        }
         
-        .subtitle{
-            margin-top: 28px;
-            
-        }
-
-        .search, .result{
-            margin: 2.5%;
-        }
 
 
-      } */
+      }
