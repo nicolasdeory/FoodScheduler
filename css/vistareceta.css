@@ -51,7 +51,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 40vmin;
+    width: 50vmin;
 }
 
 .burger {
@@ -186,7 +186,7 @@ body {
     width: 100%;
 }
 
-figure {
+.figura {
     width: 60vmin;
     /*container-width*/
     height: 35vmin;

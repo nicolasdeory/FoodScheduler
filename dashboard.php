@@ -14,14 +14,18 @@
 <html>
 
 <head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/vistareceta.css">
   <link rel="stylesheet" type="text/css" href="css/schedule.css">
   <link rel="stylesheet" type="text/css" href="css/fridge.css">
   <link rel="stylesheet" type="text/css" href="css/busqueda.css">
+  <link rel="stylesheet" type="text/css" href="css/ayuda.css">
+  <link rel="stylesheet" type="text/css" href="css/myacc.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli:400,700,800,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://kit.fontawesome.com/2797f66cfb.js" crossorigin="anonymous"></script>
   <script
         src="https://code.jquery.com/jquery-3.5.0.min.js"
@@ -45,7 +49,8 @@
     </div>
     <div class="partederechamenu">
       <p> Hola, Nicolas </p>
-      <p> Mi cuenta </p>
+      <p id="acc-button"> Mi cuenta </p>
+      <p id="help-button"> Ayuda </p>
       <p><a href="logout.php">Salir</a></p>
     </div>
   </div>
