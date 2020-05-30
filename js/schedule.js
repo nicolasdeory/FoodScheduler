@@ -1,9 +1,9 @@
-var loaded = false;
-if (!loaded)
+var scheduleLoaded = false;
+if (!scheduleLoaded)
 {
-    loaded = true;
+    scheduleLoaded = true;
     const RECIPE_TEMPLATE = `
-    <li><a recipe-id="{0}">{1}</a></li>
+    <li><a recipe-id="{0}">{1}</a> <span class="material-icons">close</span></li>
     `;
     
     const MISSING_INGREDIENT_TEMPLATE = `
@@ -48,11 +48,10 @@ if (!loaded)
                     if (differenceInDays < 0 || differenceInDays > 7) return;
                     const mealId = schd.COMIDA == "Almuerzo" ? 0 : 1;
                     $(`#schd-${differenceInDays}${mealId}`).append(RECIPE_TEMPLATE.format(schd.ID_RECETA, schd.NOMBRE));
-                });
-    
-                $("li a").click(function(e)
-                {
-                    window.navigate(`receta.php?id=${$(this).attr("recipe-id")}`);
+                    $(`#schd-${differenceInDays}${mealId} li`).click(function()
+                    {
+                        navigate("vistareceta.php?id=" + schd.ID_RECETA);
+                    });
                 });
     
             });

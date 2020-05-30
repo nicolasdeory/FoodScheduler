@@ -1,7 +1,7 @@
-var loaded = false;
-if (!loaded)
+var recipeLoaded = false;
+if (!recipeLoaded)
 {
-    loaded = true;
+    recipeLoaded = true;
 
     if (!String.prototype.format)
     {

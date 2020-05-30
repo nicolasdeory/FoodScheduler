@@ -354,13 +354,23 @@ function create_schedule($username, $date, $mealtype)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "INSERT INTO planificaciones VALUES (S_PLANIFICACIONES.nextval, :fecha, :comida, :username)";
+		$consulta = "INSERT INTO planificaciones VALUES (S_PLANIFICACIONES.nextval, :fecha, :comida, :username) 
+			RETURNING id_planificacion INTO :inserted_id";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':fecha', $date);
 		$stmt->bindParam(':comida', $mealtype);
 		$stmt->bindParam(':username', $username);
+		$schdId = -1;
+		$stmt->bindParam('inserted_id', $schdId, PDO::PARAM_INT, 8);
 		$stmt->execute();
-		return true;
+		if ($schdId == -1)
+		{
+			return false;
+		}
+		else
+		{
+			return $schdId;
+		}
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
@@ -606,6 +616,49 @@ function delete_fridge($username, $id_ingred)
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
+	}
+}
+
+function add_schedule($username, $recipe_id, $date, $meal) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT id_planificacion from planificaciones 
+			WHERE nombredeusuario = :username AND fecha = :fecha AND comida = :meal";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':fecha', $date);
+		$stmt->bindParam(':meal', $meal);
+		$stmt->execute();
+		$id_schd = $stmt->fetchColumn();
+		if (!$id_schd) {
+			// if the schedule doesn't exist, add it
+			$id_schd = create_schedule($username, $date, $meal);
+		}
+
+		$consulta = "SELECT id_receta from recetasenplanificaciones 
+			WHERE id_planificacion = :id_schd AND id_receta = :id_receta";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':id_schd', $id_schd);
+		$stmt->bindParam(':id_receta', $recipe_id);
+		$stmt->execute();
+		$id_rec = $stmt->fetchColumn();
+		if ($id_rec) {
+			return "already exists";
+		}
+		$consulta = "INSERT INTO recetasenplanificaciones VALUES (S_RECETASENPLANIFICACIONES.nextval, :id_receta, :id_schd)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':id_schd', $id_schd);
+		$stmt->bindParam(':id_receta', $recipe_id);
+		$stmt->execute();
+		return "ok";
+		
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return "error";
 	}
 }
 
