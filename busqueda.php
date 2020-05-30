@@ -88,4 +88,4 @@ if (!isset($_SESSION['login'])) {
     </div>
 </div>
 
-<script src="js/search.3.js"></script>
+<script src="js/search.4.js"></script>

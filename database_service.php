@@ -619,6 +619,30 @@ function delete_fridge($username, $id_ingred)
 	}
 }
 
+function delete_schedule($username, $date, $meal)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "DELETE (SELECT *
+						FROM recetasenplanificaciones rp
+						INNER JOIN planificaciones pl
+							ON rp.id_planificacion = pl.id_planificacion
+						WHERE pl.fecha = :fecha AND pl.nombredeusuario = :username AND pl.comida = :meal)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':fecha', $date);
+		$stmt->bindParam(':meal', $meal);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
 function add_schedule($username, $recipe_id, $date, $meal) 
 {
 	$conexion = Database::instance();

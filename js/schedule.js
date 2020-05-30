@@ -3,7 +3,7 @@ if (!scheduleLoaded)
 {
     scheduleLoaded = true;
     const RECIPE_TEMPLATE = `
-    <li><a recipe-id="{0}">{1}</a> <span class="material-icons">close</span></li>
+    <li><a recipe-id="{0}">{1}</a></li>
     `;
     
     const MISSING_INGREDIENT_TEMPLATE = `
@@ -52,7 +52,26 @@ if (!scheduleLoaded)
                     {
                         navigate("vistareceta.php?id=" + schd.ID_RECETA);
                     });
+
+                    var node = $(`#schd-${differenceInDays}${mealId}`).parent();
+                    $(node).children().eq(0).off("click");
+                    var schdDateFormatted = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                    $(node).children().eq(0).click(function() // closebtn
+                    {
+                        
+                        $.get(`delete_schedule.php?date=${schdDateFormatted}&meal=${schd.COMIDA}`, function()
+                        {
+                            retrieveSchedule(currentMonday);
+                        }).fail(() =>
+                        {
+                            alert("Ha ocurrido un error borrando la planificación que has especificado.")
+                        });
+                    });
                 });
+
+                setTimeout(() => {
+                    $(".close-btn").removeClass("visible");
+                },300);
     
             });
         }
@@ -79,10 +98,11 @@ if (!scheduleLoaded)
     
         function setDayHeaderPositions() {
             if ($(`#schd-table td`).length == 0) return;
+            let firstLeft = $(`#schd-table tr > td`).eq(0).position().left;
             var widthTableCell = $(`#schd-table td`).width() + 40; // padding
-            for (let i = 0; i < 8; i++) {
-                let widthSpan = $(`#day-container span`).eq(i).width();
-                let leftTableCell = $(`#schd-table td`).eq(i).position().left;
+            for (let i = 0; i < 7; i++) {
+                let widthSpan = $(`#day-container > span`).eq(i).width();
+                let leftTableCell = $(`#schd-table tr > td`).eq(i).position().left - firstLeft;
                 let computedLeft = leftTableCell + ((widthTableCell - widthSpan) / 2);
                 $(`#day-container :nth-child(${i + 1})`).css("left", computedLeft + "px");
             }
@@ -117,7 +137,7 @@ if (!scheduleLoaded)
         });
     
     
-        /* CLICK EVENTS */
+        /* CLICK AND HOVER EVENTS */
     
         $("#next-schedule-btn").click(() => {
             $("#schd-table").html(placeholderHtml);
@@ -130,8 +150,7 @@ if (!scheduleLoaded)
             currentMonday = currentMonday.addDays(-7);
             retrieveSchedule(currentMonday);
         });
-    
-    
+
         /* INICIALIZATIONS */
     
         const placeholderHtml = $("#schd-table").html();

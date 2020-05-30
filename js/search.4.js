@@ -50,9 +50,9 @@ if (!busquedaLoaded)
                     <div class="btn-date">Fecha</div>
                     <input type="date" name="schd-date" required></input>
                     <div class="btn-date">
-                        <input type="radio" name="schd-meal" id="schd-mean-comida" value="Almuerzo" required>
+                        <input type="radio" name="schd-meal" value="Almuerzo" required>
                         <label for="schd-mean-comida">Almuerzo</label>
-                        <input type="radio" name="schd-meal" id="schd-mean-cena" value="Cena" required>
+                        <input type="radio" name="schd-meal" value="Cena" required>
                         <label for="schd-mean-cena">Cena</label>
                     </div>
                     <div class="boton add-to-schd-submit">
@@ -89,7 +89,7 @@ if (!busquedaLoaded)
 
             $(".recipetitle").click(function()
             {
-                const recipeId = $(this).parents().eq(4).attr("recipe-id");
+                const recipeId = $(this).parents().eq(3).attr("recipe-id");
                 navigate("vistareceta.php?id=" + recipeId);
             });
 

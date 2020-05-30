@@ -67,6 +67,7 @@
     height: 150px;
     word-wrap: break-word;
     max-width: 100px;
+    position: relative;
 }
 
 .schedule-table tr> :nth-child(odd) {
@@ -77,12 +78,57 @@
     background-color: #e1323210;
 }
 
+.schedule-table .close-btn {
+    position: absolute;
+    right: 14px;
+    top: 17px;
+    background-color: #e132321a;
+    color: #e2363552;
+    transition: 0.2s;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.schedule-table .close-btn.visible {
+    opacity: 1;
+}
+
+.schedule-table tr > :nth-child(odd) .close-btn {
+    
+    background-color: #efd0c2;
+}
+
+.schedule-table tr > :nth-child(even) .close-btn {
+    background-color: #efd7c9;
+}
+
 .schedule-table h3 {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 400;
     font-size: 11pt;
     margin-top: 0;
+    width: 100%;
+    overflow-wrap: normal;
+}
+
+.schedule-table td:hover .close-btn {
+    opacity: 1;
+}
+
+.schedule-table tr > :nth-child(even) .close-btn:hover {
+    color: #e13232;
+    background-color: #dfbbac;
+}
+
+.schedule-table tr > :nth-child(odd) .close-btn:hover {
+    color: #e13232;
+    background-color: #dfbbac;
+}
+
+.schedule-table .close-btn:active {
+    color: white !important;
+    background-color: #832e2e !important;
 }
 
 .schedule-table ul {
