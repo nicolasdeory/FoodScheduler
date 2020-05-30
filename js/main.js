@@ -59,12 +59,18 @@ $(function() {
         navigate("fridge.html");
     });
 
+    $("#create-button").click(() => 
+    {
+        navigate("createrecipe.php");
+    });
+
     $.get("schedule.html", function(data) {
         $("#page-content").html(data);
         $("#page-loader").hide();
         $("#page-content").removeClass("hidden");
     });
 
+    
     
 
 });

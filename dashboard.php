@@ -19,6 +19,7 @@
   <link rel="stylesheet" type="text/css" href="css/schedule.css">
   <link rel="stylesheet" type="text/css" href="css/fridge.css">
   <link rel="stylesheet" type="text/css" href="css/busqueda.css">
+  <link rel="stylesheet" type="text/css" href="css/createrecipe.css">
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli:400,700,800,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -61,6 +62,7 @@
       <div class="elemento" id="fridge-button"> <img src="icons/fridge.png" /></div>
       <div class="elemento" id="search-button"> <span class="material-icons iconocolumna"> restaurant </span> </div>
       <div class="elemento" id="favorite-button"> <span class="material-icons iconocolumna"> favorite </span> </div>
+      <div class="elemento" id="create-button"> <span class="material-icons"> note_add </span></div>
       <div class="espaciodeabajo"> </div>
     </div>
 
