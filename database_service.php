@@ -627,4 +627,45 @@ function get_shopping_list($username)
 		//echo $e->getMessage();
 		return false;
 	}
+
+	//TODO INSERT
+	function insert_ingredient($ingrediente)
+	{
+		$conexion = Database::instance();
+		if (!$conexion)
+			echo "Ha ocurrido un error conectando con la base de datos";
+
+		try {
+			// $consulta = "INSERT INTO ingredientes VALUES (S_INGREDIENTES.nextval, :nombre) RETURNING id_ingrediente INTO :inserted_id";
+			// $stmt = $conexion->prepare($consulta);
+			// $stmt->bindParam(':nombre', $name);
+			// $ingredId = -1;
+			// $stmt->bindParam('inserted_id', $ingredId, PDO::PARAM_INT, 8);
+			// $stmt->execute();
+			// return $ingredId;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+
+	function insert_recipe($ingrediente)
+	{
+		$conexion = Database::instance();
+		if (!$conexion)
+			echo "Ha ocurrido un error conectando con la base de datos";
+
+		try {
+			// $consulta = "INSERT INTO ingredientes VALUES (S_INGREDIENTES.nextval, :nombre) RETURNING id_ingrediente INTO :inserted_id";
+			// $stmt = $conexion->prepare($consulta);
+			// $stmt->bindParam(':nombre', $name);
+			// $ingredId = -1;
+			// $stmt->bindParam('inserted_id', $ingredId, PDO::PARAM_INT, 8);
+			// $stmt->execute();
+			// return $ingredId;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
 }

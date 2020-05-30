@@ -14,18 +14,19 @@ if (!isset($_SESSION['login'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['input-nombre'];
     $ingrediente = $_POST['input-ingrediente'];
+    $paso = $_POST['input-paso'];
+    $dificultad = $_POST['dificultad'];
 
     $receta['nombre'] = $nombre;
     $receta['ingrediente'] = $ingrediente;
+    $receta['paso'] = $paso;
 
-    if (user_login($usuario)) {
-        $_SESSION['login'] = $user;
-        echo "success";
-    } else {
-        echo "wrong pass";
-        http_response_code(401);
+    insert_recipe($receta['nombre'], $receta['ingrediente'], $receta['paso']);
+
+    foreach($receta['ingrediente'] as $ingrediente){
+        insert_ingredient($ingrediente);
+
     }
-    die;
 }
 
 
@@ -133,13 +134,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input type="text" placeholder="Nombre" id="input-ingrediente" class="input-ing"></input>
                                 </div>
                                 <div class="cant">
-                                    <input type="number" placeholder="Cantidad" id="input-ingrediente" class="input-ing"></input>
+                                    <input type="number" placeholder="Cantidad" id="input-cantidad" class="input-ing"></input>
 
                                 </div>
                                 <div class="unid">
 
 
-                                    <select name="unidadDeMedida" class="unidadmed">
+                                    <select name="unidadDeMedida" class="unidadmed" id="input-unidad">
                                         <option value="Unidad">Unidad</option>
                                         <option value="Gramo">Gramos</option>
                                         <option value="Mililitro">Mililitro</option>
@@ -149,97 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                             </div>
                         </div>
-
-                        <!-- 
-                <div class="ingredientenuevo">
-
-                    <div class="texto-antes">
-                        <p>Nuevo ingrediente</p>
-                    </div>
-                    <div class="ingredientenew">
-                        <div class="ing">
-                            <div class="icon2">
-                                <i class="fas fa-cheese"></i>
-                            </div>
-                            <input type="text" placeholder="Nombre" id="input-ingrediente" class="input-ing"></input>
-                        </div>
-                        <div class="cant">
-                            <input type="number" placeholder="Cantidad" id="input-ingrediente" class="input-ing"></input>
-
-                        </div>
-                        <div class="unid">
-
-
-                            <select name="unidadDeMedida" class="unidadmed">
-                                <option value="Unidad">Unidad</option>
-                                <option value="Gramo">Gramos</option>
-                                <option value="Mililitro">Mililitro</option>
-
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ingredientenuevo">
-
-                    <div class="texto-antes">
-                        <p>Nuevo ingrediente</p>
-                    </div>
-                    <div class="ingredientenew">
-                        <div class="ing">
-                            <div class="icon2">
-                                <i class="fas fa-cheese"></i>
-                            </div>
-                            <input type="text" placeholder="Nombre" id="input-ingrediente" class="input-ing"></input>
-                        </div>
-                        <div class="cant">
-                            <input type="number" placeholder="Cantidad" id="input-ingrediente" class="input-ing"></input>
-
-                        </div>
-                        <div class="unid">
-
-
-                            <select name="unidadDeMedida" class="unidadmed">
-                                <option value="Unidad">Unidad</option>
-                                <option value="Gramo">Gramos</option>
-                                <option value="Mililitro">Mililitro</option>
-
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ingredientenuevo">
-
-                    <div class="texto-antes">
-                        <p>Nuevo ingrediente</p>
-                    </div>
-                    <div class="ingredientenew">
-                        <div class="ing">
-                            <div class="icon2">
-                                <i class="fas fa-cheese"></i>
-                            </div>
-                            <input type="text" placeholder="Nombre" id="input-ingrediente" class="input-ing"></input>
-                        </div>
-                        <div class="cant">
-                            <input type="number" placeholder="Cantidad" id="input-ingrediente" class="input-ing"></input>
-
-                        </div>
-                        <div class="unid">
-
-
-                            <select name="unidadDeMedida" class="unidadmed">
-                                <option value="Unidad">Unidad</option>
-                                <option value="Gramo">Gramos</option>
-                                <option value="Mililitro">Mililitro</option>
-
-
-                            </select>
-                        </div>
-                    </div>
-                </div> -->
                     </div>
                     <div class="agregaringrediente">
                         <button class="newing" type="button" id="nuevoing"><span class="material-icons">add_circle_outline</span></button>
@@ -250,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="abajo">
                 <div class="botonnew">
-                    <button class="buttonnew" type="button" id="buscar">
+                    <button class="buttonnew" type="button" id="crear-receta">
                         Añadir Receta
                     </button>
                 </div>
@@ -259,9 +169,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="contenedorpasos" id="contenedorpasos">
                     <div class="paso">
                         <div class="texto-antes">
-                            <p>Paso número: _</p>
+                            <p>Paso número: 1</p>
                         </div>
-                        <input class="input-paso" type="text" placeholder="Describe cómo realizar este paso">
+                        <input class="input-paso" id="input-paso" type="text" placeholder="Describe cómo realizar este paso">
                     </div>
 
                 </div>

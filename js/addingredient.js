@@ -1,5 +1,7 @@
+$(document).ready(function () {
+    var i = 1;
 
-const INGREDIENT_HTML = `<div class="ingredientenuevo" id="columna`+i+`">
+    var INGREDIENT_HTML = `<div class="ingredientenuevo" id="columna`+i+`">
     
     <div class="texto-antes">
         <p>Nuevo ingrediente</p>
@@ -29,29 +31,39 @@ const INGREDIENT_HTML = `<div class="ingredientenuevo" id="columna`+i+`">
     </div>
 </div>`;
 
-const STEP_HTML = `<div class="paso">
-        <div class="texto-antes" id="row`+i`">
+
+
+    var STEP_HTML = `<div class="paso">
+        <div class="texto-antes" id="row`+ i + `">
             <p>Paso número: _</p>
         </div>
         <input class="input-paso" type="text" placeholder="Describe cómo realizar este paso">
     </div>`;
 
 
-
-$(document).ready(function () {
-    var i = 1;
     $('#nuevoing').click(function () {
         i++;
+        console.log("Tenemos "+i+" contenedores");
         $('#contenedornewingredientes').append(INGREDIENT_HTML);
     });
-    $(document).on('click', '.btn_remove', function () {
-        var button_id = $(this).attr("id");
-        $('#row' + button_id + '').remove();
+    $(document).on('click', '#quitaring', function () {  
+    
+        if($("#contenedornewingredientes").children().length > 1) {
+            $("#contenedornewingredientes > :last-child").remove();
+        }
     });
 
     $('#nuevopaso').click(function () {
         i++;
+        console.log("Tenemos "+i+" contenedores");
         $('#contenedorpasos').append(STEP_HTML);
+    });
+    
+    $(document).on('click', '#quitarpaso', function () {  
+    
+        if($("#contenedorpasos").children().length > 1) {
+            $("#contenedorpasos > :last-child").remove();
+        }
     });
 
 
