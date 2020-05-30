@@ -39,7 +39,7 @@ $pasos = view_pasos($recetaId);
             <div class="contenido-columna-izquierda">
                 <div class="foto">
                     <figure>
-                        <img src="prueba/espaguetis.jpg" class="foto">
+                    <img class="spaguetti" src="images/photo<?php echo $receta['ID_RECETA'] ?>.jpg">
                     </figure>
                 </div>
                 <div class="tiempo-dificultad">
