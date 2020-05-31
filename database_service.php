@@ -177,7 +177,7 @@ function view_pasos($recetaId)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT descripcion FROM pasos WHERE id_receta = :idrecipe";
+		$consulta = "SELECT numero_paso,descripcion FROM pasos WHERE id_receta = :idrecipe";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':idrecipe', $recetaId);
 		$stmt->execute();

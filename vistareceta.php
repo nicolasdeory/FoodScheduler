@@ -75,9 +75,27 @@ $pasos = view_pasos($recetaId);
             <p class="titulo-seccion"> Procedimiento </p>
             <p>
                 <?php 
-                    foreach ($pasos as $paso) { ?>
-                        <p> <?php echo $paso['DESCRIPCION']; ?>.&nbsp;
-                        </p>
+                function pasosCmp($a, $b) {
+                    $na = intval($a['NUMERO_PASO']);
+                    $nb = intval($b['NUMERO_PASO']);
+                    if ($na > $nb)
+                    {
+                        return 1;
+                    }
+                    else if ($na < $nb)
+                    {
+                        return -1;
+                    }
+                    else 
+                    {
+                        return 0;
+                    }
+                }
+                
+                usort($pasos, "pasosCmp");
+                foreach ($pasos as $paso) { ?>
+                    <p> <?php echo $paso['NUMERO_PASO'].".   ".$paso['DESCRIPCION']; ?>
+                    </p>
                 <?php } ?> 
             </p>
         </div>
