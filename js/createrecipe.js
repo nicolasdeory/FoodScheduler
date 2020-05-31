@@ -68,8 +68,26 @@ $(document).ready(() => {
             pasos.push(text);
         });
         
-        console.log(ingred);
-        console.log(pasos);
+        var ingredsSanitized = []
+        ingred.forEach((elm) =>
+        {
+            if (elm.name && elm.qty)
+            {
+                ingredsSanitized.push(elm);
+            }
+        });
+
+        var stepsSanitized = []
+        paos.forEach((str) =>
+        {
+            if (str)
+            {
+                stepsSanitized.push(str);
+            }
+        });
+        
+        console.log(ingredsSanitized);
+        console.log(stepsSanitized);
 
        /* $.ajax({
                 type: "POST",
