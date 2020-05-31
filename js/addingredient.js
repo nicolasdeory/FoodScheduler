@@ -1,7 +1,8 @@
-$(document).ready(function () {
-    
+$(document).ready(function ()
+{
 
-    var INGREDIENT_HTML = `<div class="ingredientenuevo" id="columna`+i+`">
+
+    var INGREDIENT_HTML = `<div class="ingredientenuevo" id="columna` + i + `">
     
     <div class="texto-antes">
         <p>Nuevo ingrediente</p>
@@ -11,10 +12,10 @@ $(document).ready(function () {
             <div class="icon2">
                 <i class="fas fa-cheese"></i>
             </div>
-            <input type="text" placeholder="Nombre" id="input-ingrediente" class="input-ing"></input>
+            <input type="text" placeholder="Nombre" name="input-name" class="input-ing"></input>
         </div>
         <div class="cant">
-            <input type="number" placeholder="Cantidad" id="input-ingrediente" class="input-ing"></input>
+            <input type="number" placeholder="Cantidad" name="input-qty" class="input-ing"></input>
 
         </div>
         <div class="unid">
@@ -31,49 +32,55 @@ $(document).ready(function () {
     </div>
 </div>`;
 
-var i=1;
+    var i = 1;
 
 
-    
 
 
-    $('#nuevoing').click(function () {
+
+    $('#nuevoing').click(function ()
+    {
         $('#contenedornewingredientes').append(INGREDIENT_HTML);
     });
-    $(document).on('click', '#quitaring', function () {  
-    
-        if($("#contenedornewingredientes").children().length > 1) {
+    $(document).on('click', '#quitaring', function ()
+    {
+
+        if ($("#contenedornewingredientes").children().length > 1)
+        {
             $("#contenedornewingredientes > :last-child").remove();
         }
     });
 
-    $('#nuevopaso').click(function () {
+    $('#nuevopaso').click(function ()
+    {
         i++;
-        console.log("Tenemos "+i+" contenedores");
+        console.log("Tenemos " + i + " contenedores");
         STEP_HTML = `<div class="paso">
-        <div class="texto-antes" id="row`+i+`">
-            <p>Paso número: `+ i+ `</p>
+        <div class="texto-antes" id="row`+ i + `">
+            <p>Paso número: `+ i + `</p>
         </div>
         <textarea class="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
     </div>`;
         $('#contenedorpasos').append(STEP_HTML);
-        
+
     });
 
-    $(document).on('click', '#quitarpaso', function () {  
-    
-        if($("#contenedorpasos").children().length > 1) {
+    $(document).on('click', '#quitarpaso', function ()
+    {
+
+        if ($("#contenedorpasos").children().length > 1)
+        {
             $("#contenedorpasos > :last-child").remove();
             i--;
         }
     });
-    
+
 
     var STEP_HTML = `<div class="paso">
-        <div class="texto-antes" id="row`+i+`">
-            <p>Paso número: `+ i+ `</p>
+        <div class="texto-antes" id="row`+ i + `">
+            <p>Paso número: `+ i + `</p>
         </div>
         <textarea class="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
     </div>`;
-    
+
 });  

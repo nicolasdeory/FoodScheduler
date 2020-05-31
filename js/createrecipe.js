@@ -49,18 +49,29 @@ $(document).ready(() => {
     $("#public").click(() =>
     {
         tipo = 1;
-    })
-
-    $("#crearreceta").click(() =>
-    {
-                console.log("Clicamos en el botón");
-    })
-
+    });
 
     $("#form-recipe").submit((e) => {
-        // e.preventDefault();
+         e.preventDefault();
         // $("#crearreceta").html(`<span class="material-icons iconocolumna loading-anim"> restaurant </span>`);
-        $.ajax({
+        var ingred = [];
+        var pasos = [];
+        $(".ingredientenew").each(function(index){
+            const ingred_name = $(this).children().find("input[name='input-name']").val();
+            const ingred_qty = $(this).children().find("input[name='input-qty']").val();
+            const ingred_qtyType = $(this).children().find("select[name='unidadDeMedida']").val();
+            ingred.push({name: ingred_name, qty: ingred_qty, qtyType: ingred_qtyType});
+        });
+
+        $(".input-paso").each(function(index){
+            const text = $(this).val();
+            pasos.push(text);
+        });
+        
+        console.log(ingred);
+        console.log(pasos);
+
+       /* $.ajax({
                 type: "POST",
                 url: "index.php",
                 data: {
@@ -79,6 +90,6 @@ $(document).ready(() => {
             .fail((data) => {
                 $("#crear-receta").html(`Entrar`)
                 console.log(data);
-            });
+            });*/
     });
 });

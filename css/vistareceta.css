@@ -97,6 +97,7 @@ body {
 
 .elemento {
     padding: 3vmin;
+    cursor: pointer;
 }
 
 .elemento img

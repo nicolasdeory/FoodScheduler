@@ -232,13 +232,10 @@ html{
         min-width: 285px;
         margin-right: 15px;
     }   
-    .buttonnew{
+    .buttonnew {
         margin-top: 100px;
-        background-color: red;
-        border-radius: 15px;
         height: 50px;
         width: 200px;
-        color: white;
         text-emphasis: initial;
         font-size: 20px;
     }
