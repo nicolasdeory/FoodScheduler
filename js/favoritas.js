@@ -16,6 +16,9 @@ if (!favoritasLoaded)
                 {
                     // search(url); // we're not gonna reload
                     $(this).text("favorite_border");
+                    var elem = $(this).parents().eq(3).find(".numberlikes");
+                    var txt = parseInt($(elem).text());
+                    $(elem).text(txt-1);
                 })
                 .fail(() =>
                 {
@@ -28,6 +31,9 @@ if (!favoritasLoaded)
                 {
                     //search(url); // we're not gonna reload
                     $(this).text("favorite");
+                    var elem = $(this).parents().eq(3).find(".numberlikes");
+                    var txt = parseInt($(elem).text());
+                    $(elem).text(txt+1);
                 })
                 .fail(() =>
                 {
