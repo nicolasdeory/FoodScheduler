@@ -85,7 +85,8 @@ if (!scheduleLoaded)
                     ingredients.forEach(ing => {
                         var recipes = ing.PARA_RECETAS.split(",");
                         let uniqueRecipes = [...new Set(recipes)]; 
-                        var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,uniqueRecipes);
+                        let uniqueRecipesStr = uniqueRecipes.join(", ");
+                        var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,uniqueRecipesStr);
                         $("#missing-ingredients-ul").append(ingredientHTML)
                     });
                 }
