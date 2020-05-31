@@ -1,12 +1,12 @@
 <?php
 	session_start();
 
-  /*if (!isset($_SESSION['login']))
+  if (!isset($_SESSION['login']))
 	{
 		// Not logged, redirect to login
 		header('Location: .');
 		die;
-  }*/
+  }
   
 ?>
 
