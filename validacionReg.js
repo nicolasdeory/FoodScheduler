@@ -77,4 +77,4 @@ function validaFormRegistro(){
 
     //Si no hay errores se envía el formulario
     return true;
-}  
+}

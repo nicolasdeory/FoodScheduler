@@ -12,19 +12,53 @@ if (!isset($_SESSION['login'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['input-nombre'];
-    $ingrediente = $_POST['input-ingrediente'];
-    $paso = $_POST['input-paso'];
-    $dificultad = $_POST['dificultad'];
 
-    $receta['nombre'] = $nombre;
-    $receta['ingrediente'] = $ingrediente;
-    $receta['paso'] = $paso;
+    header("Content-Type: application/json");
+    if ($_FILES["thumbnail"]["error"] == UPLOAD_ERR_OK) {
+        if ($_FILES['thumbnail']['size'] > 8388608) {
+            http_response_code(400);
+            echo "file is too large";
+            die;
+        }
+        if (
+            !isset($_POST['nombre']) || !isset($_POST['dif']) || !isset($_POST['visibility'])
+            || !isset($_POST['ingredients']) || !isset($_POST['steps']) || !isset($_POST['tiempo'])
+        ) {
+            http_response_code(400);
+            echo "must specify recipe name, difficulty, visibility, ingredients and steps";
+            die;
+        }
 
-    insert_recipe($receta['nombre'], $receta['ingrediente'], $receta['paso']);
+        $ingredients = json_decode($_POST['ingredients'], true);
+        $steps = json_decode($_POST['steps'], true);
 
-    foreach ($receta['ingrediente'] as $ingrediente) {
-        insert_ingredient($ingrediente);
+        if (!(count($_POST['ingredients']) > 0 && count($_POST['steps']) > 0)) {
+            http_response_code(400);
+            echo "must specify ingredients and steps";
+            die;
+        }
+
+        $name = $_POST['nombre'];
+        $dif = $_POST['dif'];
+        $time = $_POST['tiempo'];
+        $visibility = $_POST['visibility'];
+        $file = $_FILES["thumbnail"]["tmp_name"];
+
+        $recipeId = create_recipe($_SESSION['login'], $name, $dif, $visibility, $time, $ingredients, $steps);
+        if (!$recipeId) {
+            http_response_code(400);
+            echo "error creating recipe";
+            die;
+        }
+        // now you have access to the file being uploaded
+        //perform the upload operation.
+        move_uploaded_file($file, "images/photo" . $recipeId . ".jpg");
+        echo '"ok"';
+        die;
+    } else {
+        http_response_code(400);
+        echo "invalid file";
+        die;
     }
 }
 
@@ -44,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p1></p1>
         </div>
     </div>
-    <form action="" method="post" name="formLogin" id="form-recipe">
+    <form id="form-recipe" enctype="multipart/form-data">
         <div class="contenedornew" id="contenedor">
             <div class="arriba">
                 <div class="nombre">
@@ -55,11 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="icon1">
                             <i class="fas fa-utensils"></i>
                         </div>
-                        <input type="text" placeholder="Nombre" id="input-nombre" class="input-nombre"></input>
+                        <input type="text" placeholder="Nombre" id="input-nombre" class="input-nombre" required></input>
                     </div>
-
-
-
                     <div class="texto-antes">
                         <p>Dificultad de la receta</p>
                     </div>
@@ -97,9 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </form>
                             </div>
                         </div>
-
-
-
                     </div>
                     <div class="texto-antes">
                         <p>Duración de la receta</p>
@@ -108,37 +136,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="icon1">
                             <i class="fas fa-clock"></i>
                         </div>
-                        <input type="text" placeholder="Tiempo (minutos)" id="input-time" class="input-nombre"></input>
+                        <input type="number" placeholder="Tiempo en minutos" id="input-time" class="input-nombre" required></input>
                     </div>
-
                 </div>
                 <div class="addplusicons">
                     <div class="contenedornewingredientes" id="contenedornewingredientes">
                         <div class="ingredientenuevo">
 
                             <div class="texto-antes">
-                                <p>Nuevo ingrediente </p>
+                                <p>Nuevo ingrediente</p>
                             </div>
                             <div class="ingredientenew">
                                 <div class="ing">
                                     <div class="icon2">
                                         <i class="fas fa-cheese"></i>
                                     </div>
-                                    <input type="text" placeholder="Nombre" id="input-ingrediente" class="input-ing"></input>
+                                    <input type="text" placeholder="Nombre" name="input-name" class="input-ing" required></input>
                                 </div>
                                 <div class="cant">
-                                    <input type="number" placeholder="Cantidad" id="input-cantidad" class="input-ing"></input>
+                                <div class="icon2">
+                                <i class="fas fa-balance-scale"></i>
+                                    </div>
+                                    <input type="number" placeholder="Cantidad" name="input-qty" class="input-ing" required></input>
 
                                 </div>
                                 <div class="unid">
-
-
-                                    <select name="unidadDeMedida" class="unidadmed" id="input-unidad">
+                                    <select name="unidadDeMedida" class="unidadmed" id="input-unidad" required>
                                         <option value="Unidad">Unidad</option>
                                         <option value="Gramo">Gramos</option>
                                         <option value="Mililitro">Mililitro</option>
-
-
                                     </select>
                                 </div>
                             </div>
@@ -150,7 +176,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
             </div>
-
             <div class="abajo">
                 <div class="abajo-izq">
                     <div class="type">
@@ -158,32 +183,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <p>¿Es pública la receta?</p>
                         </div>
                         <div class="publica">
-                            <form action="">
-                                <input class="input-pub" name="type" id="public" type="radio" value="1" placeholder="Pública" checked>
-                                <label class="input-pub" for="public">Pública</label>
-                                <input class="input-pub" name="type" id="private" type="radio" value="2" placeholder="Privada">
-                                <label class="input-pub" for="public">Privada</label><br>
-
-                            </form>
+                            <input class="input-pub" name="visibility" id="public" type="radio" value="1" placeholder="Pública" checked>
+                            <label class="input-pub" for="public">Pública</label>
+                            <input class="input-pub" name="visibility" id="private" type="radio" value="2" placeholder="Privada">
+                            <label class="input-pub" for="private">Privada</label><br>
                         </div>
 
-
-
+                        <div class="texto-antes">
+                            <p>Miniatura de la receta (Máximo 8MB)</p>
+                        </div>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="8388608" />
+                        <input class="input-pub" name="thumbnail" id="input-thumbnail" type="file" required>
                     </div>
                     <div class="botonnew">
-                        <button class="buttonnew" type="button" id="crearreceta">
+                        <button class="buttonnew button" id="crear-receta">
                             Añadir Receta
                         </button>
                     </div>
                 </div>
-
                 <div class="addplusicons">
                     <div class="contenedorpasos" id="contenedorpasos">
                         <div class="paso">
                             <div class="texto-antes">
                                 <p>Paso número: 1</p>
                             </div>
-                            <textarea class="input-paso" id="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
+                            <textarea class="input-paso" type="text" placeholder="Describe cómo realizar este paso" required></textarea>
                         </div>
 
                     </div>
@@ -193,8 +217,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
             </div>
-
-
         </div>
     </form>
     <script src="js/createrecipe.js"></script>

@@ -49,35 +49,81 @@ $(document).ready(() => {
     $("#public").click(() =>
     {
         tipo = 1;
-    })
-
-    $("#crearreceta").click(() =>
-    {
-                console.log("Clicamos en el botón");
-    })
-
+    });
 
     $("#form-recipe").submit((e) => {
-        // e.preventDefault();
-        // $("#crearreceta").html(`<span class="material-icons iconocolumna loading-anim"> restaurant </span>`);
+        e.preventDefault();
+        var ingred = [];
+        var pasos = [];
+        $(".ingredientenew").each(function(index){
+            const ingred_name = $(this).children().find("input[name='input-name']").val();
+            const ingred_qty = $(this).children().find("input[name='input-qty']").val();
+            const ingred_qtyType = $(this).children().find("select[name='unidadDeMedida']").val();
+            ingred.push({name: ingred_name, qty: ingred_qty, qtyType: ingred_qtyType});
+        });
+
+        $(".input-paso").each(function(index){
+            const text = $(this).val();
+            pasos.push(text);
+        });
+        
+        var ingredsSanitized = []
+        ingred.forEach((elm) =>
+        {
+            if (elm.name && elm.qty)
+            {
+                ingredsSanitized.push(elm);
+            }
+            else if (elm.name)
+            {
+                // warn user they have specified name but not qty
+                alert("Debes especificar la cantidad de ingrediente.");
+            }
+        });
+
+        var stepsSanitized = []
+        pasos.forEach((str) =>
+        {
+            if (str)
+            {
+                stepsSanitized.push(str);
+            }
+        });
+        
+        console.log(ingredsSanitized);
+        console.log(stepsSanitized);
+
+        var formData = new FormData();
+        if($('#input-thumbnail').prop('files').length > 0)
+        {
+            file =$('#input-thumbnail').prop('files')[0];
+            formData.append("thumbnail", file);
+        }
+        var name =  $("#input-nombre").val();
+        var time = $("#input-time").val();
+        console.log("processing formData" + name + " " + time);
+        formData.append("ingredients", JSON.stringify(ingredsSanitized));
+        formData.append("steps", JSON.stringify(stepsSanitized));
+        formData.append("nombre", name);
+        formData.append("dif", dif);
+        formData.append("visibility", tipo.toString());
+        formData.append("tiempo", time);
+        console.log(formData);
+
+        $("#crear-receta").html(`<span class="material-icons iconocolumna loading-anim"> restaurant </span>`)
         $.ajax({
                 type: "POST",
-                url: "index.php",
-                data: {
-                    nombre: $("#input-nombre").val(),
-                    dif,
-                    tipo,
-                    ingrediente: $("#input-ingrediente").val(),
-                    cantidad: $("#input-cantidad").val(),
-                    unidad: $("#input-unidad").val(),
-                    paso: $("#input-paso").val()
-                },
+                url: "create_recipe.php",
+                processData: false,
+                contentType: false,
+                data: formData,
                 success: () => {
-                   navigate("dashboard.php");
+                   navigate("favoritas.php");
                 }
             })
             .fail((data) => {
-                $("#crear-receta").html(`Entrar`)
+                $("#crear-receta").html(`Añadir Receta`);
+                alert("Ha ocurrido un error creando la receta.");
                 console.log(data);
             });
     });

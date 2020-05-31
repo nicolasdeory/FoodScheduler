@@ -77,12 +77,21 @@ $(function() {
 
     $("#create-button").click(() => 
     {
-        navigate("createrecipe.php");
+        navigate("create_recipe.php");
         $('.elemento').removeClass('elementoactivo');
         $('#create-button').addClass('elementoactivo');
 
 
     });
+
+    $("#campanacambiar").click(() =>
+    {
+        navigate("schedule.html")
+        $('.elemento').removeClass('elementoactivo');
+        $('#schedule-button').addClass('elementoactivo');
+        window.location.reload();
+    });
+
 
     $("#help-button").click(() => 
     {
