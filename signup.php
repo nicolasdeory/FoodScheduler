@@ -40,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $err['pass'] = "La contraseña debe tener más de 8 caracteres, disponer de una letra minúscula, mayúscula, un número y un carácter especial.";
   }
 
-  header("Content-Type: application/json");
   if (isset($err))
   {
     http_response_code(400);
@@ -62,11 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
     else if ($regResult == "unique")
     {
-      echo "Ya existe un usuario registrado con esos datos.";
+      echo "<div class='error-reg'>Ya existe un usuario registrado con esos datos.</div>";
     } 
     else 
     {
-      echo "Ha ocurrido un error registrando el usuario";
+      echo "<div class='error-reg'>Ha ocurrido un error registrando el usuario</div>";
     }
     
   }
@@ -120,7 +119,7 @@ function test_input($data)
 
     <!--Formulario de Registro-->
     <div class="formReg">
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="formReg" id="formReg" onsubmit="return validaFormRegistro()">
+      <form method="post" name="formReg" id="formReg">
 
 
         <input type="text" name="nombre" placeholder="Nombre" id="nombre" value="<?php echo $nombre; ?>">
