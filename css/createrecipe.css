@@ -103,6 +103,8 @@ html{
         margin-right: 20px;
     }
     .input-paso{
+        resize: none;
+        outline: none;
         border-radius: 15px;
         padding: 15px;
         height: 100px;
@@ -141,8 +143,19 @@ html{
         border-radius: 30px;
         border: solid 2px #563514;
         color: #563514;
-        background-color: #f0e2d3;
+        background-color: #f0e2d3; 
+        outline:none;
     }
+
+    .newing:hover , .newstep:hover, .lessing:hover, .lessstep:hover{
+        cursor: pointer;
+        filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.45));
+      }
+
+    .newing:active, .newstep:active, .lessing:active, .lessstep:active{
+        filter: none;
+        transform: scale(.95);   
+      }
     
 
     .publica{
