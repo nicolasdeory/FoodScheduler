@@ -145,15 +145,16 @@ html{
         color: #563514;
         background-color: #f0e2d3; 
         outline:none;
+        transition: 0.1s;
     }
 
     .newing:hover , .newstep:hover, .lessing:hover, .lessstep:hover{
         cursor: pointer;
-        filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.45));
+        background-color: #563514;
+        color: white;
       }
 
     .newing:active, .newstep:active, .lessing:active, .lessstep:active{
-        filter: none;
         transform: scale(.95);   
       }
     

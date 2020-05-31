@@ -15,9 +15,11 @@ $(document).ready(function ()
             <input type="text" placeholder="Nombre" name="input-name" class="input-ing"></input>
         </div>
         <div class="cant">
-            <input type="number" placeholder="Cantidad" name="input-qty" class="input-ing"></input>
-
-        </div>
+                <div class="icon2">
+                     <i class="fas fa-balance-scale"></i>
+                </div>
+                <input type="number" placeholder="Cantidad" name="input-qty" class="input-ing" required></input>
+            </div>
         <div class="unid">
 
 

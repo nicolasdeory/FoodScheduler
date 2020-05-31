@@ -120,6 +120,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input type="text" placeholder="Nombre" name="input-name" class="input-ing" required></input>
                                 </div>
                                 <div class="cant">
+                                <div class="icon2">
+                                <i class="fas fa-balance-scale"></i>
+                                    </div>
                                     <input type="number" placeholder="Cantidad" name="input-qty" class="input-ing" required></input>
 
                                 </div>
