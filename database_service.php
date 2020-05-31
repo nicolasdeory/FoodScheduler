@@ -208,6 +208,25 @@ function view_saved($nombreUsuario)
 	}
 }
 
+function get_user_recipes($username)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT recetas.id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetas WHERE nombredeusuario = :nombreUsuario";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':nombreUsuario', $username);
+		$stmt->execute();
+		$recipe = $stmt->fetchAll();
+		return $recipe;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
 //view recipes  with all parameters
 function search_recipes($ingrediente, $comida, $dificultad)
 {

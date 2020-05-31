@@ -429,7 +429,7 @@ body {
   height: 25%;
 }
 
-.recipetitle {
+#form-recipe .recipetitle {
   color: #e13232;
   display: flex;
   flex-direction: column-reverse;

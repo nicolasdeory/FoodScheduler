@@ -20,7 +20,7 @@ if (!busquedaLoaded)
                         </div>
                         <div class="time">
                             <div class="timeicon"><i class="far fa-clock"></i></div>
-                            <div class="amounttime"> {3} min</div>
+                            <div class="amounttime"> {3} min.</div>
                         </div>
                         <div class="difficulty">
                         <div class="texto-dif">
@@ -87,73 +87,7 @@ if (!busquedaLoaded)
                 $("#contenedor").append(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
             });
 
-            $(".recipetitle").click(function()
-            {
-                const recipeId = $(this).parents().eq(3).attr("recipe-id");
-                navigate("vistareceta.php?id=" + recipeId);
-            });
-
-            $(".add-schd-btn").click(function()
-            {
-                $(".result").removeClass("adding-schd");
-                $(this).parents().eq(3).addClass("adding-schd");
-            });
-
-            $(".btn-schd-close").click(function() 
-            {
-                $(this).parents().eq(2).removeClass("adding-schd");
-            });
-
-            $(".add-to-schedule-prompt form").submit(function(e) 
-            {
-                e.preventDefault();
-                const promptNode = $(this).parent();
-                const parentNode = $(promptNode).parent();
-                const recipeId = $(parentNode).attr("recipe-id");
-                const schdDate = new Date($(parentNode).children().find("input[name='schd-date']").val());
-                const schdMeal = $(parentNode).children().find("input[name='schd-meal']:checked").val();
-
-                var schdDateFormatted = schdDate.getDate() + "-" + (schdDate.getMonth() + 1) + "-" + schdDate.getFullYear();
-
-                $(parentNode).addClass("success-anim");
-                $(parentNode).removeClass("adding-schd");
-
-                $.ajax({
-                    type: "POST",
-                    url: `add_schedule.php`,
-                    data: {
-                        id: recipeId,
-                        date: schdDateFormatted,
-                        meal: schdMeal
-                    },
-                    success: () => {
-                        console.log("recipe added to schedule");
-                    }
-                })
-                .fail((data) => {
-                    if (data.responseText == "already exists")
-                    {
-                        alert("Ya tienes planificada esa receta para el día que has indicado.");
-                    } else 
-                    {
-                        alert("Ha ocurrido un error añadiendo la receta a la planificación.");
-                    }
-                });
-
-                setTimeout(() => 
-                {
-                    $(parentNode).removeClass("success-anim");
-                },1500);
-            });
-
-            var now = new Date();
-
-            var day = ("0" + now.getDate()).slice(-2);
-            var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-            var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-
-            $("input[name='schd-date']").val(today);
+            window.attachEventsToRecipeCards();
 
         });
     }
