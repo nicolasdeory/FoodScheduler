@@ -3,12 +3,12 @@
   
   include_once("database_service.php");
 
-  /*if (!isset($_SESSION['login']))
+  if (!isset($_SESSION['login']))
 	{
 		// Not logged, redirect to login
 		header('Location: .');
 		die;
-  }*/
+  }
   
   $userId = $_SESSION['login'];
   $usuario = view_user($userId);

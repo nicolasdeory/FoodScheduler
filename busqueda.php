@@ -20,7 +20,7 @@ if (!isset($_SESSION['login'])) {
         </div>
         <div class="separator"></div>
     </div>
-    <div class="search-subtitle margin">
+    <div class="subtitle margin">
         <p1>Con estos parámetros, tienes estas recetas disponibles</p1>
     </div>
     <div class="contenedor" id="contenedor">
@@ -80,14 +80,12 @@ if (!isset($_SESSION['login'])) {
 
             </div>
 
-            <div class="boton">
-                <button class="button" type="button" id="buscar">
-                    Buscar
-                </button>
+            <div class="boton buscar">
+                <div class="button" type="button" id="buscar">Buscar</div>
             </div>
+
         </div>
     </div>
-
 </div>
 
-<script src="js/busqueda.js"></script>
+<script src="js/search.4.js"></script>

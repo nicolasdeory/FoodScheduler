@@ -1,7 +1,7 @@
-var loaded = false;
-if (!loaded)
+var scheduleLoaded = false;
+if (!scheduleLoaded)
 {
-    loaded = true;
+    scheduleLoaded = true;
     const RECIPE_TEMPLATE = `
     <li><a recipe-id="{0}">{1}</a></li>
     `;
@@ -25,6 +25,17 @@ if (!loaded)
     $(function() {
     
         function retrieveSchedule(mondayDate) {
+            var today = new Date();
+            var diff = today - mondayDate;
+            console.log(diff);
+            if (diff > 0 && diff <= 7*24*3600*1000)
+            {
+                // highlight the relevant day
+                console.log("hi");
+                var day = Math.floor(diff / (24*3600*1000));
+                console.log(day);
+                $(`#day-container :nth-child(${day+1}`).addClass("selected");
+            }
             var sundayDate = mondayDate.addDays(6);
             var mondayDateDay = mondayDate.getDate().toString();
             var sundayDateDay = sundayDate.getDate().toString();
@@ -48,27 +59,65 @@ if (!loaded)
                     if (differenceInDays < 0 || differenceInDays > 7) return;
                     const mealId = schd.COMIDA == "Almuerzo" ? 0 : 1;
                     $(`#schd-${differenceInDays}${mealId}`).append(RECIPE_TEMPLATE.format(schd.ID_RECETA, schd.NOMBRE));
+                    $(`#schd-${differenceInDays}${mealId} li`).click(function()
+                    {
+                        navigate("vistareceta.php?id=" + schd.ID_RECETA);
+                    });
+
+                    var node = $(`#schd-${differenceInDays}${mealId}`).parent();
+                    $(node).children().eq(0).off("click");
+                    var schdDateFormatted = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                    $(node).children().eq(0).click(function() // closebtn
+                    {
+                        
+                        $.get(`delete_schedule.php?date=${schdDateFormatted}&meal=${schd.COMIDA}`, function()
+                        {
+                            retrieveSchedule(currentMonday);
+                            retrieveMissingIngredients(new Date());
+                        }).fail(() =>
+                        {
+                            alert("Ha ocurrido un error borrando la planificación que has especificado.")
+                        });
+                    });
                 });
-    
-                $("li a").click(function(e)
-                {
-                    window.navigate(`receta.php?id=${$(this).attr("recipe-id")}`);
-                });
+
+                setTimeout(() => {
+                    $(".close-btn").removeClass("visible");
+                },300);
     
             });
         }
     
         function retrieveMissingIngredients(mondayDate) {
     
+            
             $.get(`./missing_ingredients.php`, (ingredients) => {
+                $("#missing-ingredients-ul").empty();
                 if (ingredients.length > 0)
                 {
                     $("#missing-ingredients-box").show();
                     ingredients.forEach(ing => {
                         var recipes = ing.PARA_RECETAS.split(",");
                         let uniqueRecipes = [...new Set(recipes)]; 
-                        var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,uniqueRecipes);
+                        let uniqueRecipesStr = uniqueRecipes.join(", ");
+                        var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,uniqueRecipesStr);
                         $("#missing-ingredients-ul").append(ingredientHTML)
+                    });
+
+                    $(".missing-ingredient-list li").click(function()
+                    {
+                        const ingredId = $(this).attr("ingred-id");
+                        const ingredQty = $(this).attr("ingred-qty");
+                        const ingredMsr = $(this).attr("ingred-msr");
+                        $.get(`add_ingredient_qty.php?type=shoppinglist&id=${ingredId}&qty=${ingredQty}&qty-type=${ingredMsr}`,function()
+                        {
+                            retrieveMissingIngredients(new Date());
+                        })
+                        .fail(() =>
+                        {
+                            alert("Ha ocurrido un error apuntando el ítem seleccionado en la lista de la compra.");
+                        });
+
                     });
                 }
                 else
@@ -80,10 +129,11 @@ if (!loaded)
     
         function setDayHeaderPositions() {
             if ($(`#schd-table td`).length == 0) return;
+            let firstLeft = $(`#schd-table tr > td`).eq(0).position().left;
             var widthTableCell = $(`#schd-table td`).width() + 40; // padding
-            for (let i = 0; i < 8; i++) {
-                let widthSpan = $(`#day-container span`).eq(i).width();
-                let leftTableCell = $(`#schd-table td`).eq(i).position().left;
+            for (let i = 0; i < 7; i++) {
+                let widthSpan = $(`#day-container > span`).eq(i).width();
+                let leftTableCell = $(`#schd-table tr > td`).eq(i).position().left - firstLeft;
                 let computedLeft = leftTableCell + ((widthTableCell - widthSpan) / 2);
                 $(`#day-container :nth-child(${i + 1})`).css("left", computedLeft + "px");
             }
@@ -118,7 +168,7 @@ if (!loaded)
         });
     
     
-        /* CLICK EVENTS */
+        /* CLICK AND HOVER EVENTS */
     
         $("#next-schedule-btn").click(() => {
             $("#schd-table").html(placeholderHtml);
@@ -131,8 +181,7 @@ if (!loaded)
             currentMonday = currentMonday.addDays(-7);
             retrieveSchedule(currentMonday);
         });
-    
-    
+
         /* INICIALIZATIONS */
     
         const placeholderHtml = $("#schd-table").html();
@@ -141,7 +190,7 @@ if (!loaded)
         currentMonday.setDate(currentMonday.getDate() - (currentMonday.getDay() + 6) % 7);
         retrieveSchedule(currentMonday);
     
-        retrieveMissingIngredients(currentMonday);
+        retrieveMissingIngredients(new Date());
     
         setDayHeaderPositions();
         setTimeout(setDayHeaderPositions, 150);

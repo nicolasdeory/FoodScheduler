@@ -46,6 +46,10 @@
     background-color: #ca5454;
 }
 
+.btn-container .btn:active {
+    background-color: #832e2e;
+}
+
 .btn-container .btn span {
     margin-top: 1px;
     margin-left: 0.5px;

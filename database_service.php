@@ -354,13 +354,23 @@ function create_schedule($username, $date, $mealtype)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "INSERT INTO planificaciones VALUES (S_PLANIFICACIONES.nextval, :fecha, :comida, :username)";
+		$consulta = "INSERT INTO planificaciones VALUES (S_PLANIFICACIONES.nextval, :fecha, :comida, :username) 
+			RETURNING id_planificacion INTO :inserted_id";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':fecha', $date);
 		$stmt->bindParam(':comida', $mealtype);
 		$stmt->bindParam(':username', $username);
+		$schdId = -1;
+		$stmt->bindParam('inserted_id', $schdId, PDO::PARAM_INT, 8);
 		$stmt->execute();
-		return true;
+		if ($schdId == -1)
+		{
+			return false;
+		}
+		else
+		{
+			return $schdId;
+		}
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
@@ -383,7 +393,7 @@ function get_needed_ingredients($username)
 			FROM cantidadesIngredientes c
 			NATURAL JOIN recetasenplanificaciones
 			NATURAL JOIN (SELECT id_planificacion FROM planificaciones WHERE nombreDeUsuario = :username
-							AND fecha BETWEEN TRUNC(SYSDATE) + 1/86400 AND TRUNC(SYSDATE+7))
+							AND fecha BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE+7))
 			NATURAL JOIN recetas
 			GROUP BY id_ingrediente,unidadDeMedida)
 		NATURAL JOIN ingredientes";
@@ -405,7 +415,7 @@ function get_quantity_in_fridge($username, $id_ingrediente)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT cantidad INTO cantidadEnNevera FROM itemsEnNevera
+		$consulta = "SELECT cantidad FROM itemsEnNevera
 		WHERE nombreDeUsuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
@@ -415,6 +425,27 @@ function get_quantity_in_fridge($username, $id_ingrediente)
 		return $qtyInFridge;
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
+		return false;
+	}
+}
+
+function get_quantity_in_shopping($username, $id_ingrediente) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT cantidad FROM itemsEnListaCompra
+		WHERE nombreDeUsuario = :username AND id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingrediente);
+		$stmt->execute();
+		$qtyInShopping = $stmt->fetchColumn();
+		return $qtyInShopping;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
 		return false;
 	}
 }
@@ -515,6 +546,52 @@ function add_to_fridge($username, $ingred_name, $qty, $qtyType, $additive)
 	}
 }
 
+function add_to_fridge_id($username, $id_ingred, $qty, $qtyType, $additive) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT cantidad from itemsEnNevera WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->execute();
+		$dbQty = $stmt->fetchColumn();
+		if ($dbQty) {
+			// if it exists, update it
+			//delete_fridge($username, $id_ingred);
+			$consulta = "UPDATE itemsEnNevera SET cantidad = :qty, unidaddemedida = :qty_type 
+							WHERE id_ingrediente = :id_ingred AND nombredeusuario = :username";
+			if ($additive)
+			{
+				$finalQty = $qty + $dbQty;
+			}
+			else 
+			{
+				$finalQty = $qty;
+			}
+		}
+		else
+		{
+			$finalQty = $qty;
+			$consulta = "INSERT INTO itemsEnNevera VALUES (S_ITEMSENNEVERA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		}
+		//$consulta = "INSERT INTO itemsEnNevera VALUES (S_ITEMSENNEVERA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->bindParam(':qty', $finalQty);
+		$stmt->bindParam(':qty_type', $qtyType);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
 function add_to_shopping_list($username, $ingred_name, $qty, $qtyType, $additive) 
 {
 	$conexion = Database::instance();
@@ -532,6 +609,52 @@ function add_to_shopping_list($username, $ingred_name, $qty, $qtyType, $additive
 			$id_ingred = add_ingredient($ingred_name);
 		}
 
+		$consulta = "SELECT cantidad from itemsEnListaCompra WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->execute();
+		$dbQty = $stmt->fetchColumn();
+		if ($dbQty) {
+			// if it exists, update it
+			//delete_fridge($username, $id_ingred);
+			$consulta = "UPDATE itemsEnListaCompra SET cantidad = :qty, unidaddemedida = :qty_type 
+							WHERE id_ingrediente = :id_ingred AND nombredeusuario = :username";
+			if ($additive)
+			{
+				$finalQty = $qty + $dbQty;
+			}
+			else 
+			{
+				$finalQty = $qty;
+			}
+		}
+		else
+		{
+			$finalQty = $qty;
+			$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		}
+		//$consulta = "INSERT INTO itemsEnListaCompra VALUES (S_ITEMSENLISTACOMPRA.nextval, :username, :id_ingred, :qty, :qty_type)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':id_ingred', $id_ingred);
+		$stmt->bindParam(':qty', $finalQty);
+		$stmt->bindParam(':qty_type', $qtyType);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function add_to_shopping_list_id($username, $id_ingred, $qty, $qtyType, $additive) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
 		$consulta = "SELECT cantidad from itemsEnListaCompra WHERE nombredeusuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
@@ -606,6 +729,73 @@ function delete_fridge($username, $id_ingred)
 	} catch (PDOException $e) {
 		//echo $e->getMessage();
 		return false;
+	}
+}
+
+function delete_schedule($username, $date, $meal)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "DELETE (SELECT *
+						FROM recetasenplanificaciones rp
+						INNER JOIN planificaciones pl
+							ON rp.id_planificacion = pl.id_planificacion
+						WHERE pl.fecha = :fecha AND pl.nombredeusuario = :username AND pl.comida = :meal)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':fecha', $date);
+		$stmt->bindParam(':meal', $meal);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function add_schedule($username, $recipe_id, $date, $meal) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT id_planificacion from planificaciones 
+			WHERE nombredeusuario = :username AND fecha = :fecha AND comida = :meal";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':fecha', $date);
+		$stmt->bindParam(':meal', $meal);
+		$stmt->execute();
+		$id_schd = $stmt->fetchColumn();
+		if (!$id_schd) {
+			// if the schedule doesn't exist, add it
+			$id_schd = create_schedule($username, $date, $meal);
+		}
+
+		$consulta = "SELECT id_receta from recetasenplanificaciones 
+			WHERE id_planificacion = :id_schd AND id_receta = :id_receta";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':id_schd', $id_schd);
+		$stmt->bindParam(':id_receta', $recipe_id);
+		$stmt->execute();
+		$id_rec = $stmt->fetchColumn();
+		if ($id_rec) {
+			return "already exists";
+		}
+		$consulta = "INSERT INTO recetasenplanificaciones VALUES (S_RECETASENPLANIFICACIONES.nextval, :id_receta, :id_schd)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':id_schd', $id_schd);
+		$stmt->bindParam(':id_receta', $recipe_id);
+		$stmt->execute();
+		return "ok";
+		
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return "error";
 	}
 }
 

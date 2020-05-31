@@ -17,10 +17,23 @@ $neededIngredients = get_needed_ingredients($_SESSION['login']);
 $missingIngreds = [];
 foreach ($neededIngredients as $ingred) {
     $qtyInFridge = get_quantity_in_fridge($_SESSION['login'], $ingred['ID_INGREDIENTE']);
-    if ($qtyInFridge == false || $qtyInFridge['CANTIDAD'] < $ingred['CANTIDAD'])
+    $qtyInShopping = get_quantity_in_shopping($_SESSION['login'], $ingred['ID_INGREDIENTE']);
+    if ($qtyInFridge == false || $qtyInFridge < $ingred['CANTIDAD'])
     {
-        $ingred['CANTIDAD'] = $ingred['CANTIDAD'] - $qtyInFridge['CANTIDAD'];
-        array_push($missingIngreds, $ingred);
+        if ($qtyInShopping == false || $qtyInShopping < ($ingred['CANTIDAD'] - $qtyInFridge))
+        {
+            $neededIngred = $ingred['CANTIDAD'] - $qtyInFridge;
+            if ($qtyInShopping && $qtyInShopping > 0)
+            {
+                $toAddToShopping = $neededIngred - $qtyInShopping;
+            }
+            else 
+            {
+                $toAddToShopping = $neededIngred;
+            }
+            $ingred['CANTIDAD'] = $toAddToShopping;
+            array_push($missingIngreds, $ingred);
+        }
     }
 }
 
