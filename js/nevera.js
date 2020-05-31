@@ -160,12 +160,13 @@ if (!loaded)
 
     function getFridgeAndShoppingList()
     {
-        $("#nevera").empty();
-        $("#lista-compra").empty();
         $.get("fridge.php", function (data)
         {
             var fridge = data.nevera;
             var shopping = data.listaCompra;
+
+            $("#nevera").empty();
+            $("#lista-compra").empty();
 
             fridge.forEach((itm) =>
             {

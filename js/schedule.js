@@ -79,8 +79,9 @@ if (!scheduleLoaded)
     
         function retrieveMissingIngredients(mondayDate) {
     
-            $("#missing-ingredients-ul").empty();
+            
             $.get(`./missing_ingredients.php`, (ingredients) => {
+                $("#missing-ingredients-ul").empty();
                 if (ingredients.length > 0)
                 {
                     $("#missing-ingredients-box").show();
