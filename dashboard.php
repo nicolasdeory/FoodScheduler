@@ -14,6 +14,15 @@
   $usuario = view_user($userId);
   $nombre = $usuario['NOMBRE'];
   $imprimo = explode(" ", $nombre);
+
+  $neededIngredients = get_needed_ingredients($_SESSION['login']);
+  if ($neededIngredients == false)
+  {
+      
+  } else 
+  {
+    
+  }
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +60,7 @@
           <p>Planificador Alimenticio</p>
         </div>
         <div class="espacio"> </div>
-        <span class="material-icons campana">notifications</span>
+        <span id="campanacambiar" class="material-icons campana">notifications</span>
       </div>
     </div>
     <div class="partederechamenu">
