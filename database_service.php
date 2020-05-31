@@ -208,6 +208,71 @@ function view_saved($nombreUsuario)
 	}
 }
 
+function is_favorited($username, $recipe_id) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT count(*) FROM recetasfavoritas WHERE nombredeusuario = :nombreUsuario AND id_receta = :id_receta";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':nombreUsuario', $username);
+		$stmt->bindParam(':id_receta', $recipe_id);
+		$stmt->execute();
+		$count = $stmt->fetchColumn();
+		if ($count && $count > 0)
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function add_favorite($username, $recipe_id) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "INSERT INTO recetasfavoritas VALUES(S_RECETASFAVORITAS.nextval, :nombreUsuario, :id_receta)";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':nombreUsuario', $username);
+		$stmt->bindParam(':id_receta', $recipe_id);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
+function remove_favorite($username, $recipe_id) 
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "DELETE FROM recetasfavoritas WHERE nombredeusuario = :nombreUsuario AND id_receta = :id_receta";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':nombreUsuario', $username);
+		$stmt->bindParam(':id_receta', $recipe_id);
+		$stmt->execute();
+		return true;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
 function get_user_recipes($username)
 {
 	$conexion = Database::instance();

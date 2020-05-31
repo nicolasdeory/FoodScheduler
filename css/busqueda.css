@@ -27,6 +27,24 @@ html {
   margin: 10px 10px;
 }
 
+.likeicon span 
+{
+    padding: 3px;
+    margin-right: -3px;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.likeicon span:hover {
+  background-color: #dfb3aa;
+}
+
+.likeicon span:active 
+{
+  color: white;
+  background-color: #563514;
+}
+
 .search,
 .result {
   margin: 2px;

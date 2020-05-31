@@ -15,7 +15,7 @@ if (!busquedaLoaded)
                     
                     <div class="info">
                         <div class="like">
-                            <div class="likeicon"> <span class="material-icons iconocolumna"> favorite </span> </div>
+                            <div class="likeicon"> <span class="material-icons iconocolumna"> {5} </span> </div>
                             <div class="numberlikes"> {2} </div>
                         </div>
                         <div class="time">
@@ -77,17 +77,64 @@ if (!busquedaLoaded)
         };
     }
 
+    function attachListeners()
+    {
+        window.attachEventsToRecipeCards();
+    }
+
     function search(url)
     {
         $.get(url, (data) =>
         {
             $("#contenedor").children().slice(1).remove();
+            var processedI = 0;
+            var tobeProcessed = data.length;
             data.forEach(x =>
             {
-                $("#contenedor").append(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, x.TIEMPOELABORACION, x.DIFICULTAD));
-            });
+                $.get("is_favorited.php?id=" + x.ID_RECETA, function(res)
+                {
+                    var isFav = res;
+                    var favString = isFav == "true" ? "favorite" : "favorite_border";
+                    var appendedElem = $(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, 
+                        x.TIEMPOELABORACION, x.DIFICULTAD, favString)).appendTo("#contenedor");
 
-            window.attachEventsToRecipeCards();
+                    $(appendedElem).children().find(".likeicon span").click(function()
+                    {
+                        var favText = $(this).text().trim();
+                        var isFaved = favText == "favorite";
+                        if (isFaved)
+                        {
+                            $.get("remove_favorite.php?id=" + x.ID_RECETA, () =>
+                            {
+                               // search(url); // we're not gonna reload
+                               $(this).text("favorite_border");
+                            })
+                            .fail(() =>
+                            {
+                                alert("Ha ocurrido un error desmarcando la receta como favorita.");
+                            });
+                        }
+                        else 
+                        {
+                            $.get("add_favorite.php?id=" + x.ID_RECETA, () =>
+                            {
+                                //search(url); // we're not gonna reload
+                                $(this).text("favorite");
+                            })
+                            .fail(() =>
+                            {
+                                alert("Ha ocurrido un error marcando la receta como favorita.");
+                            });
+                        }
+                    });
+
+                    processedI++;
+                    if (processedI >= data.length - 1) 
+                    {
+                        attachListeners();
+                    }
+                });
+            });
 
         });
     }
@@ -116,6 +163,33 @@ if (!busquedaLoaded)
             dif = "Muy difícil";
         });
 
+        /*var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+          ];
+          $( "#input-ingrediente" ).autocomplete({
+            source: availableTags
+          });*/
 
         $("#buscar").click(() =>
         {

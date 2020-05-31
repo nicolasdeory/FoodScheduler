@@ -210,6 +210,11 @@ figure img {
     margin-left: 4vmin;
 }
 
+.campana 
+{
+    cursor: pointer;
+}
+
 .tiempo-dificultad {
     display: flex;
     flex-direction: row;
@@ -292,7 +297,6 @@ figure img {
     }
     .campana {
         padding-right: 2vmin;
-        cursor: pointer;
     }
     .espacio {
         width: 10vmin;

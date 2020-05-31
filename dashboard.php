@@ -63,6 +63,7 @@
   <link rel="stylesheet" type="text/css" href="css/busqueda.css">
   <link rel="stylesheet" type="text/css" href="css/createrecipe.css">
   <link rel="stylesheet" type="text/css" href="css/ayuda.css">
+  <!-- <link rel="stylesheet" href="css/jquery-ui-min.css"> -->
   <link rel="stylesheet" type="text/css" href="css/myacc.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
@@ -72,6 +73,12 @@
         src="https://code.jquery.com/jquery-3.5.0.min.js"
         integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
         crossorigin="anonymous"></script>
+
+  <!-- <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script> -->
+
   <script src="js/main.js"></script>
 </head>
 
