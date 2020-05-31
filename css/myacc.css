@@ -1,0 +1,14 @@
+.userpic{
+    font-size: 120px;
+}
+
+.rectangulo{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.datosText{
+    padding-left: 15px;
+}

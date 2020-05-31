@@ -628,3 +628,22 @@ function get_shopping_list($username)
 		return false;
 	}
 }
+
+function view_user($userId)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+		$consulta = "SELECT NOMBRE, CORREOELECTRONICO FROM USUARIOS WHERE nombredeusuario = :idusuario";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':idusuario', $userId);
+		$stmt->execute();
+		$usuario = $stmt->fetchAll();
+		return $usuario[0];
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}

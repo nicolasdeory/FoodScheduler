@@ -1,0 +1,86 @@
+#help-button{
+    cursor: pointer;
+}
+
+#acc-button{
+    cursor: pointer;
+}
+
+.f1{
+    border: 10px solid white;
+    width: 100%;
+}
+
+.f2{
+    height: 45vmin;
+    width: 90vmin;
+    border: 10px solid white;
+}
+
+.fotoayuda{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.piedefoto{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seccion{
+    padding-top: 1vmin;
+    font-weight: 900;
+    font-size: 16pt;
+}
+
+.subseccion{
+    font-size: 12pt;
+    padding-left: 3vmin;
+    font-weight: 900;
+    padding-top: 3vmin;
+}
+
+.indentado{
+    padding-left: 3vmin;
+}
+
+.centrado{
+    font-size: 10pt;
+}
+
+.subenlace{
+    padding-left: 3vmin;
+}
+
+.indice a{
+    padding-top: 1vmin;
+    font-size: 12pt;
+    color: #563514;
+    text-decoration: none;
+
+}
+.indice a:hover{
+    text-decoration: underline;
+}
+.indice{
+    padding-left: 3vmin;
+    padding-top: 3vmin;
+}
+
+.seccion-subenlaces{
+    display:flex;
+    flex-direction: column;
+    padding-top: 1.6vmin;
+    padding-bottom: 1.6vmin;
+}
+@media (max-width: 768px) {
+    .fotoayuda{
+        flex-direction: column;
+    }
+    body{
+        overflow: hidden;
+    }
+}

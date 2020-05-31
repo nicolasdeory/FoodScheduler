@@ -59,6 +59,16 @@ $(function() {
         navigate("fridge.html");
     });
 
+    $("#help-button").click(() => 
+    {
+        navigate("ayuda.html");
+    });
+
+    $("#acc-button").click(() => 
+    {
+        navigate("myaccount.php");
+    });
+
     $.get("schedule.html", function(data) {
         $("#page-content").html(data);
         $("#page-loader").hide();
