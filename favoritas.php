@@ -93,3 +93,6 @@ $allRecipes = array_merge($saved, $userOwned);
         <?php } ?>
     </div>
 </div>
+<script>
+    window.attachEventsToRecipeCards();
+</script>
