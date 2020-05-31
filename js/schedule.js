@@ -117,6 +117,35 @@ if (!scheduleLoaded)
                         });
 
                     });
+
+                    $("#add-all-missing").off("click");
+                    $("#add-all-missing").click(() =>
+                    {
+                        var count = $(".missing-ingredient-list li").length;
+                        var i = 0;
+                        $(".missing-ingredient-list li").each(function()
+                        {
+                            const ingredId = $(this).attr("ingred-id");
+                            const ingredQty = $(this).attr("ingred-qty");
+                            const ingredMsr = $(this).attr("ingred-msr");
+                            $.get(`add_ingredient_qty.php?type=shoppinglist&id=${ingredId}&qty=${ingredQty}&qty-type=${ingredMsr}`,function()
+                            {
+                                if (i >= count - 1)
+                                {
+                                    $("#missing-ingredients-box").hide();
+                                    $("#campanacambiar").css("color", "");
+                                    $("#campanacambiar").text("notifications");
+                                }
+                                i++;
+                            })
+                            .fail(() =>
+                            {
+                                alert("Ha ocurrido un error apuntando el ítem seleccionado en la lista de la compra.");
+                            });
+
+                        });
+                    });
+
                 }
                 else
                 {

@@ -292,6 +292,7 @@ figure img {
     }
     .campana {
         padding-right: 2vmin;
+        cursor: pointer;
     }
     .espacio {
         width: 10vmin;
