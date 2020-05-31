@@ -15,7 +15,8 @@ var paso = document.getElementById('input-paso')
 
 //TODO COMPROBAR QUE ESTE TODO COMPLETADO
 
-$(document).ready(() => {
+$(document).ready(() =>
+{
     console.log("hola guapeton que quieres para comer hoy");
 
 
@@ -51,22 +52,25 @@ $(document).ready(() => {
         tipo = 1;
     });
 
-    $("#form-recipe").submit((e) => {
+    $("#form-recipe").submit((e) =>
+    {
         e.preventDefault();
         var ingred = [];
         var pasos = [];
-        $(".ingredientenew").each(function(index){
+        $(".ingredientenew").each(function (index)
+        {
             const ingred_name = $(this).children().find("input[name='input-name']").val();
             const ingred_qty = $(this).children().find("input[name='input-qty']").val();
             const ingred_qtyType = $(this).children().find("select[name='unidadDeMedida']").val();
-            ingred.push({name: ingred_name, qty: ingred_qty, qtyType: ingred_qtyType});
+            ingred.push({ name: ingred_name, qty: ingred_qty, qtyType: ingred_qtyType });
         });
 
-        $(".input-paso").each(function(index){
+        $(".input-paso").each(function (index)
+        {
             const text = $(this).val();
             pasos.push(text);
         });
-        
+
         var ingredsSanitized = []
         ingred.forEach((elm) =>
         {
@@ -89,17 +93,17 @@ $(document).ready(() => {
                 stepsSanitized.push(str);
             }
         });
-        
+
         console.log(ingredsSanitized);
         console.log(stepsSanitized);
 
         var formData = new FormData();
-        if($('#input-thumbnail').prop('files').length > 0)
+        if ($('#input-thumbnail').prop('files').length > 0)
         {
-            file =$('#input-thumbnail').prop('files')[0];
+            file = $('#input-thumbnail').prop('files')[0];
             formData.append("thumbnail", file);
         }
-        var name =  $("#input-nombre").val();
+        var name = $("#input-nombre").val();
         var time = $("#input-time").val();
         console.log("processing formData" + name + " " + time);
         formData.append("ingredients", JSON.stringify(ingredsSanitized));
@@ -112,16 +116,20 @@ $(document).ready(() => {
 
         $("#crear-receta").html(`<span class="material-icons iconocolumna loading-anim"> restaurant </span>`)
         $.ajax({
-                type: "POST",
-                url: "create_recipe.php",
-                processData: false,
-                contentType: false,
-                data: formData,
-                success: () => {
-                   navigate("favoritas.php");
-                }
-            })
-            .fail((data) => {
+            type: "POST",
+            url: "create_recipe.php",
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: () =>
+            {
+                navigate("favoritas.php");
+                $('.elemento').removeClass('elementoactivo');
+                $('#favorite-button').addClass('elementoactivo');
+            }
+        })
+            .fail((data) =>
+            {
                 $("#crear-receta").html(`Añadir Receta`);
                 alert("Ha ocurrido un error creando la receta.");
                 console.log(data);
