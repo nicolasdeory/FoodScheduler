@@ -14,21 +14,46 @@
   $usuario = view_user($userId);
   $nombre = $usuario['NOMBRE'];
   $imprimo = explode(" ", $nombre);
+  
+  
+  
 
-  $neededIngredients = get_needed_ingredients($_SESSION['login']);
-  if ($neededIngredients == false)
-  {
-      
-  } else 
-  {
-    
+
+  function campana(){
+    $neededIngredients = get_needed_ingredients($_SESSION['login']);
+    $missingIngreds = [];
+    foreach ($neededIngredients as $ingred) {
+      $qtyInFridge = get_quantity_in_fridge($_SESSION['login'], $ingred['ID_INGREDIENTE']);
+      $qtyInShopping = get_quantity_in_shopping($_SESSION['login'], $ingred['ID_INGREDIENTE']);
+      if ($qtyInFridge == false || $qtyInFridge < $ingred['CANTIDAD'])
+      {
+          if ($qtyInShopping == false || $qtyInShopping < ($ingred['CANTIDAD'] - $qtyInFridge))
+          {
+              $neededIngred = $ingred['CANTIDAD'] - $qtyInFridge;
+              if ($qtyInShopping && $qtyInShopping > 0)
+              {
+                  $toAddToShopping = $neededIngred - $qtyInShopping;
+              }
+              else 
+              {
+                  $toAddToShopping = $neededIngred;
+              }
+              $ingred['CANTIDAD'] = $toAddToShopping;
+              array_push($missingIngreds, $ingred);
+          }
+      }
   }
+  return $missingIngreds;
+  }
+  
 ?>
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -60,7 +85,17 @@
           <p>Planificador Alimenticio</p>
         </div>
         <div class="espacio"> </div>
-        <span id="campanacambiar" class="material-icons campana">notifications</span>
+        <?php
+          
+        $missingIngreds = campana();
+        
+        if ($missingIngreds == false || count($missingIngreds)==0){ 
+            ?> <span id="campanacambiar" class="material-icons campana">notifications</span> <?php
+        } else {
+            ?> <span id="campanacambiar" style= "color: red;" class="material-icons campana">notifications_active</span> <?php
+         }
+          ?>
+        
       </div>
     </div>
     <div class="partederechamenu">

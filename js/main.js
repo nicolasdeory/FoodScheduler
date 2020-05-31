@@ -84,6 +84,15 @@ $(function() {
 
     });
 
+    $("#campanacambiar").click(() =>
+    {
+        navigate("schedule.html")
+        $('.elemento').removeClass('elementoactivo');
+        $('#schedule-button').addClass('elementoactivo');
+        window.location.reload();
+    });
+
+
     $("#help-button").click(() => 
     {
         navigate("ayuda.html");
