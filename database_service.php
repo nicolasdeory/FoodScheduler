@@ -196,7 +196,8 @@ function view_saved($nombreUsuario)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT recetas.id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetasfavoritas JOIN recetas ON recetasfavoritas.id_receta = recetas.id_receta WHERE recetasfavoritas.nombredeusuario = :nombreUsuario";
+		$consulta = "SELECT recetas.id_receta, nombre, tiempoelaboracion, popularidad, dificultad FROM recetasfavoritas JOIN recetas ON recetasfavoritas.id_receta = recetas.id_receta 
+			WHERE recetasfavoritas.nombredeusuario = :nombreUsuario AND recetas.nombredeusuario != :nombreUsuario";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':nombreUsuario', $nombreUsuario);
 		$stmt->execute();
