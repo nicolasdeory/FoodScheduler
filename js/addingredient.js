@@ -37,7 +37,7 @@ $(document).ready(function () {
         <div class="texto-antes" id="row`+ i + `">
             <p>Paso número: _</p>
         </div>
-        <input class="input-paso" type="text" placeholder="Describe cómo realizar este paso">
+        <textarea class="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
     </div>`;
 
 
@@ -58,7 +58,7 @@ $(document).ready(function () {
         console.log("Tenemos "+i+" contenedores");
         $('#contenedorpasos').append(STEP_HTML);
     });
-    
+
     $(document).on('click', '#quitarpaso', function () {  
     
         if($("#contenedorpasos").children().length > 1) {

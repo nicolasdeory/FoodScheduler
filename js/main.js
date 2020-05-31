@@ -9,6 +9,7 @@ if (!String.prototype.format) {
     };
 }
 
+
 function navigate(url)
     {
         lastUrl = currentUrl;
@@ -42,26 +43,45 @@ $(function() {
     $("#schedule-button").click(() => 
     {
         navigate("schedule.html");
+        $('.elemento').removeClass('elementoactivo');
+        $('#schedule-button').addClass('elementoactivo');
+
+
     });
 
     $("#search-button").click(() => 
     {
         navigate("busqueda.php");
+        $('.elemento').removeClass('elementoactivo');
+        $('#search-button').addClass('elementoactivo');
+        
+        
     });
 
     $("#favorite-button").click(() => 
     {
         navigate("favoritas.php");
+        $('.elemento').removeClass('elementoactivo');
+        $('#favorite-button').addClass('elementoactivo');
+       
     });
 
     $("#fridge-button").click(() => 
     {
         navigate("fridge.html");
+        $('.elemento').removeClass('elementoactivo');
+        $('#fridge-button').addClass('elementoactivo');
+
+
     });
 
     $("#create-button").click(() => 
     {
         navigate("createrecipe.php");
+        $('.elemento').removeClass('elementoactivo');
+        $('#create-button').addClass('elementoactivo');
+
+
     });
 
     $.get("schedule.html", function(data) {

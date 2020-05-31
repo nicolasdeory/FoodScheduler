@@ -23,9 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     insert_recipe($receta['nombre'], $receta['ingrediente'], $receta['paso']);
 
-    foreach($receta['ingrediente'] as $ingrediente){
+    foreach ($receta['ingrediente'] as $ingrediente) {
         insert_ingredient($ingrediente);
-
     }
 }
 
@@ -103,21 +102,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     </div>
                     <div class="texto-antes">
-                        <p>¿Es pública la receta?</p>
+                        <p>Duración de la receta</p>
                     </div>
-                    <div class="publica">
-                        <form action="">
-                            <input class="input-pub" name="type" id="public" type="radio" value="1" placeholder="Pública" checked>
-                            <label class="input-pub" for="public">Pública</label>
-                            <input class="input-pub" name="type" id="private" type="radio" value="2" placeholder="Privada">
-                            <label class="input-pub" for="public">Privada</label><br>
-
-                        </form>
-
-
-
-
+                    <div class="comidanew">
+                        <div class="icon1">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <input type="text" placeholder="Tiempo (minutos)" id="input-time" class="input-nombre"></input>
                     </div>
+
                 </div>
                 <div class="addplusicons">
                     <div class="contenedornewingredientes" id="contenedornewingredientes">
@@ -159,27 +152,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="abajo">
-                <div class="botonnew">
-                    <button class="buttonnew" type="button" id="crear-receta">
-                        Añadir Receta
-                    </button>
+                <div class="abajo-izq">
+                    <div class="type">
+                        <div class="texto-antes">
+                            <p>¿Es pública la receta?</p>
+                        </div>
+                        <div class="publica">
+                            <form action="">
+                                <input class="input-pub" name="type" id="public" type="radio" value="1" placeholder="Pública" checked>
+                                <label class="input-pub" for="public">Pública</label>
+                                <input class="input-pub" name="type" id="private" type="radio" value="2" placeholder="Privada">
+                                <label class="input-pub" for="public">Privada</label><br>
+
+                            </form>
+                        </div>
+
+
+
+                    </div>
+                    <div class="botonnew">
+                        <button class="buttonnew" type="button" id="crearreceta">
+                            Añadir Receta
+                        </button>
+                    </div>
                 </div>
 
                 <div class="addplusicons">
-                <div class="contenedorpasos" id="contenedorpasos">
-                    <div class="paso">
-                        <div class="texto-antes">
-                            <p>Paso número: 1</p>
+                    <div class="contenedorpasos" id="contenedorpasos">
+                        <div class="paso">
+                            <div class="texto-antes">
+                                <p>Paso número: 1</p>
+                            </div>
+                            <textarea class="input-paso" id="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
                         </div>
-                        <input class="input-paso" id="input-paso" type="text" placeholder="Describe cómo realizar este paso">
-                    </div>
 
-                </div>
-                <div class="agregaringrediente">
+                    </div>
+                    <div class="agregaringrediente">
                         <button class="newstep" type="button" id="nuevopaso"><span class="material-icons">add_circle_outline</span></button>
                         <button class="lessstep" type="button" id="quitarpaso"><span class="material-icons">remove_circle_outline</span></button>
                     </div>
-            </div>
+                </div>
             </div>
 
 

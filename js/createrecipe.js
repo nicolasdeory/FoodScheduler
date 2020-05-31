@@ -13,9 +13,11 @@ var unidad = document.getElementById('input-unidad');
 var paso = document.getElementById('input-paso')
 
 
-
+//TODO COMPROBAR QUE ESTE TODO COMPLETADO
 
 $(document).ready(() => {
+    console.log("hola guapeton que quieres para comer hoy");
+
 
     $("#star1").click(() =>
     {
@@ -49,27 +51,34 @@ $(document).ready(() => {
         tipo = 1;
     })
 
+    $("#crearreceta").click(() =>
+    {
+                console.log("Clicamos en el botón");
+    })
+
 
     $("#form-recipe").submit((e) => {
-        e.preventDefault();
-        $("#enviar").html(`<span class="material-icons iconocolumna loading-anim"> restaurant </span>`)
+        // e.preventDefault();
+        // $("#crearreceta").html(`<span class="material-icons iconocolumna loading-anim"> restaurant </span>`);
         $.ajax({
                 type: "POST",
                 url: "index.php",
                 data: {
-                    user: $("#user").val(),
-                    pass: $("#pass").val()
+                    nombre: $("#input-nombre").val(),
+                    dif,
+                    tipo,
+                    ingrediente: $("#input-ingrediente").val(),
+                    cantidad: $("#input-cantidad").val(),
+                    unidad: $("#input-unidad").val(),
+                    paso: $("#input-paso").val()
                 },
                 success: () => {
-                    window.location.href = "dashboard.php";
+                   navigate("dashboard.php");
                 }
             })
             .fail((data) => {
-                $("#enviar").html(`Entrar`)
+                $("#crear-receta").html(`Entrar`)
                 console.log(data);
-                if (data.responseText == 'wrong pass') {
-                    alert("Usuario o contraseña incorrectos.");
-                }
             });
     });
 });
