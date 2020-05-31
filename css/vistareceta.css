@@ -218,6 +218,29 @@ figure img {
 .campana 
 {
     cursor: pointer;
+    transform-origin: 50% 50%;
+}
+
+.campana:hover {
+    animation: campanaWiggle ease 0.3s;
+}
+
+@keyframes campanaWiggle 
+{
+    20%
+    {
+        transform: rotate(-15deg);
+    }
+
+    50%
+    {
+        transform: rotate(15deg);
+    }
+
+    100%
+    {
+        transforM: rotate(0deg)
+    }
 }
 
 .tiempo-dificultad {
@@ -302,6 +325,7 @@ figure img {
     }
     .campana {
         padding-right: 2vmin;
+        transform-origin: 30% 50%;
     }
     .espacio {
         width: 10vmin;
