@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var i = 1;
+    
 
     var INGREDIENT_HTML = `<div class="ingredientenuevo" id="columna`+i+`">
     
@@ -31,19 +31,13 @@ $(document).ready(function () {
     </div>
 </div>`;
 
+var i=1;
 
 
-    var STEP_HTML = `<div class="paso">
-        <div class="texto-antes" id="row`+ i + `">
-            <p>Paso número: _</p>
-        </div>
-        <textarea class="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
-    </div>`;
+    
 
 
     $('#nuevoing').click(function () {
-        i++;
-        console.log("Tenemos "+i+" contenedores");
         $('#contenedornewingredientes').append(INGREDIENT_HTML);
     });
     $(document).on('click', '#quitaring', function () {  
@@ -56,16 +50,30 @@ $(document).ready(function () {
     $('#nuevopaso').click(function () {
         i++;
         console.log("Tenemos "+i+" contenedores");
+        STEP_HTML = `<div class="paso">
+        <div class="texto-antes" id="row`+i+`">
+            <p>Paso número: `+ i+ `</p>
+        </div>
+        <textarea class="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
+    </div>`;
         $('#contenedorpasos').append(STEP_HTML);
+        
     });
 
     $(document).on('click', '#quitarpaso', function () {  
     
         if($("#contenedorpasos").children().length > 1) {
             $("#contenedorpasos > :last-child").remove();
+            i--;
         }
     });
+    
 
-
-
+    var STEP_HTML = `<div class="paso">
+        <div class="texto-antes" id="row`+i+`">
+            <p>Paso número: `+ i+ `</p>
+        </div>
+        <textarea class="input-paso" type="text" placeholder="Describe cómo realizar este paso"></textarea>
+    </div>`;
+    
 });  

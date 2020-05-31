@@ -135,8 +135,13 @@ html{
     }
 
     .newing, .newstep, .lessing, .lessstep{
-        height: 30%;
+        height: 50px;
+        margin-top: 15px;
         width: 70%;
+        border-radius: 30px;
+        border: solid 2px #563514;
+        color: #563514;
+        background-color: #f0e2d3;
     }
     
 
@@ -441,7 +446,7 @@ html{
 
         .botonnew{
             align-items: center;
-            width: 100%;
+            width: 250px;
             height: 230px;
         }
         .buttonnew{
@@ -455,6 +460,16 @@ html{
         .agregaringrediente{
             height: 100%;
         }
+        .type{
+            height: 100%;
+            width: 315px;
+        }
 
+        .abajo-izq{
+            display: flex;
+            flex-direction: row;
+            height: 170px;
+            width: 100%;
+        }
 
       }
