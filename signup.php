@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
     else if ($regResult == "unique")
     {
-      echo "<div class='error-reg'>Ya existe un usuario registrado con esos datos.</div>";
+      echo "<div class='error-reg'>Ya existe un usuario registrado con el mismo nombre de usuario o correo electrónico.</div>";
     } 
     else 
     {
@@ -119,7 +119,7 @@ function test_input($data)
 
     <!--Formulario de Registro-->
     <div class="formReg">
-      <form method="post" name="formReg" id="formReg">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" name="formReg" id="formReg" onsubmit="return validaFormRegistro()">
 
 
         <input type="text" name="nombre" placeholder="Nombre" id="nombre" value="<?php echo $nombre; ?>">

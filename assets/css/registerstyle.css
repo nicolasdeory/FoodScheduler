@@ -89,4 +89,6 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Muli;
+    text-align: center;
+    padding: 10px;
 }
