@@ -99,7 +99,7 @@
         if ($missingIngreds == false || count($missingIngreds)==0){ 
             ?> <span id="campanacambiar" class="material-icons campana">notifications</span> <?php
         } else {
-            ?> <span id="campanacambiar" style= "color: red;" class="material-icons campana">notifications_active</span> <?php
+            ?> <span id="campanacambiar" style= "color: red;" class="material-icons campana campana-active">notifications_active</span> <?php
          }
           ?>
         

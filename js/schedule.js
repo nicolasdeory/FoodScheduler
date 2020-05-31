@@ -135,6 +135,7 @@ if (!scheduleLoaded)
                                     $("#missing-ingredients-box").hide();
                                     $("#campanacambiar").css("color", "");
                                     $("#campanacambiar").text("notifications");
+                                    $("#campanacambiar").removeClass("campana-active");
                                 }
                                 i++;
                             })

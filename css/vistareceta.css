@@ -221,7 +221,7 @@ figure img {
     transform-origin: 50% 50%;
 }
 
-.campana:hover {
+.campana-active:hover {
     animation: campanaWiggle ease 0.3s;
 }
 
