@@ -107,8 +107,8 @@
     </div>
     <div class="partederechamenu">
       <p> Hola, <?php echo $imprimo[0] ?> </p>
-      <p id="acc-button"> Mi cuenta </p>
-      <p id="help-button"> Ayuda </p>
+      <p id="acc-button"><a>Mi cuenta</a></p>
+      <p id="help-button"><a>Ayuda</a></p>
       <p><a href="logout.php">Salir</a></p>
     </div>
   </div>

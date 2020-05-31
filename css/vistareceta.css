@@ -16,12 +16,17 @@ body {
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    transition: 0.2s;
+    transition: 0.1s;
     padding: 5px;
 }
 
 .menu a:hover {
     background-color: #5635141f;
+}
+
+.menu a:active {
+    background-color: #563514;
+    color: white;
 }
 
 
