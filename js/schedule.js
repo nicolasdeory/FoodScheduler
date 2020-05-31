@@ -25,6 +25,17 @@ if (!scheduleLoaded)
     $(function() {
     
         function retrieveSchedule(mondayDate) {
+            var today = new Date();
+            var diff = today - mondayDate;
+            console.log(diff);
+            if (diff > 0 && diff <= 7*24*3600*1000)
+            {
+                // highlight the relevant day
+                console.log("hi");
+                var day = Math.floor(diff / (24*3600*1000));
+                console.log(day);
+                $(`#day-container :nth-child(${day+1}`).addClass("selected");
+            }
             var sundayDate = mondayDate.addDays(6);
             var mondayDateDay = mondayDate.getDate().toString();
             var sundayDateDay = sundayDate.getDate().toString();

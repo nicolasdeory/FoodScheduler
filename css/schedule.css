@@ -51,6 +51,10 @@
     transition: 0.15s;
 }
 
+#day-container span.selected {
+    text-decoration: underline;
+}
+
 .schedule-table {
     outline: solid 1px #e132321a;
     outline-offset: 10px;
