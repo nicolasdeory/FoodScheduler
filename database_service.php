@@ -85,6 +85,72 @@ function view_recipe($recetaId)
 	}
 }
 
+function create_recipe($username, $name, $dif, $visibility, $time, $ingredients, $steps)
+{
+	$conexion = Database::instance();
+	if (!$conexion)
+		echo "Ha ocurrido un error conectando con la base de datos";
+
+	try {
+
+		// Insert into recetas
+		$consulta = "INSERT INTO recetas VALUES (S_RECETAS.nextval, :nombre, :tiempo, :dificultad, 1, :visible, :username)
+			RETURNING id_receta INTO :inserted_id";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->bindParam(':username', $username);
+		$stmt->bindParam(':nombre', $name);
+		$stmt->bindParam(':tiempo', $time);
+		$stmt->bindParam(':visible', $visibility);
+		$stmt->bindParam(':dificultad', $dif);
+		$recipeId = -1;
+		$stmt->bindParam('inserted_id', $recipeId, PDO::PARAM_INT, 8);
+		$stmt->execute();
+		if ($recipeId == -1)
+		{
+			echo "recipeId was -1 in insert";
+			return false;
+		}
+		// Insert into cantidadesingredientes
+		foreach ($ingredients as $ingred) {
+
+			// Get ingred id and add it if it doesn't exist
+			$consulta = "SELECT id_ingrediente from ingredientes WHERE UPPER(nombre) = UPPER(:ingred_name)";
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':ingred_name', $ingred['name']);
+			$stmt->execute();
+			$id_ingred = $stmt->fetchColumn();
+			if (!$id_ingred) {
+				// if it doesn't exist, add it
+				$id_ingred = add_ingredient($ingred['name']);
+			}
+			$consulta = "INSERT INTO cantidadesingredientes VALUES (S_CANTIDADESINGREDIENTES.nextval, :id_receta, :id_ingred, :qty, :qty_type)";
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':id_receta', $recipeId);
+			$stmt->bindParam(':id_ingred', $id_ingred);
+			$stmt->bindParam(':qty', $ingred['qty']);
+			$stmt->bindParam(':qty_type', $ingred['qtyType']);
+			$stmt->execute();
+		}
+		
+		// Insert into pasos
+		$i = 0;
+		foreach ($steps as $step) {
+
+			$consulta = "INSERT INTO pasos VALUES (S_PASOS.nextval, :num, :id_receta, :descripcion)";
+			$stmt = $conexion->prepare($consulta);
+			$stmt->bindParam(':num', $i);
+			$stmt->bindParam(':id_receta', $recipeId);
+			$stmt->bindParam(':descripcion', $step);
+			$stmt->execute();
+			$i++;
+		}
+		return $recipeId;
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		return false;
+	}
+}
+
 function view_ingredients($recetaId)
 {
 	$conexion = Database::instance();

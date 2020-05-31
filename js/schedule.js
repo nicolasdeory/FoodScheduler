@@ -56,8 +56,8 @@ if (!scheduleLoaded)
                     const differenceInDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
                     if (differenceInDays < 0 || differenceInDays > 7) return;
                     const mealId = schd.COMIDA == "Almuerzo" ? 0 : 1;
-                    $(`#schd-${differenceInDays}${mealId}`).append(RECIPE_TEMPLATE.format(schd.ID_RECETA, schd.NOMBRE));
-                    $(`#schd-${differenceInDays}${mealId} li`).click(function()
+                    var elem = $(RECIPE_TEMPLATE.format(schd.ID_RECETA, schd.NOMBRE)).appendTo(`#schd-${differenceInDays}${mealId}`);
+                    $(elem).click(function()
                     {
                         navigate("vistareceta.php?id=" + schd.ID_RECETA);
                     });

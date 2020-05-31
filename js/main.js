@@ -77,7 +77,7 @@ $(function() {
 
     $("#create-button").click(() => 
     {
-        navigate("createrecipe.php");
+        navigate("create_recipe.php");
         $('.elemento').removeClass('elementoactivo');
         $('#create-button').addClass('elementoactivo');
 

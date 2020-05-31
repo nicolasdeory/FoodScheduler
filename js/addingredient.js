@@ -42,7 +42,7 @@ $(document).ready(function ()
     {
         $('#contenedornewingredientes').append(INGREDIENT_HTML);
     });
-    $(document).on('click', '#quitaring', function ()
+    $("#quitaring").click(function ()
     {
 
         if ($("#contenedornewingredientes").children().length > 1)
@@ -65,7 +65,7 @@ $(document).ready(function ()
 
     });
 
-    $(document).on('click', '#quitarpaso', function ()
+    $("#quitarpaso").click(function ()
     {
 
         if ($("#contenedorpasos").children().length > 1)
