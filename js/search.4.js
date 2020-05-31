@@ -50,9 +50,9 @@ if (!busquedaLoaded)
                     <div class="btn-date">Fecha</div>
                     <input type="date" name="schd-date" required></input>
                     <div class="btn-date">
-                        <input type="radio" name="schd-meal" value="Almuerzo" required>
+                        <input type="radio" id="schd-mean-comida" name="schd-meal" value="Almuerzo" required>
                         <label for="schd-mean-comida">Almuerzo</label>
-                        <input type="radio" name="schd-meal" value="Cena" required>
+                        <input type="radio" id="schd-mean-cena" name="schd-meal" value="Cena" required>
                         <label for="schd-mean-cena">Cena</label>
                     </div>
                     <div class="boton add-to-schd-submit">
