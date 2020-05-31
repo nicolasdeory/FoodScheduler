@@ -62,6 +62,7 @@ if (!scheduleLoaded)
                         $.get(`delete_schedule.php?date=${schdDateFormatted}&meal=${schd.COMIDA}`, function()
                         {
                             retrieveSchedule(currentMonday);
+                            retrieveMissingIngredients(new Date());
                         }).fail(() =>
                         {
                             alert("Ha ocurrido un error borrando la planificación que has especificado.")
@@ -78,6 +79,7 @@ if (!scheduleLoaded)
     
         function retrieveMissingIngredients(mondayDate) {
     
+            $("#missing-ingredients-ul").empty();
             $.get(`./missing_ingredients.php`, (ingredients) => {
                 if (ingredients.length > 0)
                 {
@@ -88,6 +90,22 @@ if (!scheduleLoaded)
                         let uniqueRecipesStr = uniqueRecipes.join(", ");
                         var ingredientHTML = MISSING_INGREDIENT_TEMPLATE.format(ing.ID_INGREDIENTE,ing.CANTIDAD,ing.UNIDADDEMEDIDA,ing.NOMBRE,uniqueRecipesStr);
                         $("#missing-ingredients-ul").append(ingredientHTML)
+                    });
+
+                    $(".missing-ingredient-list li").click(function()
+                    {
+                        const ingredId = $(this).attr("ingred-id");
+                        const ingredQty = $(this).attr("ingred-qty");
+                        const ingredMsr = $(this).attr("ingred-msr");
+                        $.get(`add_ingredient_qty.php?type=shoppinglist&id=${ingredId}&qty=${ingredQty}&qty-type=${ingredMsr}`,function()
+                        {
+                            retrieveMissingIngredients(new Date());
+                        })
+                        .fail(() =>
+                        {
+                            alert("Ha ocurrido un error apuntando el ítem seleccionado en la lista de la compra.");
+                        });
+
                     });
                 }
                 else
@@ -160,7 +178,7 @@ if (!scheduleLoaded)
         currentMonday.setDate(currentMonday.getDate() - (currentMonday.getDay() + 6) % 7);
         retrieveSchedule(currentMonday);
     
-        retrieveMissingIngredients(currentMonday);
+        retrieveMissingIngredients(new Date());
     
         setDayHeaderPositions();
         setTimeout(setDayHeaderPositions, 150);

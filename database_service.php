@@ -415,7 +415,7 @@ function get_quantity_in_fridge($username, $id_ingrediente)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT cantidad INTO cantidadEnNevera FROM itemsEnNevera
+		$consulta = "SELECT cantidad FROM itemsEnNevera
 		WHERE nombreDeUsuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
@@ -436,16 +436,16 @@ function get_quantity_in_shopping($username, $id_ingrediente)
 		echo "Ha ocurrido un error conectando con la base de datos";
 
 	try {
-		$consulta = "SELECT cantidad INTO cantidadEnLista FROM itemsEnListaCompra
+		$consulta = "SELECT cantidad FROM itemsEnListaCompra
 		WHERE nombreDeUsuario = :username AND id_ingrediente = :id_ingred";
 		$stmt = $conexion->prepare($consulta);
 		$stmt->bindParam(':username', $username);
 		$stmt->bindParam(':id_ingred', $id_ingrediente);
 		$stmt->execute();
-		$qtyInFridge = $stmt->fetchColumn();
-		return $qtyInFridge;
+		$qtyInShopping = $stmt->fetchColumn();
+		return $qtyInShopping;
 	} catch (PDOException $e) {
-		//echo $e->getMessage();
+		echo $e->getMessage();
 		return false;
 	}
 }

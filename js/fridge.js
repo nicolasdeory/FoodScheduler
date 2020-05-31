@@ -75,7 +75,7 @@ if (!loaded)
             const ingredId = $(parentNode).attr("ingred-id");
 
             var oneDone = false;
-            $.get(`add_ingredient_qty.php?type=fridge&name=${name}&qty=${qty}&qty-type=${qtyType}`, () =>
+            $.get(`add_ingredient_qty.php?type=fridge&id=${ingredId}&qty=${qty}&qty-type=${qtyType}`, () =>
             {
                 if (oneDone)
                 {
