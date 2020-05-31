@@ -335,6 +335,11 @@ html {
 }
 
 /* Star CSS */
+
+.star-filled {
+  background-image: url("../icons/star.png") !important;
+}
+
 .txt-center {
   text-align: center;
 }

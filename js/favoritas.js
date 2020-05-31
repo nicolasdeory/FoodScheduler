@@ -5,6 +5,42 @@ if (!favoritasLoaded)
 
         window.attachEventsToRecipeCards();
 
+        $(".result").each(function()
+        {
+            var dificultad = $(this).children().find(".rating .text").text().trim();
+            console.log(dificultad);
+            switch (dificultad)
+            {
+                case "Sencillo":
+                    console.log("haols");
+                    $(this).children().find(".rating :nth-child(5)").addClass("star-filled");
+                    break;
+                case "Fácil":
+                    $(this).children().find(".rating :nth-child(5)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(4)").addClass("star-filled");
+                    break;
+                case "Medio":
+                    $(this).children().find(".rating :nth-child(5)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(4)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(3)").addClass("star-filled");
+                    break;
+                case "Difícil":
+                    $(this).children().find(".rating :nth-child(5)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(4)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(3)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(2)").addClass("star-filled");
+                    break;
+                case "Muy Difícil":
+                    $(this).children().find(".rating :nth-child(5)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(4)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(3)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(2)").addClass("star-filled");
+                    $(this).children().find(".rating :nth-child(1)").addClass("star-filled");
+                    break;
+
+            }
+        });
+
         $(".likeicon span").click(function()
         {
             var favText = $(this).text().trim();

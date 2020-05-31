@@ -98,6 +98,36 @@ if (!busquedaLoaded)
                     var appendedElem = $(RECIPE_HTML.format(x.ID_RECETA, x.NOMBRE, x.POPULARIDAD, 
                         x.TIEMPOELABORACION, x.DIFICULTAD, favString)).appendTo("#contenedor");
 
+                    switch (x.DIFICULTAD)
+                    {
+                        case "Sencillo":
+                            $(appendedElem).children().find(".rating :nth-child(5)").addClass("star-filled");
+                            break;
+                        case "Fácil":
+                            $(appendedElem).children().find(".rating :nth-child(5)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(4)").addClass("star-filled");
+                            break;
+                        case "Medio":
+                            $(appendedElem).children().find(".rating :nth-child(5)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(4)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(3)").addClass("star-filled");
+                            break;
+                        case "Difícil":
+                            $(appendedElem).children().find(".rating :nth-child(5)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(4)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(3)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(2)").addClass("star-filled");
+                            break;
+                        case "Muy Difícil":
+                            $(appendedElem).children().find(".rating :nth-child(5)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(4)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(3)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(2)").addClass("star-filled");
+                            $(appendedElem).children().find(".rating :nth-child(1)").addClass("star-filled");
+                            break;
+
+                    }
+                        
                     $(appendedElem).children().find(".likeicon span").click(function()
                     {
                         var favText = $(this).text().trim();
