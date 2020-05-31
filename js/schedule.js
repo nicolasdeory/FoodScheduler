@@ -27,7 +27,7 @@ if (!scheduleLoaded)
         function retrieveSchedule(mondayDate) {
             var today = new Date();
             var diff = today - mondayDate;
-            console.log(diff);
+            $(`#day-container span`).removeClass("selected");
             if (diff > 0 && diff <= 7*24*3600*1000)
             {
                 // highlight the relevant day
