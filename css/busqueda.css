@@ -373,7 +373,7 @@ html {
   overflow-x: hidden;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .contenidodelaweb {
     display: flex;
     flex-direction: column;
@@ -385,12 +385,6 @@ html {
     justify-content: center;
     align-items: center;
   }
-
-  .busqueda .title,
-  .busqueda .subtitle {
-    text-indent: 10%;
-  }
-
   .line {
     padding-left: 10%;
   }
@@ -403,4 +397,5 @@ html {
   .result {
     margin: 2.5%;
   }
+
 }

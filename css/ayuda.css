@@ -76,7 +76,7 @@
     padding-top: 1.6vmin;
     padding-bottom: 1.6vmin;
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .fotoayuda{
         flex-direction: column;
     }

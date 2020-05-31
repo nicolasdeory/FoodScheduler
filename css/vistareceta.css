@@ -250,7 +250,7 @@ figure img {
     width: 2vmin;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     /*ESTILOS DE LA BARRA DEL MENÚ */
     .burger {
         display: flex;
