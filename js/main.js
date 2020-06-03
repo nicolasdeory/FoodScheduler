@@ -14,6 +14,7 @@ if (!String.prototype.format)
 
 function attachEventsToRecipeCards()
 {
+    $(".recipetitle").off('click');
     $(".recipetitle").click(function ()
     {
         const recipeId = $(this).parents().eq(3).attr("recipe-id");
@@ -30,6 +31,8 @@ function attachEventsToRecipeCards()
     {
         $(this).parents().eq(2).removeClass("adding-schd");
     });
+
+    $(".add-to-schedule-prompt form").off('submit');
 
     $(".add-to-schedule-prompt form").submit(function (e) 
     {

@@ -165,7 +165,7 @@ if (!busquedaLoaded)
                     });
 
                     processedI++;
-                    if (processedI >= data.length - 1) 
+                    if (processedI > data.length - 1) 
                     {
                         attachListeners();
                     }
