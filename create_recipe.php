@@ -61,7 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // now you have access to the file being uploaded
         //perform the upload operation.
-        move_uploaded_file($file, "images/photo" . $recipeId . ".jpg");
+        if (isset($API_USER_LOGIN))
+        {
+            move_uploaded_file($file, "../images/photo" . $recipeId . ".jpg");
+        }
+        else 
+        {
+            move_uploaded_file($file, "images/photo" . $recipeId . ".jpg");
+        }
+        
         echo '"ok"';
         die;
     } else {
