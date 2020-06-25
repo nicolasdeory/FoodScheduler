@@ -9,30 +9,44 @@ $(document).ready(() => {
         if (title.indexOf("POST") >= 0)
         {
             // post request
+            $.ajax(
+            {
+                type: "POS",
+                url: `./api${url}`,
+                dataType: "text",
+                data: "...",
+                beforeSend: function (xhr){ 
+                    xhr.setRequestHeader('Authorization', authHeaderValue); 
+                },
+                success: function (data, textStatus, xhr){
+                    $("#status").text(xhr.status + " OK");
+                    $("#jsonoutput").val(data);
+                }
+            }).fail(function(xhr, textStatus)
+            {
+                $("#status").text(xhr.status + " " + xhr.statusText);
+            });
         }
         else
         {
             // get request
-            $.ajax
-                ({
+            $.ajax(
+            {
                 type: "GET",
                 url: `./api${url}`,
                 dataType: "text",
                 beforeSend: function (xhr){ 
                     xhr.setRequestHeader('Authorization', authHeaderValue); 
                 },
-                data: '{ "comment" }',
                 success: function (data, textStatus, xhr){
                     $("#status").text(xhr.status + " OK");
                     $("#jsonoutput").val(data);
                 }
-                }).fail(function(xhr, textStatus)
-                {
-                    $("#status").text(xhr.status + " " + xhr.statusText);
-                });
-
-        }
-        
+            }).fail(function(xhr, textStatus)
+            {
+                $("#status").text(xhr.status + " " + xhr.statusText);
+            });
+        }  
     });
 
     var authHeaderValue = "";
