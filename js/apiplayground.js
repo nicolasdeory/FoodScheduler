@@ -3,6 +3,36 @@ $(document).ready(() => {
     $("button").click(function(e)
     {
         e.preventDefault();
+        let title = $(this).parents().eq(1).find("h3").text();
+        console.log(title);
+        let url = title.replace("GET ", "").replace("POST ", "");
+        if (title.indexOf("POST") >= 0)
+        {
+            // post request
+        }
+        else
+        {
+            // get request
+            $.ajax
+                ({
+                type: "GET",
+                url: `./api${url}`,
+                dataType: "text",
+                beforeSend: function (xhr){ 
+                    xhr.setRequestHeader('Authorization', authHeaderValue); 
+                },
+                data: '{ "comment" }',
+                success: function (data, textStatus, xhr){
+                    $("#status").text(xhr.status + " OK");
+                    $("#jsonoutput").val(data);
+                }
+                }).fail(function(xhr, textStatus)
+                {
+                    $("#status").text(xhr.status + " " + xhr.statusText);
+                });
+
+        }
+        
     });
 
     var authHeaderValue = "";
