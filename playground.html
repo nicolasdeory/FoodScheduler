@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/vistareceta.css">
+  <link rel="stylesheet" type="text/css" href="css/playground.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,700,800,900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/2797f66cfb.js" crossorigin="anonymous"></script>
+  <script
+        src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+        crossorigin="anonymous"></script>
+
+  <script src="js/apiplayground.js"></script>
+</head>
+
+<body>
+
+  <div class="menu">
+    <div class="izquierda">
+      <div class="burger"> <span class="material-icons toggle">menu</span></div>
+      <div class="derechatitulo">
+        <div class="titulo">
+          <p>API Playground</p>
+        </div>
+        <div class="espacio"> </div>        
+      </div>
+    </div>
+    <div class="partederechamenu"><p></p>
+      <p><a href="./">Back to webapp</a></p>
+    </div>
+  </div>
+
+  <div class="centro">
+    <div id="page-content" class="contenidodelaweb">
+      <div class="flex">
+        <div>
+          <h2>base url - /api</h2>
+          <h1>auth</h1>
+          <form id="authform">
+            <label>username</label>
+            <input id="user">
+            <br>
+            <label>password</label>
+            <input type="password" id="password">
+            
+            <br><br>
+            <label>Auth Header</label>
+            <p class="test-url" id="authheader">Authorization: Basic ...</p>
+          </form>
+         
+    
+          <h1>recipe</h1>
+    
+          <div class="tester-div">
+            <h3>GET /searchrecipe.php</h3>
+            <form>
+              <label>nombre</label>
+              <input type="text" param-name="nombre">
+              <label>ingrediente</label>
+              <input type="text" param-name="ingrediente">
+              <label>dificultad</label>
+              <input type="text" param-name="dificultad">
+              <br>
+              <label>Test URL</label>
+              <p class="test-url">/searchrecipe.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <div class="tester-div">
+            <h3>GET /add_favorite.php</h3>
+            <form>
+              <label>id</label>
+              <input type="text" param-name="id">
+              <br>
+              <label>Test URL</label>
+              <p class="test-url">/add_favorite.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <div class="tester-div">
+            <h3>GET /remove_favorite.php</h3>
+            <form>
+              <label>id</label>
+              <input type="text" param-name="id">
+              <br>
+              <label>Test URL</label>
+              <p class="test-url">/remove_favorite.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <div class="tester-div">
+            <h3>GET /is_favorited.php</h3>
+            <form>
+              <label>id</label>
+              <input type="text" param-name="id">
+              <br>
+              <label>Test URL</label>
+              <p class="test-url">/is_favorited.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <div class="tester-div">
+            <h3>POST /create_recipe.php</h3>
+            <form>
+              <label>thumbnail</label>
+              <input type="file" param-name="thumbnail">
+              <br>
+              <label>nombre</label>
+              <input type="text" param-name="nombre">
+              <br>
+              <label>dif</label>
+              <input type="text" param-name="dif">
+              <br>
+              <label>visibility</label>
+              <input type="text" param-name="visibility">
+              <br>
+              <label>ingredients</label>
+              <input type="text" param-name="ingredients">
+              <br>
+              <label>steps</label>
+              <input type="text" param-name="steps">
+              <br>
+              <label>tiempo</label>
+              <input type="text" param-name="tiempo">
+              <br>
+              <label>Test body</label>
+              <p class="test-url">(multipart form - representation unavailable)</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <h1>schedule</h1>
+    
+          <div class="tester-div">
+            <h3>GET /schedule.php</h3>
+            <form>
+              <p class="test-url">/schedule.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+          <div class="tester-div">
+            <h3>POST /add_schedule.php</h3>
+            <form>
+              <label>id</label>
+              <input type="text" param-name="id">
+              <br>
+              <label>date</label>
+              <input type="text" param-name="date">
+              <br>
+              <label>meal</label>
+              <input type="text" param-name="meal">
+              <br>
+              <label>Test body</label>
+              <p class="test-url">no parameters given</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <h1>inventory</h1>
+    
+          <div class="tester-div">
+            <h3>GET /fridge.php</h3>
+            <form>
+              <label>Test URL</label>
+              <p class="test-url">/fridge.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <div class="tester-div">
+            <h3>GET /missing_ingredients.php</h3>
+            <form>
+              <label>Test URL</label>
+              <p class="test-url">/missing_ingredients.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <div class="tester-div">
+            <h3>GET /add_ingredient_qty.php</h3>
+            <form>
+              <label>id</label>
+              <input type="text" param-name="id">
+              <br>
+              <label>name</label>
+              <input type="text" param-name="name">
+              <br>
+              <label>qty</label>
+              <input type="text" param-name="qty">
+              <br>
+              <label>qty-type</label>
+              <input type="text" param-name="qty-type">
+              <br>
+              <label>Test URL</label>
+              <p class="test-url">/add_ingredient_qty.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+    
+          <div class="tester-div">
+            <h3>GET /delete_ingredient_qty.php</h3>
+            <form>
+              <label>type</label>
+              <input type="text" param-name="type">
+              <br>
+              <label>id</label>
+              <input type="text" param-name="id">
+              <br>
+              <label>Test URL</label>
+              <p class="test-url">/delete_ingredient_qty.php</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+        </div>
+        <div class="outputdiv">
+          <h2>output</h2>
+          <h4 id="status">status 200</h4>
+          <textarea id="jsonoutput" disabled></textarea>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <script>
+    let menu = document.querySelector('.toggle')
+    menu.addEventListener('click', (e) => {
+      document.querySelector('.partederechamenu').classList.toggle('active');
+      document.querySelector('.navegacion').classList.toggle('activenav');
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+
+form input {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+}
+
+h1,h3 {
+    user-select: text;
+}
+
+#authheader {
+    word-break: break-all;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#jsonoutput {
+    width: 400px;
+    min-width: 400px;
+    max-width: 400px;
+    height: fit-content;
+    min-height: 200px;
+}
+
+.test-url {
+    background-color: #f5eee6;
+    border: solid 1px #cfc4b7;
+    width: fit-content;
+    padding: 5px;
+    margin-top: 5px;
+    user-select: all;
+}
+
+form {
+    margin-bottom: 50px;
+}
+
+.contenidodelaweb {
+    padding-left: 80px;
+}
