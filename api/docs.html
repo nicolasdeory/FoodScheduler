@@ -3608,7 +3608,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Recipe-seachRecipes-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET -H "Accept: application/json" -H "Authorization: Basic [[basicHash]]" "https://virtserver.swaggerhub.com/nicolasdeory/foodscheduler-api/1.0.0/searchrecipe.php?from=&to="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET -H "Accept: application/json" -H "Authorization: Basic [[basicHash]]" "https://virtserver.swaggerhub.com/nicolasdeory/foodscheduler-api/1.0.0/searchrecipe.php?nombre=&ingrediente=&dificultad="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Recipe-seachRecipes-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3630,10 +3630,11 @@ public class RecipeApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         RecipeApi apiInstance = new RecipeApi();
-        String from = from_example; // String | start of the date range
-        String to = to_example; // String | end of the date range
+        String nombre = nombre_example; // String | containing name
+        String ingrediente = ingrediente_example; // String | containing ingredient
+        String dificultad = dificultad_example; // String | of difficulty
         try {
-            Recipe result = apiInstance.seachRecipes(from, to);
+            Recipe result = apiInstance.seachRecipes(nombre, ingrediente, dificultad);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RecipeApi#seachRecipes");
@@ -3650,10 +3651,11 @@ public class RecipeApiExample {
 
     public static void main(String[] args) {
         RecipeApi apiInstance = new RecipeApi();
-        String from = from_example; // String | start of the date range
-        String to = to_example; // String | end of the date range
+        String nombre = nombre_example; // String | containing name
+        String ingrediente = ingrediente_example; // String | containing ingredient
+        String dificultad = dificultad_example; // String | of difficulty
         try {
-            Recipe result = apiInstance.seachRecipes(from, to);
+            Recipe result = apiInstance.seachRecipes(nombre, ingrediente, dificultad);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RecipeApi#seachRecipes");
@@ -3672,14 +3674,16 @@ public class RecipeApiExample {
 [apiConfig setUsername:@"YOUR_USERNAME"];
 [apiConfig setPassword:@"YOUR_PASSWORD"];
 
-String *from = from_example; // start of the date range
-String *to = to_example; // end of the date range
+String *nombre = nombre_example; // containing name (optional)
+String *ingrediente = ingrediente_example; // containing ingredient (optional)
+String *dificultad = dificultad_example; // of difficulty (optional)
 
 RecipeApi *apiInstance = [[RecipeApi alloc] init];
 
 // searchs for recipes
-[apiInstance seachRecipesWith:from
-    to:to
+[apiInstance seachRecipesWith:nombre
+    ingrediente:ingrediente
+    dificultad:dificultad
               completionHandler: ^(Recipe output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -3702,10 +3706,11 @@ basicAuth.password = 'YOUR PASSWORD'
 
 var api = new FoodSchedulerApi.RecipeApi()
 
-var from = from_example; // {String} start of the date range
-
-var to = to_example; // {String} end of the date range
-
+var opts = { 
+  'nombre': nombre_example, // {String} containing name
+  'ingrediente': ingrediente_example, // {String} containing ingredient
+  'dificultad': dificultad_example // {String} of difficulty
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -3714,7 +3719,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.seachRecipes(from, to, callback);
+api.seachRecipes(opts, callback);
 </code></pre>
                             </div>
 
@@ -3740,13 +3745,14 @@ namespace Example
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecipeApi();
-            var from = from_example;  // String | start of the date range
-            var to = to_example;  // String | end of the date range
+            var nombre = nombre_example;  // String | containing name (optional) 
+            var ingrediente = ingrediente_example;  // String | containing ingredient (optional) 
+            var dificultad = dificultad_example;  // String | of difficulty (optional) 
 
             try
             {
                 // searchs for recipes
-                Recipe result = apiInstance.seachRecipes(from, to);
+                Recipe result = apiInstance.seachRecipes(nombre, ingrediente, dificultad);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3768,11 +3774,12 @@ Swagger\Client\Configuration::getDefaultConfiguration()->setUsername('YOUR_USERN
 Swagger\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_PASSWORD');
 
 $api_instance = new Swagger\Client\Api\RecipeApi();
-$from = from_example; // String | start of the date range
-$to = to_example; // String | end of the date range
+$nombre = nombre_example; // String | containing name
+$ingrediente = ingrediente_example; // String | containing ingredient
+$dificultad = dificultad_example; // String | of difficulty
 
 try {
-    $result = $api_instance->seachRecipes($from, $to);
+    $result = $api_instance->seachRecipes($nombre, $ingrediente, $dificultad);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RecipeApi->seachRecipes: ', $e->getMessage(), PHP_EOL;
@@ -3790,11 +3797,12 @@ $WWW::SwaggerClient::Configuration::username = 'YOUR_USERNAME';
 $WWW::SwaggerClient::Configuration::password = 'YOUR_PASSWORD';
 
 my $api_instance = WWW::SwaggerClient::RecipeApi->new();
-my $from = from_example; # String | start of the date range
-my $to = to_example; # String | end of the date range
+my $nombre = nombre_example; # String | containing name
+my $ingrediente = ingrediente_example; # String | containing ingredient
+my $dificultad = dificultad_example; # String | of difficulty
 
 eval { 
-    my $result = $api_instance->seachRecipes(from => $from, to => $to);
+    my $result = $api_instance->seachRecipes(nombre => $nombre, ingrediente => $ingrediente, dificultad => $dificultad);
     print Dumper($result);
 };
 if ($@) {
@@ -3815,12 +3823,13 @@ swagger_client.configuration.password = 'YOUR_PASSWORD'
 
 # create an instance of the API class
 api_instance = swagger_client.RecipeApi()
-from = from_example # String | start of the date range
-to = to_example # String | end of the date range
+nombre = nombre_example # String | containing name (optional)
+ingrediente = ingrediente_example # String | containing ingredient (optional)
+dificultad = dificultad_example # String | of difficulty (optional)
 
 try: 
     # searchs for recipes
-    api_response = api_instance.seach_recipes(from, to)
+    api_response = api_instance.seach_recipes(nombre=nombre, ingrediente=ingrediente, dificultad=dificultad)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RecipeApi->seachRecipes: %s\n" % e)</code></pre>
@@ -3839,11 +3848,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">from*</td>
+                                <tr><td style="width:150px;">nombre</td>
 <td>
 
 
-    <div id="d2e199_seachRecipes_from">
+    <div id="d2e199_seachRecipes_nombre">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -3851,22 +3860,19 @@ except ApiException as e:
                 </span>
 
                     <div class="inner description">
-                        start of the date range
+                        containing name
                     </div>
             </div>
-                <div class="inner required">
-                    Required
-                </div>
         </div>
     </div>
 </td>
 </tr>
 
-                                <tr><td style="width:150px;">to*</td>
+                                <tr><td style="width:150px;">ingrediente</td>
 <td>
 
 
-    <div id="d2e199_seachRecipes_to">
+    <div id="d2e199_seachRecipes_ingrediente">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -3874,12 +3880,29 @@ except ApiException as e:
                 </span>
 
                     <div class="inner description">
-                        end of the date range
+                        containing ingredient
                     </div>
             </div>
-                <div class="inner required">
-                    Required
-                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">dificultad</td>
+<td>
+
+
+    <div id="d2e199_seachRecipes_dificultad">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description">
+                        of difficulty
+                    </div>
+            </div>
         </div>
     </div>
 </td>
