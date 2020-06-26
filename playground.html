@@ -3,7 +3,7 @@
 <html>
 
 <head>
-  
+  <title>API Playground - Planificador Alimenticio</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -115,7 +115,7 @@
             <h3>POST /create_recipe.php</h3>
             <form>
               <label>thumbnail</label>
-              <input type="file" param-name="thumbnail">
+              <input type="file" id="create-recipe-file" param-name="thumbnail">
               <br>
               <label>nombre</label>
               <input type="text" param-name="nombre">
@@ -146,6 +146,12 @@
           <div class="tester-div">
             <h3>GET /schedule.php</h3>
             <form>
+              <label>from</label>
+              <input type="text" param-name="from">
+              <br>
+              <label>to</label>
+              <input type="text" param-name="to">
+              <br>
               <p class="test-url">/schedule.php</p>
               <button>Test endpoint</button>
             </form>
@@ -164,6 +170,20 @@
               <br>
               <label>Test body</label>
               <p class="test-url">no parameters given</p>
+              <button>Test endpoint</button>
+            </form>
+          </div>
+
+          <div class="tester-div">
+            <h3>GET /delete_schedule.php</h3>
+            <form>
+              <label>date</label>
+              <input type="text" param-name="date">
+              <br>
+              <label>meal</label>
+              <input type="text" param-name="meal">
+              <br>
+              <p class="test-url">/schedule.php</p>
               <button>Test endpoint</button>
             </form>
           </div>
@@ -191,6 +211,9 @@
           <div class="tester-div">
             <h3>GET /add_ingredient_qty.php</h3>
             <form>
+              <label>type</label>
+              <input type="text" param-name="type">
+              <br>
               <label>id</label>
               <input type="text" param-name="id">
               <br>

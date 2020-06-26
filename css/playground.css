@@ -46,3 +46,7 @@ form {
 .contenidodelaweb {
     padding-left: 80px;
 }
+
+#page-content {
+    max-height: 100% !important;
+}
