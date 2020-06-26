@@ -1,0 +1,477 @@
+---
+swagger: "2.0"
+info:
+  description: |
+    This is the Food Scheduler API documentation. It provides some basic endpoints for taking advantage of some of the services offered in the webapp.
+      Note - Dates are in dd-mm-yyyy format
+  version: 1.0.0
+  title: Food Scheduler API
+  contact:
+    email: deorynicolas@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /nicolasdeory/foodscheduler-api/1.0.0
+tags:
+- name: recipe
+  description: Endpoints related to recipes
+- name: schedule
+  description: Endpoints related to schedules
+- name: inventory
+  description: Endpoints related to fridge and shopping list
+schemes:
+- https
+security:
+- basicAuth: []
+paths:
+  /schedule.php:
+    get:
+      tags:
+      - schedule
+      summary: returns scheduled recipes from the given date range
+      description: |
+        Returns the recipes that were scheduled by the user for a date within the range given.
+      operationId: getSchedule
+      produces:
+      - application/json
+      parameters:
+      - name: from
+        in: query
+        description: start of the date range
+        required: true
+        type: string
+      - name: to
+        in: query
+        description: end of the date range
+        required: true
+        type: string
+      responses:
+        "200":
+          description: returns scheduled recipes
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Schedule'
+        "400":
+          description: bad request
+        "403":
+          description: invalid authorization
+  /add_schedule.php:
+    post:
+      tags:
+      - schedule
+      summary: schedules a recipe
+      description: |
+        Schedules a recipe for the given date and meal.
+      operationId: addSchedule
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: formData
+        description: recipe id
+        required: false
+        type: string
+      - name: date
+        in: formData
+        required: false
+        type: string
+        format: date
+      - name: meal
+        in: formData
+        required: false
+        type: string
+        enum:
+        - Almuerzo
+        - Cena
+      responses:
+        "200":
+          description: added successfully
+        "400":
+          description: invalid parameters
+        "403":
+          description: invalid authorization
+  /create_recipe.php:
+    post:
+      tags:
+      - recipe
+      summary: creates a new recipe
+      description: |
+        Creates a new recipe. You must specify a thumbnail as well as other required fields using a multipart form.
+      operationId: createRecipe
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - name: thumbnail
+        in: formData
+        description: Image thumbnail
+        required: false
+        type: file
+      - name: nombre
+        in: formData
+        description: Name of the recipe
+        required: false
+        type: file
+      - name: dif
+        in: formData
+        description: Difficulty
+        required: false
+        type: string
+        enum:
+        - Sencillo
+        - Fácil
+        - Medio
+        - Difícil
+        - Muy difícil
+      - name: visibility
+        in: formData
+        description: Visibility of the recipe. 0 = Private; 1 = Public
+        required: false
+        type: number
+      - name: ingredients
+        in: formData
+        description: json representation of a list of ingredients (see Ingredient entity)
+        required: false
+        type: string
+      - name: steps
+        in: formData
+        description: json representation of an array of steps (each step is a string)
+        required: false
+        type: string
+      - name: tiempo
+        in: formData
+        description: Preparation time in minutes
+        required: false
+        type: number
+      responses:
+        "200":
+          description: ok
+        "400":
+          description: invalid input
+        "403":
+          description: invalid authorization
+  /fridge.php:
+    get:
+      tags:
+      - inventory
+      summary: returns the fridge and shopping list ingredients
+      description: |
+        Returns the ingredients currently in the user's fridge and shopping list.
+      operationId: getFridge
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: returns ingredients in fridge and shopping list
+          schema:
+            $ref: '#/definitions/Fridge'
+        "403":
+          description: invalid authorization
+  /missing_ingredients.php:
+    get:
+      tags:
+      - inventory
+      summary: returns the missing ingredients needed for upcoming recipes
+      description: |
+        Returns a list of ingredient quantities needed for preparing the scheduled recipes of the next 7 days, which aren't present in the users fridge or shopping list.
+      operationId: getMissingIngredients
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: returns missing ingredients
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Ingredient'
+        "403":
+          description: invalid authorization
+  /add_ingredient_qty.php:
+    get:
+      tags:
+      - inventory
+      summary: adds a quantity of ingredient to the user's inventory
+      description: |
+        Adds the given quantity of ingredient to the user's inventory. It can be added to either the fridge or shopping list.
+        You must specify either an id or ingredient name.
+      operationId: addIngredientQuantity
+      produces:
+      - application/json
+      parameters:
+      - name: type
+        in: query
+        description: which inventory to add the quantity to
+        required: true
+        type: string
+        enum:
+        - fridge
+        - shoppinglist
+      - name: id
+        in: query
+        description: ingredient id
+        required: false
+        type: number
+      - name: name
+        in: query
+        description: ingredient name
+        required: false
+        type: string
+      - name: qty
+        in: query
+        description: ingredient quantity
+        required: true
+        type: number
+      - name: qty-type
+        in: query
+        description: quantity unit of measure
+        required: true
+        type: string
+        enum:
+        - Gramo
+        - Mililitro
+        - Unidad
+      responses:
+        "200":
+          description: ok
+        "400":
+          description: invalid parameters given
+        "403":
+          description: invalid authorization
+  /delete_ingredient_qty.php:
+    get:
+      tags:
+      - inventory
+      summary: removes a quantity of ingredient from the user's inventory
+      description: |
+        Removes the ingredient from the user's inventory, either from the fridge or the shopping list
+      operationId: removeIngredientQty
+      produces:
+      - application/json
+      parameters:
+      - name: type
+        in: query
+        description: which inventory to remove the ingredient from
+        required: true
+        type: string
+        enum:
+        - fridge
+        - shoppinglist
+      - name: id
+        in: query
+        description: ingredient id
+        required: false
+        type: number
+      responses:
+        "200":
+          description: ok
+        "400":
+          description: invalid parameters given
+        "403":
+          description: invalid authorization
+  /searchrecipe.php:
+    get:
+      tags:
+      - recipe
+      summary: searchs for recipes
+      description: |
+        Searchs for recipes given the name, ingredients and difficulty. If all fields are left empty, all recipes are returned.
+      operationId: seachRecipes
+      produces:
+      - application/json
+      parameters:
+      - name: nombre
+        in: query
+        description: containing name
+        required: false
+        type: string
+      - name: ingrediente
+        in: query
+        description: containing ingredient
+        required: false
+        type: string
+      - name: dificultad
+        in: query
+        description: of difficulty
+        required: false
+        type: string
+        enum:
+        - Sencillo
+        - Fácil
+        - Medio
+        - Difícil
+        - Muy difícil
+      responses:
+        "200":
+          description: returns recipes that match the criteria
+          schema:
+            $ref: '#/definitions/Recipe'
+        "403":
+          description: invalid authorization
+  /add_favorite.php:
+    get:
+      tags:
+      - recipe
+      summary: marks the specified recipe as favorite
+      description: |
+        Marks the specified recipe as favorite.
+      operationId: addFavorite
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: query
+        description: recipe id
+        required: true
+        type: number
+      responses:
+        "200":
+          description: added to favorites successfully
+        "400":
+          description: no id given or already marked as favorite
+        "403":
+          description: invalid authorization
+  /remove_favorite.php:
+    get:
+      tags:
+      - recipe
+      summary: unmarks the specified recipe as favorite
+      description: |
+        Removes the specified recipe from favorites
+      operationId: removeFavorite
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: query
+        description: recipe id
+        required: true
+        type: number
+      responses:
+        "200":
+          description: added to favorites successfully
+        "400":
+          description: no id given or already marked as favorite
+        "403":
+          description: invalid authorization
+  /is_favorited.php:
+    get:
+      tags:
+      - recipe
+      summary: returns whether the recipe is favorited
+      description: |
+        Returns true if the user has favorited the specified recipe or false otherwise.
+      operationId: isFavorite
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: query
+        description: recipe id
+        required: true
+        type: number
+      responses:
+        "200":
+          description: returns true if the user has favorited the specified recipe
+        "400":
+          description: no id given
+        "403":
+          description: invalid authorization
+securityDefinitions:
+  basicAuth:
+    type: basic
+definitions:
+  Recipe:
+    type: object
+    required:
+    - dificultad
+    - id_receta
+    - nombre
+    - popularidad
+    - tiempoelaboracion
+    properties:
+      id_receta:
+        type: number
+        example: 1.0
+      nombre:
+        type: string
+        example: Macarrones con Tomate
+      tiempoelaboracion:
+        type: number
+        example: 60.0
+        description: Preparation time in minutes
+      popularidad:
+        type: number
+        example: 250.0
+        description: popularity of the recipe, number of users who have favorited it.
+      dificultad:
+        type: string
+        enum:
+        - Sencillo
+        - Fácil
+        - Medio
+        - Difícil
+        - Muy difícil
+  Schedule:
+    type: object
+    required:
+    - comida
+    - fecha
+    - id_receta
+    - nombre
+    properties:
+      id_receta:
+        type: number
+        example: 1.0
+      nombre:
+        type: string
+        example: Macarrones con Tomate
+      fecha:
+        type: string
+        format: date
+        example: 21-06-2020
+      comida:
+        type: string
+        enum:
+        - Almuerzo
+        - Cena
+  Ingredient:
+    type: object
+    required:
+    - name
+    - qty
+    - qtyType
+    properties:
+      name:
+        type: string
+        example: Atún
+      qty:
+        type: number
+        example: 5.0
+        description: number of the specified measure (e.g. 5 grams)
+      qtyType:
+        type: string
+        enum:
+        - Gramo
+        - Mililitro
+        - Unidad
+  Fridge:
+    type: object
+    required:
+    - listaCompra
+    - nevera
+    properties:
+      nevera:
+        type: array
+        items:
+          $ref: '#/definitions/Ingredient'
+      listaCompra:
+        type: array
+        items:
+          $ref: '#/definitions/Ingredient'
